@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="styles/style.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://unpkg.com/scrollreveal">
+
+    </script>
+    <title> PETTYZ </title>
+
+</head>
+<body>
+    <header>
+        <nav id="navbar">
+            <i class="fa-solid fa-otter" id="nav_logo"> PETTYZ </i>
+        
+            <ul id="nav_list">
+  <li class="nav-item active"><a href="#home">Início</a></li>
+    <li class="nav-item"><a href="#freatures">Funcionalidades</a></li>
+  <li class="nav-item"><a href="#reviews"> Avaliações</a></li>
+  <li class="nav-item"><a href="#pricing-card"> Preço</a></li>
+   <li class="nav-item"><a href="#fac">Fale Conosco </a></li>
+</li>
+ 
+</ul>
+
+<script>
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+
+            <button a href="#" class="btn-default">
+                Acesse sua conta
+            <i class="fa-solid fa-right-to-bracket"></i>
+            </button>
+
+            <button id="mobile_btn">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </nav>
+
+        <div id="mobile_menu">
+           <ul id="mobile_nav_list">
+  <li class="nav-item active"><a href="#home">Início</a></li>
+  <li class="nav-item"><a href="#freatures">Funcionalidades</a></li>
+  <li class="nav-item"><a href="#reviews">Avaliações</a></li>
+    <li class="nav-item"><a href="#pricing-card"> Preço</a></li>
+   <li class="nav-item"><a href="#fac">Fale Conosco </a></li>
+  
+</ul>
+            <button class="btn-default">
+                Acesse sua conta
+                <i class="fa-solid fa-right-to-bracket"></i>
+            </button>
+        </div>
+    </header>
+
+    
+    <main id="content">
+        <section id="home">
+           
+            <div id="cta">
+                <h1 class="title">
+                    Gestão e controle para creches de 
+                    <span>PETs</span>
+                </h1>
+
+                <p class="description">
+                    Seu espaço para cuidado. 
+                    Um lugar para organização e facilidade.
+                </p>
+
+                <div id="cta_buttons">
+                    <a href="src/downloads/Desmatamento.pbix" onclick="scrollToTop()" class="btn-default">
+                        Acesse sua conta
+                        <i class="fa-solid fa-right-to-bracket"></i>
+                    </a>
+                </div>
+            </div>
+
+    <div id="banner">
+                <img src="img/banner.png" alt="" class="reveal-banner">
+            </div>
+        </section>
+
+     <section id="freatures">
+            <div id="freatures">
+                <h3 class="section-subtitle">
+                    Tudo que sua creche precisa.
+                </h3>
+
+                <div id="freatures-sub">
+                        <div class="section-subtitle-description">                   
+                            <p>
+                                Planejamento feito sob medida para o dia a dia da sua creche. Administre agendamentos, atividades, documentos e muito mais, de forma simples e segura.
+                            </p>
+                        </div>
+                </div>
+                            
+     <section id="benefits">
+        <div class="benefit">
+            <img src="img/casa-cachorro.svg" alt="Cães">
+            <h3>Ideal para quem cuida de cães</h3>
+            <p>Gerencie turmas, horários de alimentação, documentação e atividades recreativas.</p>
+        </div>
+        <div class="benefit">
+            <img src="img/casa-gato.svg" alt="Gatos">
+            <h3>Perfeito para ambientes felinos</h3>
+            <p>Controle ambientes separados, horário de soneca, brincadeiras e alimentação.</p>
+        </div>
+        <div class="benefit">
+            <img src="img/casa-animal.svg" alt="Animais diferenciados">
+            <h3>Especializados em animais diferenciados</h3>
+            <p>Adeque o sistema para aves, roedores ou répteis.</p>
+        </div>
+        <div class="benefit">
+            <img src="img/casa-cama.svg" alt="Solução confortável">
+            <h3>Solução para uma estadia confortável</h3>
+            <p>Gerencie check-in, check-out, suites, itens pessoais e rotinas noturnas.</p>
+        </div>
+    </section>
+
+
+    <section id="reviews">
+    <h3 class="section-subtitle"> Conheça as histórias dos nossos clientes </h3>
+
+    <div id="review-container"> <div class="review-card">
+            
+            <img src="img/token_5.png" alt="Guilherme Dias">
+            <h3 class="review-title">
+                Juliana Santos
+            </h3>
+                <div class="review_indice">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+            </div>
+            <span class="review-description">
+                Ótima ferramenta para creches! A interface é intuitiva e as funcionalidades atendem bem nossas necessidades. O suporte foi muito prestativo nas implementações iniciais. Estamos satisfeitos com a escolha!
+            </span>
+        
+        </div>
+
+        <div class="review-card">
+            
+            <img src="img/token_2_1.png" alt="Larissa Hash">
+            <h3 class="review-title">
+                Larissa Hash
+            </h3>
+              <div class="review_indice">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+            </div>
+            <span class="review-description">
+                Sistema com integração perfeita entre agendamentos e hospedagens. A plataforma é intuitiva e organiza toda nossa operação de forma eficiente. Ferramenta essencial para creches que buscam profissionalismo e controle total dos processos.
+          
+        </div>
+
+        <div class="review-card">
+          
+            <img src="img/token_2_2.png" alt="Pedro Lima">
+            <h3 class="review-title">
+                Pedro Lima
+            </h3>
+                <div class="review_indice">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+            </div>
+            <span class="review-description">
+                Agilizou demais nossa comunicação com os tutores! O envio de fotos e atualizações em tempo real deixou nossos clientes muito mais tranquilos. O suporte técnico é notável pela prontidão e eficiência. Sistema essencial para creches que buscam profissionalismo!
+            </span>
+        </div>
+    
+     <div class="review-card">
+            
+            <img src="img/token_1_3.png" alt="Larissa Hash">
+            <h3 class="review-title">
+                Ricardo Almeida
+            </h3>
+              <div class="review_indice">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+            </div>
+            <span class="review-description">
+                O sistema revolucionou nossa forma de trabalhar! Agora consigo gerenciar todas as estadias, enviar relatórios detalhados e fotos para os tutores com apenas alguns cliques. A redução de 30% no tempo de administração nos permitiu receber mais pets sem perder a qualidade do serviço.
+            </span>
+          
+        </div>   
+    </div>
+</section>
+
+<div id="pricing-card">
+<section class="pricing-section">
+    <div class="container">
+        <div class="pricing-cards-container">
+            <div class="pricing-card pricing-card--pro">
+                <h3>Plano PRO</h3>
+                <span class="plan-subtitle">"Ideal para creches em crescimento"</span>
+                <p>A partir de</p>
+                <p class="plan-price">R$100<small>/mês</small></p>
+                <ul>
+                    <li>Gestão de até 50 PETs simultâneos</li>
+                    <li>Agenda inteligente com lembretes automáticos</li>
+                    <li>Relatórios de atividades diárias</li>
+                    <li>Comunicação integrada com tutores</li>
+                </ul>
+               
+            </div>
+
+            <div class="pricing-card pricing-card--enterprise">
+                <h3>Plano ENTERPRISE</h3>
+                <span class="plan-subtitle">"Solução completa para redes de creches"</span>
+                <p>A partir de</p>
+                <p class="plan-price">R$200<small>/mês</small></p>
+                <ul>
+                    <li>Capacidade de gestão ilimitada de PETs</li>
+                    <li>Múltiplas unidades e filiais</li>
+                    <li>Relatórios personalizados e analytics avançados</li>
+                    <li>Integração com redes sociais</li>
+                    <li>Sistema de fidelidade integrado</li>
+                    <li>API para integrações personalizadas</li>
+                    <li>Backup em nuvem com segurança avançada</li>
+                    <li>Suporte com consultor dedicado</li>
+                </ul>
+               
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+
+<class id="fac"> 
+<section class="contact-faq-section">
+    <div class="container contact-faq-container">
+        <div class="contact-column">
+            <h2>Fale Conosco!</h2>
+            <form action="#" method="post" class="contact-form">
+                <div class="form-group">
+                    <label for="name">Nome</label>
+                    <input type="text" id="name" name="name" placeholder="Insira seu nome" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" placeholder="Insira seu e-mail" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Mensagem</label>
+                    <textarea id="message" name="message" rows="5" placeholder="Insira sua mensagem" required></textarea>
+                </div>
+                <button type="submit" class="button">Enviar Mensagem</button>
+            </form>
+        </div>
+        <div class="faq-column">
+            <h2>Perguntas Mais Frequentes</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <h4>"Como funciona o período de teste gratuito?"</h4>
+                    <p>Oferecemos 7 dias gratuitos para explorar todas as funcionalidades do sistema sem compromisso. Não solicitamos dados de cartão de crédito durante o teste, e você pode cancelar a qualquer momento sem custo.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>"Qual é a diferença principal entre os planos Pro e Enterprise?"</h4>
+                    <p>O plano Pro é ideal para creches menores, com gestão de até 50 pets e funcionalidades essenciais. O Enterprise oferece capacidade ilimitada, gestão de múltiplas unidades, relatórios avançados e suporte prioritário 24/7.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>"Preciso de equipamento específico para usar o sistema?"</h4>
+                    <p>Nosso sistema funciona em qualquer computador com acesso à internet e navegador atualizado. Também oferecemos aplicativos móveis para iOS e Android para gerenciamento em tempo real.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>"E se eu precisar cancelar meu plano?"</h4>
+                    <p>Você pode cancelar a qualquer momento pela área do cliente, sem taxas de cancelamento. Se cancelar no meio do ciclo, mantém acesso ao sistema até o final do período já pago.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</class>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <script src="script.js"></script>
+
+    <script>
+  function activateMenuItem(navSelector) {
+    const navItems = document.querySelectorAll(`${navSelector} .nav-item`);
+
+    navItems.forEach(item => {
+      item.addEventListener('click', () => {
+        navItems.forEach(i => i.classList.remove('active'));
+        item.classList.add('active');
+      });
+    });
+  }
+
+  activateMenuItem('#nav_list');         
+  activateMenuItem('#mobile_nav_list');  
+</script>
+</body>
+</html>
