@@ -6,6 +6,7 @@ import cors from "cors"
 import petRoutes from "./src/routes/petRoutes.js";
 import ownerRoutes from "./src/routes/ownerRoutes.js";
 import employeeRoutes from "./src/routes/employeeRoutes.js";
+import companyRoutes from "./src/routes/companyRoutes.js";
 
 
 dotenv.config();
@@ -23,6 +24,7 @@ app.use(express.json());
 app.use("/api/pets", petRoutes)
 app.use("/api/owners", ownerRoutes)
 app.use("/api/employees", employeeRoutes)
+app.use("/api/companys", companyRoutes)
 
 
 // Conectando ao BD
