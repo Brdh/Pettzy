@@ -7,6 +7,7 @@ import petRoutes from "./src/routes/petRoutes.js";
 import ownerRoutes from "./src/routes/ownerRoutes.js";
 import employeeRoutes from "./src/routes/employeeRoutes.js";
 import companyRoutes from "./src/routes/companyRoutes.js";
+import authRoutes from "./src/routes/authRoutes.js";
 
 
 dotenv.config();
@@ -21,10 +22,11 @@ app.use(cors());
 
 // Importações de rotas
 app.use(express.json());
-app.use("/api/pets", petRoutes)
-app.use("/api/owners", ownerRoutes)
-app.use("/api/employees", employeeRoutes)
-app.use("/api/companys", companyRoutes)
+app.use("/api/pets", petRoutes);
+app.use("/api/owners", ownerRoutes);
+app.use("/api/employees", employeeRoutes);
+app.use("/api/companys", companyRoutes);
+app.use("/api/auth", authRoutes);
 
 
 // Conectando ao BD

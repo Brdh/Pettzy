@@ -22,9 +22,11 @@ export const loginCompany = async (req, res) => {
   try {
     const { email, senha } = req.body;
 
+    // Procura o usuário
     const company = await Company.findOne({ email });
     if (!company) return res.status(404).json({ message: "Usuário não encontrado" });
 
+    // Valida a senha
     const senhaValida = await bcrypt.compare(senha, company.senha);
     if (!senhaValida) return res.status(401).json({ message: "Senha incorreta" });
 
