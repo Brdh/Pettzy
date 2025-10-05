@@ -6,9 +6,11 @@ export const registerCompany = async (req, res) => {
   try {
     const { nome, cnpj, email, senha } = req.body;
 
+    // Procura a empresa
     const existe = await Company.findOne({ email });
     if (existe) return res.status(400).json({ message: "E-mail já cadastrado" });
 
+    // Valida a senha
     const hashed = await bcrypt.hash(senha, 10);
     const novoCompany = await Company.create({ nome, cnpj, email, senha: hashed });
 
@@ -22,7 +24,7 @@ export const loginCompany = async (req, res) => {
   try {
     const { email, senha } = req.body;
 
-    // Procura o usuário
+    // Procura a empresa
     const company = await Company.findOne({ email });
     if (!company) return res.status(404).json({ message: "Usuário não encontrado" });
 
