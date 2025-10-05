@@ -4,13 +4,13 @@ import jwt from "jsonwebtoken";
 
 export const registerCompany = async (req, res) => {
   try {
-    const { nome, email, senha } = req.body;
+    const { nome, cnpj, email, senha } = req.body;
 
     const existe = await Company.findOne({ email });
     if (existe) return res.status(400).json({ message: "E-mail já cadastrado" });
 
     const hashed = await bcrypt.hash(senha, 10);
-    const novoCompany = await Company.create({ nome, email, senha: hashed });
+    const novoCompany = await Company.create({ nome, cnpj, email, senha: hashed });
 
     res.status(201).json({ message: "Cadastro realizado com sucesso", company: novoCompany });
   } catch (error) {
