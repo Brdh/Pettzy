@@ -1,17 +1,31 @@
 import Company from "../models/CompanyModel.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import validator from 'validator';
 
 export const registerCompany = async (req, res) => {
+  const { nome, cnpj, email, senha } = req.body;
   try {
-    const { nome, cnpj, email, senha } = req.body;
 
-    // Procura a empresa
+    // Verifica se a empresa existe
     const existe = await Company.findOne({ email });
-    if (existe) return res.status(400).json({ message: "E-mail já cadastrado" });
+    if (existe) return res.status(400).json({ message: "Empresa já cadastrada!" });
+
+    // Valida formato do Email
+    if (!validator.isEmail(email)) {
+      return res.json({ success: false, message: "Utilize um email válido" })
+    }
 
     // Valida a senha
-    const hashed = await bcrypt.hash(senha, 10);
+    // Valida formato do Email
+    if (!senha || senha.length < 8) {
+      return res.status(400).json({ success: false, message: "Utilize uma senha válida" });
+    }
+
+    // Criptografa a senha
+    const salt = await bcrypt.genSalt(10)
+    const hashed = await bcrypt.hash(senha, salt);
+
     const novoCompany = await Company.create({ nome, cnpj, email, senha: hashed });
 
     res.status(201).json({ message: "Cadastro realizado com sucesso", company: novoCompany });
