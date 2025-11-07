@@ -49,6 +49,78 @@
                 Não possui uma conta? <a href="cadastro.html">Cadastre-se!</a>
             </p>
         </div>
+<<<<<<< HEAD
     </div>
+=======
+    </section>
+</main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <script src="script.js"></script>
+
+    <script>
+  function activateMenuItem(navSelector) {
+    const navItems = document.querySelectorAll(`${navSelector} .nav-item`);
+
+    navItems.forEach(item => {
+      item.addEventListener('click', () => {
+        navItems.forEach(i => i.classList.remove('active'));
+        item.classList.add('active');
+      });
+    });
+  }
+
+  activateMenuItem('#nav_list');         
+  activateMenuItem('#mobile_nav_list');  
+</script>
+
+<script>
+document.querySelector(".auth-form").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const email = document.querySelector("#email").value;
+    const senha = document.querySelector("#password").value;
+
+    try {
+        const response = await fetch("http://localhost:3000/api/auth/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, senha }),
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+            alert("Login realizado com sucesso!");
+            // Armazena o token JWT para usar em rotas protegidas
+            localStorage.setItem("token", result.token);
+            window.location.href = "dashboard.html"; // página principal da empresa
+        } else {
+            alert(result.message || "Credenciais inválidas.");
+        }
+    } catch (error) {
+        console.error(error);
+        alert("Erro de conexão com o servidor.");
+    }
+});
+</script>
+
+>>>>>>> c41de36c8a857bec8bf1981839946d984344d0ad
 </body>
 </html>
