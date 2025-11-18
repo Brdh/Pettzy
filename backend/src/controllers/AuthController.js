@@ -1,4 +1,5 @@
 import Company from "../models/CompanyModel.js";
+import crypto from "crypto"
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import validator from 'validator';
@@ -52,5 +53,64 @@ export const loginCompany = async (req, res) => {
     res.status(200).json({ message: "Login bem-sucedido", token });
   } catch (error) {
     res.status(500).json({ message: "Erro ao fazer login", error });
+  }
+};
+
+export const sendResetLink = async (req, res) => {
+  const { email } = req.body;
+
+  try {
+    const company = await Company.findOne({ email });
+    if (!company)
+      return res.status(404).json({ message: "E-mail não encontrado" });
+
+    // Gera token seguro
+    const resetToken = crypto.randomBytes(32).toString("hex");
+    const tokenExpiration = Date.now() + 1000 * 60 * 15; // 15 minutos
+
+    company.resetToken = resetToken;
+    company.resetTokenExpires = tokenExpiration;
+
+    await company.save();
+
+    // Aqui você enviaria email — por enquanto retornamos o link
+    const resetLink = `http://localhost:3000/reset-password/${resetToken}`;
+
+    res.status(200).json({
+      message: "Link para redefinição enviado com sucesso!",
+      resetToken,
+      resetLink,
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Erro ao gerar link", error });
+  }
+};
+
+export const resetPassword = async (req, res) => {
+  const { token } = req.params;
+  const { novaSenha } = req.body;
+
+  try {
+    const company = await Company.findOne({
+      resetToken: token,
+      resetTokenExpires: { $gt: Date.now() },
+    });
+
+    if (!company)
+      return res.status(400).json({ message: "Token inválido ou expirado" });
+
+    // Criptografar nova senha
+    const salt = await bcrypt.genSalt(10);
+    const hashed = await bcrypt.hash(novaSenha, salt);
+
+    company.senha = hashed;
+    company.resetToken = undefined;
+    company.resetTokenExpires = undefined;
+
+    await company.save();
+
+    res.json({ message: "Senha redefinida com sucesso!" });
+  } catch (error) {
+    res.status(500).json({ message: "Erro ao redefinir senha", error });
   }
 };
