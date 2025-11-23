@@ -26,6 +26,11 @@ header {
     list-style: none;
     gap: 48px;
 }
+.nav-item {
+    background-color: transparent; 
+    padding: 8px 16px; 
+    transition: all 0.3s ease; 
+}
 
 .nav-item a {
     text-decoration: none;
@@ -33,10 +38,19 @@ header {
     font-weight: 600;
 }
 
-.nav-item.active a {
-    color: var(--color-neutral-1);
-    border-bottom: 3px solid var(--color-primary-4);
+.nav-item.active {
+    background-color: transparent !important; 
 }
+
+.nav-item.active a {
+    color: var(--color-neutral-1); 
+    border-bottom: 3px solid var(--color-primary-4); 
+}
+
+.nav-item:hover {
+    background-color: transparent; 
+}
+
 
 #mobile_btn {
     display: none;

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="styles/cadastro_login.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card login-card">
+            <h1>Login</h1>
+            <form>
+                <div class="form-group full-width">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" placeholder="Insira seu e-mail">
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="senha">Senha</label>
+                    <input type="password" id="senha" placeholder="Insira sua senha">
+                </div>
+
+                <div class="login-options">
+                    <div class="remember-me">
+                        <input type="checkbox" id="me-lembre">
+                        <label for="me-lembre">Lembrar senha</label>
+                    </div>
+                    <a href="esqueceu_senha.html" class="forgot-password">Esqueceu a senha?</a>
+                </div>
+
+                <button type="submit" class="btn-primary">Entrar</button>
+            </form>
+
+            <div class="divider">
+                <span class="divider-text">OU</span>
+            </div>
+
+            <button class="btn-social google">
+                <i class="fab fa-google"></i> Entrar com o Google
+            </button>
+            <button class="btn-social outlook">
+                <i class="fab fa-windows"></i> Entrar com o Outlook
+            </button>
+
+            <p class="register-link">
+                Não possui uma conta? <a href="cadastro.html">Cadastre-se!</a>
+            </p>
+        </div>
+    </section>
+</main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <script src="script.js"></script>
+
+    <script>
+  function activateMenuItem(navSelector) {
+    const navItems = document.querySelectorAll(`${navSelector} .nav-item`);
+
+    navItems.forEach(item => {
+      item.addEventListener('click', () => {
+        navItems.forEach(i => i.classList.remove('active'));
+        item.classList.add('active');
+      });
+    });
+  }
+
+  activateMenuItem('#nav_list');         
+  activateMenuItem('#mobile_nav_list');  
+</script>
+
+<script>
+document.querySelector(".auth-form").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const email = document.querySelector("#email").value;
+    const senha = document.querySelector("#password").value;
+
+    try {
+        const response = await fetch("http://localhost:3000/api/auth/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, senha }),
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+            alert("Login realizado com sucesso!");
+            // Armazena o token JWT para usar em rotas protegidas
+            localStorage.setItem("token", result.token);
+            window.location.href = "dashboard.html"; // página principal da empresa
+        } else {
+            alert(result.message || "Credenciais inválidas.");
+        }
+    } catch (error) {
+        console.error(error);
+        alert("Erro de conexão com o servidor.");
+    }
+});
+</script>
+
+</body>
+</html>
