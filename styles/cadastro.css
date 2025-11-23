@@ -1,135 +1,271 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 body {
-  background: #222;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  font-family: Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
+    background-color: #e0e0e0; /* Cor de fundo cinza claro para o login */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
 }
 
-.auth-container {
-  background: #eee;
-  padding: 2.5rem;
-  border-radius: 6px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-  width: 100%;
-  max-width: 500px;
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
 
-.auth-form h2 {
-  text-align: center;
-  margin-bottom: 1.5rem;
+.card {
+    padding: 40px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 500px; /* Largura máxima para o formulário */
+    text-align: center;
 }
 
-.form-group label {
-  font-weight: bold;
-  display: block;
-  margin-top: 1rem;
+/* Estilos para o card de Cadastro (Fundo Escuro) */
+.card:not(.login-card) {
+    background-color: #1c1c1c; /* Fundo preto/muito escuro para o card */
+    color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    /* Ajusta o fundo do body para a tela de cadastro */
+    background-color: #444444;
 }
 
-.form-group input {
-  width: 100%;
-  padding: 0.7rem;
-  margin-top: 0.3rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+/* Estilos para o card de Login (Fundo Claro) */
+.login-card {
+    background-color: #ffffff; /* Fundo branco para o card */
+    color: #000000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra mais suave para o card claro */
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 30px;
+    font-weight: 700;
+}
+
+form {
+    text-align: left;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 15px;
+}
+
+.form-group {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+.form-group.full-width {
+    flex: none;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #ffffff; /* Fundo branco para os inputs */
+    color: #000000;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+input::placeholder {
+    color: #999999;
 }
 
 .btn-primary {
-  width: 100%;
-  padding: 0.8rem;
-  background: #000;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  font-weight: bold;
-  cursor: pointer;
-  margin-top: 1.5rem;   
-  
+    width: 100%;
+    padding: 10px;
+    background-color: #000000; /* Botão principal preto */
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 700;
+    margin-top: 15px;
+    transition: background-color 0.3s;
 }
 
 .btn-primary:hover {
-  background: #333;
+    background-color: #333333;
 }
 
 .divider {
-  display: flex;
-  align-items: center;
-  text-align: center;
-  color: #666;
-  margin: 1.5rem 0;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 30px 0;
+}
+
+/* Cor do texto OU branca para card escuro */
+.card:not(.login-card) .divider {
+    color: #ffffff;
+}
+
+/* Cor do texto OU preta para card claro */
+.login-card .divider {
+    color: #000000;
 }
 
 .divider::before,
 .divider::after {
-  content: '';
-  flex: 1;
-  border-bottom: 1px solid #bbb;
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid;
+}
+
+/* Linha divisória branca para card escuro */
+.card:not(.login-card) .divider::before,
+.card:not(.login-card) .divider::after {
+    border-color: #ffffff;
+}
+
+/* Linha divisória cinza para card claro */
+.login-card .divider::before,
+.login-card .divider::after {
+    border-color: #cccccc;
 }
 
 .divider:not(:empty)::before {
-  margin-right: 0.75em;
+    margin-right: .25em;
 }
+
 .divider:not(:empty)::after {
-  margin-left: 0.75em;
+    margin-left: .25em;
+}
+
+.divider-text {
+    padding: 0 10px;
+    font-size: 14px;
+    font-weight: 700;
 }
 
 .btn-social {
-  width: 100%;
-  padding: 0.7rem;
-  border: 1px solid #000;
-  background: #fff;
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 0.8rem;
-  cursor: pointer;
-  font-weight: bold;
-  gap: 0.5rem;
-  text-decoration: none;
-  color: #000;
-}
-
-.btn-social img {
-  width: 20px;
-  height: 20px;
-}
-
-.register-text {
-  margin-top: 1.5rem;
-  text-align: center;
-  font-size: 0.9rem;
-}
-
-.register-text a {
-  color: #0078d4;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.register-text a:hover {
-  text-decoration: underline;
-}
-
-.form-group-flex {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #000000; /* Borda preta para os botões sociais */
+    background-color: #ffffff;
+    color: #000000;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 700;
     display: flex;
-    gap: 1.5rem;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s, color 0.3s;
 }
 
-.form-group-flex .form-group {
-    flex: 1;
+.btn-social i {
+    margin-right: 10px;
+    font-size: 18px;
 }
 
+.btn-social:hover {
+    background-color: #f0f0f0;
+}
+
+.login-link, .register-link {
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+/* Link de login/cadastro para card escuro */
+.card:not(.login-card) .login-link a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+/* Link de login/cadastro para card claro */
+.login-card .register-link a {
+    color: #000000;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.login-link a:hover,
+.register-link a:hover {
+    text-decoration: underline;
+}
+
+.login-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+}
+
+.remember-me input[type="checkbox"] {
+    margin-right: 5px;
+    /* Estilo para o checkbox no tema escuro */
+    background-color: #ffffff;
+    border: 1px solid #ffffff;
+}
+
+/* Estilo para o checkbox no tema claro */
+.login-card .remember-me input[type="checkbox"] {
+    background-color: #ffffff;
+    border: 1px solid #000000;
+}
+
+.forgot-password {
+    text-decoration: none;
+    font-weight: 400;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}
+
+/* Cor do link para card claro (Login) */
+.login-card .forgot-password {
+    color: #000000;
+}
+
+/* Cor do link para card escuro (Cadastro) */
+.card:not(.login-card) .forgot-password {
+    color: #ffffff;
+}
+
+/* Responsividade */
 @media (max-width: 600px) {
-    .form-group-flex {
+    .card {
+        margin: 20px;
+        padding: 20px;
+    }
+
+    .form-row {
         flex-direction: column;
         gap: 0;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
     }
 }
