@@ -1,0 +1,259 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #e0e0e0; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.card {
+    padding: 40px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 500px; 
+    text-align: center;
+}
+
+.card:not(.login-card) {
+    background-color: #1c1c1c; 
+    color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+
+    background-color: #444444;
+}
+
+.login-card {
+    background-color: #ffffff; 
+    color: #000000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 30px;
+    font-weight: 700;
+}
+
+form {
+    text-align: left;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 15px;
+}
+
+.form-group {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+.form-group.full-width {
+    flex: none;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #ffffff; 
+    color: #000000;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+input::placeholder {
+    color: #999999;
+}
+
+.btn-primary {
+    width: 100%;
+    padding: 10px;
+    background-color: #000000; 
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 700;
+    margin-top: 15px;
+    transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #333333;
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 30px 0;
+}
+
+.card:not(.login-card) .divider {
+    color: #ffffff;
+}
+
+.login-card .divider {
+    color: #000000;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid;
+}
+
+.card:not(.login-card) .divider::before,
+.card:not(.login-card) .divider::after {
+    border-color: #ffffff;
+}
+
+.login-card .divider::before,
+.login-card .divider::after {
+    border-color: #cccccc;
+}
+
+.divider:not(:empty)::before {
+    margin-right: .25em;
+}
+
+.divider:not(:empty)::after {
+    margin-left: .25em;
+}
+
+.divider-text {
+    padding: 0 10px;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.btn-social {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #000000; 
+    background-color: #ffffff;
+    color: #000000;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-social i {
+    margin-right: 10px;
+    font-size: 18px;
+}
+
+.btn-social:hover {
+    background-color: #f0f0f0;
+}
+
+.login-link, .register-link {
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.card:not(.login-card) .login-link a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.login-card .register-link a {
+    color: #000000;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.login-link a:hover,
+.register-link a:hover {
+    text-decoration: underline;
+}
+
+.login-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+}
+
+.remember-me input[type="checkbox"] {
+    margin-right: 5px;
+
+    background-color: #ffffff;
+    border: 1px solid #ffffff;
+}
+
+.login-card .remember-me input[type="checkbox"] {
+    background-color: #ffffff;
+    border: 1px solid #000000;
+}
+
+.forgot-password {
+    text-decoration: none;
+    font-weight: 400;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}
+
+.login-card .forgot-password {
+    color: #000000;
+}
+
+.card:not(.login-card) .forgot-password {
+    color: #ffffff;
+}
+
+@media (max-width: 600px) {
+    .card {
+        margin: 20px;
+        padding: 20px;
+    }
+
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+}

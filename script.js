@@ -3,7 +3,7 @@ $(document).ready(function () {
     const navItems = $('.nav-item');
     const header = $('header');
 
-   
+
     $('#mobile_btn').on('click', function () {
         $('#mobile_menu').toggleClass('active');
         $(this).find('i').toggleClass('fa-x');
@@ -28,20 +28,20 @@ $(document).ready(function () {
         $(navItems[activeSectionIndex]).addClass('active');
     }
 
-   
+
     $(window).on('scroll', function () {
         const scrollPosition = $(window).scrollTop();
 
         if (scrollPosition <= 0) {
             header.css('box-shadow', 'none');
         } else {
-            header.css('box-shadow', '5px 1px 5px rgba(0, 0, 0, 0.1)'); 
+            header.css('box-shadow', '5px 1px 5px rgba(0, 0, 0, 0.1)');
         }
 
         updateActiveNav();
     });
 
-   
+
     $('.nav-item a').on('click', function () {
         setTimeout(updateActiveNav, 100);
     });
@@ -66,4 +66,4 @@ $(document).ready(function () {
     });
 
 
-    });
+});
