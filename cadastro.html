@@ -1,128 +1,152 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="styles/cadastro_login.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="styles/cadastro_login.css" />
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://unpkg.com/scrollreveal">
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+      integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <title>PETTYZ</title>
+  </head>
 
-    </script>
-    <title> PETTYZ </title>
-
-
-   
-<body>
+  <body>
     <div class="container">
-        <div class="card">
-            <h1>Cadastro</h1>
-            <form>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="nome-fantasia">Nome Fantasia</label>
-                        <input type="text" id="nome-fantasia" placeholder="Insira o nome">
-                    </div>
-                    <div class="form-group">
-                        <label for="cnpj">CNPJ</label>
-                        <input type="text" id="cnpj" placeholder="Insira o CNPJ">
-                    </div>
-                </div>
-
-                <div class="form-group full-width">
-                    <label for="email">E-mail</label>
-                    <input type="email" id="email" placeholder="Insira seu e-mail">
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="senha">Senha</label>
-                        <input type="password" id="senha" placeholder="Insira sua senha">
-                    </div>
-                    <div class="form-group">
-                        <label for="confirmar-senha">Confirmar Senha</label>
-                        <input type="password" id="confirmar-senha" placeholder="Repita sua senha">
-                    </div>
-                </div>
-
-                <button type="submit" class="btn-primary">Criar Conta</button>
-            </form>
-
-            <div class="divider">
-                <span class="divider-text">OU</span>
+      <div class="card">
+        <h1>Cadastro</h1>
+        <form id="auth-form" class="auth-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="nome-fantasia">Nome Fantasia</label>
+              <input
+                type="text"
+                id="nome-fantasia"
+                placeholder="Insira o nome"
+              />
             </div>
+            <div class="form-group">
+              <label for="cnpj">CNPJ</label>
+              <input type="text" id="cnpj" placeholder="Insira o CNPJ" />
+            </div>
+          </div>
 
-            <button class="btn-social google">
-                <i class="fab fa-google"></i> Entrar com o Google
-            </button>
-            <button class="btn-social outlook">
-                <i class="fab fa-windows"></i> Entrar com o Outlook
-            </button>
+          <div class="form-group full-width">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" placeholder="Insira seu e-mail" />
+          </div>
 
-            <p class="login-link">
-                Já possui uma conta? <a href="login.html">Faça login aqui!</a>
-            </p>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="senha">Senha</label>
+              <input
+                type="password"
+                id="senha"
+                placeholder="Insira sua senha"
+              />
+            </div>
+            <div class="form-group">
+              <label for="confirmar-senha">Confirmar Senha</label>
+              <input
+                type="password"
+                id="confirmar-senha"
+                placeholder="Repita sua senha"
+              />
+            </div>
+          </div>
+
+          <button type="submit" class="btn-primary">Criar Conta</button>
+        </form>
+
+        <div class="divider">
+          <span class="divider-text">OU</span>
         </div>
-    </div>
-</body>
 
- <script src="script.js"></script>
+        <button class="btn-social google">
+          <i class="fab fa-google"></i> Entrar com o Google
+        </button>
+        <button class="btn-social outlook">
+          <i class="fab fa-windows"></i> Entrar com o Outlook
+        </button>
+
+        <p class="login-link">
+          Já possui uma conta? <a href="login.html">Faça login aqui!</a>
+        </p>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
 
     <script>
-  function activateMenuItem(navSelector) {
-    const navItems = document.querySelectorAll(`${navSelector} .nav-item`);
+      function activateMenuItem(navSelector) {
+        const navItems = document.querySelectorAll(`${navSelector} .nav-item`);
 
-    navItems.forEach(item => {
-      item.addEventListener('click', () => {
-        navItems.forEach(i => i.classList.remove('active'));
-        item.classList.add('active');
-      });
-    });
-  }
-
-  activateMenuItem('#nav_list');         
-  activateMenuItem('#mobile_nav_list');  
-</script>
-
-<script>
-document.querySelector(".auth-form").addEventListener("submit", async (e) => {
-    e.preventDefault(); // Impede o recarregamento da página
-
-    const nomeFantasia = document.querySelector("#nome-fantasia").value;
-    const cnpj = document.querySelector("#cnpj").value;
-    const email = document.querySelector("#email").value;
-    const senha = document.querySelector("#senha").value;
-    const confirmarSenha = document.querySelector("#confirmar-senha").value;
-
-    if (senha !== confirmarSenha) {
-        alert("As senhas não coincidem!");
-        return;
-    }
-
-    const data = { nome: nomeFantasia, cnpj, email, senha };
-
-    try {
-        const response = await fetch("http://localhost:3000/api/auth/register", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(data),
+        navItems.forEach((item) => {
+          item.addEventListener("click", () => {
+            navItems.forEach((i) => i.classList.remove("active"));
+            item.classList.add("active");
+          });
         });
+      }
 
-        const result = await response.json();
+      activateMenuItem("#nav_list");
+      activateMenuItem("#mobile_nav_list");
+    </script>
 
-        if (response.ok) {
-            alert("Cadastro realizado com sucesso!");
-            window.location.href = "login.html";
-        } else {
-            alert(result.message || "Erro ao cadastrar empresa.");
-        }
-    } catch (error) {
-        console.error(error);
-        alert("Erro de conexão com o servidor.");
-    }
-});
-</script>
+    <script>
+      document
+        .querySelector(".auth-form")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault(); // Impede o recarregamento da página
 
-</body>
+          const nomeFantasia = document.querySelector("#nome-fantasia").value;
+          const cnpj = document.querySelector("#cnpj").value;
+          const email = document.querySelector("#email").value;
+          const senha = document.querySelector("#senha").value;
+          const confirmarSenha =
+            document.querySelector("#confirmar-senha").value;
+
+          if (senha !== confirmarSenha) {
+            alert("As senhas não coincidem!");
+            return;
+          }
+
+          const data = { nome: nomeFantasia, cnpj, email, senha };
+
+          try {
+            const response = await fetch(
+              "http://localhost:3000/api/auth/register",
+              {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data),
+              }
+            );
+
+            const result = await response.json();
+
+            if (response.ok) {
+              alert("Cadastro realizado com sucesso!");
+              window.location.href = "login.html";
+            } else {
+              alert(result.message || "Erro ao cadastrar empresa.");
+            }
+          } catch (error) {
+            console.error(error);
+            alert("Erro de conexão com o servidor.");
+          }
+        });
+    </script>
+  </body>
 </html>
