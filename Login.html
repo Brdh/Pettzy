@@ -104,9 +104,9 @@
 
             if (response.ok) {
               alert("Login realizado com sucesso!");
-              // Armazena o token JWT para usar em rotas protegidas
+              
               localStorage.setItem("token", result.token);
-              window.location.href = "dashboard.html"; // página principal da empresa
+              window.location.href = "dashboard.html"; 
             } else {
               alert(result.message || "Credenciais inválidas.");
             }

@@ -1,122 +1,200 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="styles/cadastro_login.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="styles/pets.css">
+    <title>Pets - PETTYZ</title>
 </head>
 <body>
-    <div class="container">
-        <div class="card login-card">
-            <h1>Login</h1>
-            <form>
-                <div class="form-group full-width">
-                    <label for="email">E-mail</label>
-                    <input type="email" id="email" placeholder="Insira seu e-mail">
-                </div>
 
-                <div class="form-group full-width">
-                    <label for="senha">Senha</label>
-                    <input type="password" id="senha" placeholder="Insira sua senha">
-                </div>
+    <header>
+        <nav id="navbar">
+            <div id="nav_logo">
+                <i class="fa-solid fa-otter"></i>
+                <span>PETTYZ</span>
+            </div>
+        
+            <ul id="nav_list">
+                <li class="nav-item"><a href="#home">Início</a></li>
+                <li class="nav-item active"><a href="#pets">Pets</a></li>
+                <li class="nav-item"><a href="#agenda">Agenda</a></li>
+                <li class="nav-item"><a href="#funcionalidades">Funcionalidades</a></li>
+            </ul>
 
-                <div class="login-options">
-                    <div class="remember-me">
-                        <input type="checkbox" id="me-lembre">
-                        <label for="me-lembre">Lembrar senha</label>
-                    </div>
-                    <a href="esqueceu_senha.html" class="forgot-password">Esqueceu a senha?</a>
-                </div>
+            <button class="btn-default">
+                Acesse sua conta
+                <i class="fa-solid fa-right-to-bracket"></i>
+            </button>
 
-                <button type="submit" class="btn-primary">Entrar</button>
-            </form>
+            <button id="mobile_btn">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </nav>
 
-            <div class="divider">
-                <span class="divider-text">OU</span>
+        <div id="mobile_menu">
+            <ul id="mobile_nav_list">
+                <li class="nav-item"><a href="#home">Início</a></li>
+                <li class="nav-item active"><a href="#pets">Pets</a></li>
+                <li class="nav-item"><a href="#agenda">Agenda</a></li>
+                <li class="nav-item"><a href="#funcionalidades">Funcionalidades</a></li>
+            </ul>
+
+            <button class="btn-default">
+                Acesse sua conta
+                <i class="fa-solid fa-right-to-bracket"></i>
+            </button>
+        </div>
+    </header>
+
+    
+    <main id="content">
+        <section id="pets-section">
+            <div id="pets-header">
+                <h2>Pets</h2>
+                <p>Registre os detalhes dos seus pets!</p>
             </div>
 
-            <button class="btn-social google">
-                <i class="fab fa-google"></i> Entrar com o Google
-            </button>
-            <button class="btn-social outlook">
-                <i class="fab fa-windows"></i> Entrar com o Outlook
-            </button>
+            <div id="pets-container"> 
+             
+                <div class="pet-card status-red">
+                    <div class="pet-card-top">
+                        <img src="#" alt="Fred" class="Fred">
+                        <div class="pet-info">
+                            <h3>Fred</h3>
+                            <p>Cabra</p>
+                        </div>
+                        <span class="status-badge red">Urgente</span>
+                    </div>
+                    <div class="pet-card-bottom">
+                        <span class="pet-detail">1 ano</span>
+                        <span class="pet-detail">45 kg</span>
+                    </div>
+                </div>
 
-            <p class="register-link">
-                Não possui uma conta? <a href="cadastro.html">Cadastre-se!</a>
-            </p>
+                <div class="pet-card status-yellow">
+                    <div class="pet-card-top">
+                        <img src="#" alt="Valentina" class="Valentina">
+                        <div class="pet-info">
+                            <h3>Valentina</h3>
+                            <p>Gato</p>
+                        </div>
+                        <span class="status-badge yellow">Atenção</span>
+                    </div>
+                    <div class="pet-card-bottom">
+                        <span class="pet-detail">3 anos</span>
+                        <span class="pet-detail">4.5 kg</span>
+                    </div>
+                </div>
+
+
+                <div class="pet-card status-green">
+                    <div class="pet-card-top">
+                        <img src="#" alt="Sebastião" class="Sebastiao">
+                        <div class="pet-info">
+                            <h3>Sebastião</h3>
+                            <p>Bulldog</p>
+                        </div>
+                        <span class="status-badge green">Saúdavel</span>
+                    </div>
+                    <div class="pet-card-bottom">
+                        <span class="pet-detail">4 anos</span>
+                        <span class="pet-detail">30 kg</span>
+                    </div>
+                </div>
+
+             
+                <div class="add-pet-btn">
+                    <i class="fa-solid fa-plus"></i>
+                </div>
+            </div>
+        </section>
+    </main>
+
+   
+    <div id="petModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Detalhes do Pet</h2>
+                <button class="modal-close" id="closeModalBtn">
+                    <i class="fa-solid fa-times"></i>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div class="pet-detail-hero">
+                    <img id="modalPetImage" src="" alt="Pet" class="pet-detail-image">
+                    <div class="pet-detail-info">
+                        <h3 class="pet-detail-name" id="modalPetName">Nome do Pet</h3>
+                        <p class="pet-detail-type" id="modalPetType">Tipo de Animal</p>
+                        <span class="pet-detail-status" id="modalPetStatus">Status</span>
+                    </div>
+                </div>
+
+                <div class="pet-detail-description" id="modalPetDescription">
+                    Descrição do pet:
+                </div>
+
+                <div class="modal-section">
+                    <h4 class="modal-section-title">
+                        <i class="fa-solid fa-info-circle"></i>
+                        Informações
+                    </h4>
+                    <div class="info-grid" id="modalPetInfo">
+                        
+                    </div>
+                </div>
+
+                <div class="modal-section">
+                    <h4 class="modal-section-title">
+                        <i class="fa-solid fa-heart"></i>
+                        Atenção à Saúde
+                    </h4>
+                    <div class="info-grid" id="modalPetHealth">
+                      
+                    </div>
+                </div>
+
+                <div class="modal-section">
+                    <h4 class="modal-section-title">
+                        <i class="fa-solid fa-notes-medical"></i>
+                        Notas Importantes
+                    </h4>
+                    <ul class="notes-list" id="modalPetNotes">
+
+                    </ul>
+                </div>
+
+                <div class="modal-section">
+                    <h4 class="modal-section-title">
+                        <i class="fa-solid fa-user"></i>
+                        Tutor Responsável
+                    </h4>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-label">Nome</div>
+                            <div class="info-value" id="modalTutorName">-</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Telefone</div>
+                            <div class="info-value" id="modalTutorPhone">-</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-actions">
+                <button class="modal-btn modal-btn-primary">
+                    <i class="fa-solid fa-edit"></i> Editar
+                </button>
+                <button class="modal-btn modal-btn-secondary" id="closeModalBtnFooter">
+                    Fechar
+                </button>
+            </div>
         </div>
-    </section>
-</main>
+    </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- <script src="script.js"></script>
-
-    <script>
-  function activateMenuItem(navSelector) {
-    const navItems = document.querySelectorAll(`${navSelector} .nav-item`);
-
-    navItems.forEach(item => {
-      item.addEventListener('click', () => {
-        navItems.forEach(i => i.classList.remove('active'));
-        item.classList.add('active');
-      });
-    });
-  }
-
-  activateMenuItem('#nav_list');         
-  activateMenuItem('#mobile_nav_list');  
-</script>
-
-<script>
-document.querySelector(".auth-form").addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const email = document.querySelector("#email").value;
-    const senha = document.querySelector("#password").value;
-
-    try {
-        const response = await fetch("http://localhost:3000/api/auth/login", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ email, senha }),
-        });
-
-        const result = await response.json();
-
-        if (response.ok) {
-            alert("Login realizado com sucesso!");
-            // Armazena o token JWT para usar em rotas protegidas
-            localStorage.setItem("token", result.token);
-            window.location.href = "dashboard.html"; // página principal da empresa
-        } else {
-            alert(result.message || "Credenciais inválidas.");
-        }
-    } catch (error) {
-        console.error(error);
-        alert("Erro de conexão com o servidor.");
-    }
-});
-</script>
-
+    <script src="pets.js"></script>
 </body>
 </html>
