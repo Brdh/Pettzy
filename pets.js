@@ -73,31 +73,6 @@ const petsData = [
             name: "Fernanda Valadares",
             phone: "(81) 98765-1234"
         }
-    },
-    {
-        id: 4,
-        name: "Sebastião",
-        type: "Bulldog",
-        status: "green",
-        statusText: "Saudável",
-        image: "https://via.placeholder.com/120?text=Sebastiao",
-        description: "Gata calma e dócil, prefere ambientes com luz natural. Comportamento tranquilo e rotina bem estabelecida. Saúde excelente com acompanhamento veterinário regular.",
-        age: "4 anos",
-        weight: "30 kg",
-        breed: "Bulldog Francês",
-        lastVaccine: "15/11/2025",
-        lastCheckup: "10/11/2025",
-        healthStatus: "Estável",
-        medications: "Nenhuma",
-        observations: [
-            "Alimentação - Ração premium uma vez ao dia",
-            "Ambiente - Prefere locais tranquilos e com luz",
-            "Higiene - Banho mensal recomendado"
-        ],
-        tutor: {
-            name: "Carlos Oliveira",
-            phone: "(11) 99876-4321"
-        }
     }
 ];
 
@@ -106,10 +81,10 @@ const petsData = [
 function openModal(pet) {
     const modal = document.getElementById('petModal');
     const modalContent = document.querySelector('.modal-content');
-    
+
     modalContent.classList.remove('status-red', 'status-yellow', 'status-green');
     modalContent.classList.add(`status-${pet.status}`);
-    
+
     document.getElementById('modalPetId').textContent = `ID: #${String(pet.id).padStart(3, '0')}`;
     document.getElementById('modalPetImage').src = pet.image;
     document.getElementById('modalPetName').textContent = pet.name;
@@ -189,14 +164,14 @@ let termoBusca = '';
 
 function aplicarFiltros() {
     const petCards = document.querySelectorAll('.pet-card');
-    
+
     petCards.forEach((card, index) => {
         const cardStatus = card.getAttribute('data-status');
         const petName = petsData[index]?.name.toLowerCase() || '';
-        
+
         const passaStatus = statusAtual === 'all' || cardStatus === statusAtual;
         const passaBusca = petName.includes(termoBusca.toLowerCase());
-        
+
         card.style.display = (passaStatus && passaBusca) ? '' : 'none';
     });
 }
@@ -210,7 +185,7 @@ function buscarPets() {
     const searchInput = document.getElementById('searchInput');
     termoBusca = searchInput.value;
     const clearBtn = document.getElementById('clearSearchBtn');
-    
+
     clearBtn.style.display = termoBusca ? 'block' : 'none';
     aplicarFiltros();
 }
@@ -224,10 +199,10 @@ function limparBusca() {
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    
+
     const statusTabs = document.querySelectorAll('.status-tab');
     statusTabs.forEach(tab => {
-        tab.addEventListener('click', function() {
+        tab.addEventListener('click', function () {
             statusTabs.forEach(t => t.classList.remove('active'));
             this.classList.add('active');
             filtrarPorStatus(this.dataset.status);
@@ -236,7 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     const petCards = document.querySelectorAll('.pet-card');
-    
+
     petCards.forEach((card, index) => {
         if (index < petsData.length) {
             card.addEventListener('click', () => openModal(petsData[index]));
@@ -246,17 +221,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const searchInput = document.getElementById('searchInput');
     searchInput.addEventListener('input', buscarPets);
-    
+
     const clearBtn = document.getElementById('clearSearchBtn');
     clearBtn.addEventListener('click', limparBusca);
 
-    
+
     const addPetBtn = document.getElementById('addPetBtn');
     addPetBtn.addEventListener('click', () => {
         alert('Funcionalidade de adicionar novo pet em desenvolvimento!');
     });
 
-    
+
     const mobileBtn = document.getElementById('mobile_btn');
     const mobileMenu = document.getElementById('mobile_menu');
 
@@ -283,22 +258,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 async function carregarPets() {
-  try {
-    const response = await fetch("http://localhost:3000/pets");
-    const pets = await response.json();
+    try {
+        const response = await fetch("http://localhost:3000/pets");
+        const pets = await response.json();
 
-    const container = document.getElementById("pets-container");
+        const container = document.getElementById("pets-container");
 
-    // Se o container não existir, não faz nada
-    if (!container) return;
+        // Se o container não existir, não faz nada
+        if (!container) return;
 
-    container.innerHTML = ""; // limpa antes
+        container.innerHTML = ""; // limpa antes
 
-    pets.forEach((pet) => {
-      const card = document.createElement("div");
-      card.classList.add("card");
+        pets.forEach((pet) => {
+            const card = document.createElement("div");
+            card.classList.add("card");
 
-      card.innerHTML = `
+            card.innerHTML = `
         <img src="${pet.foto}" alt="${pet.nome}">
         <h2>${pet.nome}</h2>
         <p><strong>Espécie:</strong> ${pet.especie}</p>
@@ -306,15 +281,15 @@ async function carregarPets() {
         <p><strong>Dono:</strong> ${pet.dono?.name ?? "Sem dono"}</p>
       `;
 
-      container.appendChild(card);
-    });
+            container.appendChild(card);
+        });
 
-  } catch (error) {
-    console.error("Erro ao carregar pets:", error);
-  }
+    } catch (error) {
+        console.error("Erro ao carregar pets:", error);
+    }
 }
 
 if (document.getElementById("pets-container")) {
-  carregarPets();
+    carregarPets();
 }
 

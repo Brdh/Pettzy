@@ -161,6 +161,7 @@ main {
     padding-bottom: 12px;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
 }
 
 .status-tab {

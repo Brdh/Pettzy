@@ -13,7 +13,7 @@ export const createPet = async (req, res) => {
 // Listar todos os pets
 export const getPets = async (req, res) => {
   try {
-    const pets = await Pet.find().populate("dono", "name email phone");
+    const pets = await Pet.find().populate("dono", "nome telefone email");
     res.status(200).json(pets);
   } catch (err) {
     res.status(500).json({ error: err.message });
