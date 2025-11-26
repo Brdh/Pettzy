@@ -7,10 +7,8 @@
     <link rel="stylesheet" href="styles/style.css">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://unpkg.com/scrollreveal">
-
-    </script>
-    <title> PETTYZ </title>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <title>PETTYZ</title>
 
 </head>
 <body>
@@ -19,40 +17,33 @@
             <i class="fa-solid fa-otter" id="nav_logo"> PETTYZ </i>
         
             <ul id="nav_list">
-  <li class="nav-item active"><a href="#home">Início</a></li>
-    <li class="nav-item"><a href="#freatures">Funcionalidades</a></li>
-  <li class="nav-item"><a href="#reviews"> Avaliações</a></li>
-  <li class="nav-item"><a href="#pricing-card"> Plataforma</a></li>
-   <li class="nav-item"><a href="#fac">Fale Conosco </a></li>
-</li>
+                <li class="nav-item active"><a href="#home">Início</a></li>
+                <li class="nav-item"><a href="#freatures">Funcionalidades</a></li>
+                <li class="nav-item"><a href="#reviews"> Avaliações</a></li>
+                <li class="nav-item"><a href="#pricing-card"> Plataforma</a></li>
+                <li class="nav-item"><a href="#fac">Fale Conosco </a></li>
+            </ul>
 
-</ul>
-
-<script>
-  function scrollToTop() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-</script>
-
-            <button a href="cadastro.html" class="btn-default">
+            <a href="cadastro.html" class="btn-default">
                 Acesse sua conta
             <i class="fa-solid fa-right-to-bracket"></i>
-            </button>
+            </a>
 
-            <button a href="cadastro.html" id="mobile_btn">
+
+            <a href="cadastro.html" id="mobile_btn">
                 <i class="fa-solid fa-bars"></i>
-            </button>
+            </a>
         </nav>
 
         <div id="mobile_menu">
            <ul id="mobile_nav_list">
-  <li class="nav-item active"><a href="#home">Início</a></li>
-  <li class="nav-item"><a href="#freatures">Funcionalidades</a></li>
-  <li class="nav-item"><a href="#reviews">Avaliações</a></li>
-    <li class="nav-item"><a href="#pricing-card"> Preço</a></li>
-   <li class="nav-item"><a href="#fac">Fale Conosco </a></li>
-  
-</ul>
+                <li class="nav-item active"><a href="#home">Início</a></li>
+                <li class="nav-item"><a href="#freatures">Funcionalidades</a></li>
+                <li class="nav-item"><a href="#reviews">Avaliações</a></li>
+                <li class="nav-item"><a href="#pricing-card"> Preço</a></li>
+                <li class="nav-item"><a href="#fac">Fale Conosco </a></li>
+                
+            </ul>
 
             <button class="btn-default">
                 Acesse sua conta
@@ -62,27 +53,6 @@
     </header>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
     
     <main id="content">
         <section id="home">
@@ -106,13 +76,13 @@
                 </div>
             </div>
 
-    <div id="banner">
+            <div id="banner">
                 <img src="#" alt="" class="reveal-banner">
             </div>
         </section>
 
      <section id="freatures">
-            <div id="freatures">
+            <div>
                 <h3 class="section-subtitle">
                     Tudo que sua creche precisa.
                 </h3>
@@ -124,8 +94,9 @@
                             </p>
                         </div>
                 </div>
-                            
-     <section id="benefits">
+            </div>
+     </section>
+    <section id="benefits">
         <div class="benefit">
             <img src="img/casa-cachorro.svg" alt="Cães">
             <h3>Ideal para quem cuida de cães</h3>
@@ -149,16 +120,17 @@
     </section>
 
 
-    <section id="reviews">
+<section id="reviews">
     <h3 class="section-subtitle"> Conheça as histórias dos nossos clientes </h3>
 
-    <div id="review-container"> <div class="review-card">
+    <div id="review-container"> 
+        <div class="review-card">
             
             <img src="img/token_5.png" alt="Guilherme Dias">
             <h3 class="review-title">
                 Juliana Santos
             </h3>
-                <div class="review_indice">
+            <div class="review_indice">
                 <i class="fa-solid fa-star"></i>
                 <i class="fa-solid fa-star"></i>
                 <i class="fa-solid fa-star"></i>
@@ -177,7 +149,7 @@
             <h3 class="review-title">
                 Larissa Hash
             </h3>
-              <div class="review_indice">
+            <div class="review_indice">
                 <i class="fa-solid fa-star"></i>
                 <i class="fa-solid fa-star"></i>
                 <i class="fa-solid fa-star"></i>
@@ -186,7 +158,7 @@
             </div>
             <span class="review-description">
                 Sistema com integração perfeita entre agendamentos e hospedagens. A plataforma é intuitiva e organiza toda nossa operação de forma eficiente. Ferramenta essencial para creches que buscam profissionalismo e controle total dos processos.
-          
+            </span>
         </div>
 
         <div class="review-card">
@@ -195,7 +167,7 @@
             <h3 class="review-title">
                 Pedro Lima
             </h3>
-                <div class="review_indice">
+            <div class="review_indice">
                 <i class="fa-solid fa-star"></i>
                 <i class="fa-solid fa-star"></i>
                 <i class="fa-solid fa-star"></i>
@@ -207,13 +179,13 @@
             </span>
         </div>
     
-     <div class="review-card">
+        <div class="review-card">
             
             <img src="img/token_1_3.png" alt="Larissa Hash">
             <h3 class="review-title">
                 Ricardo Almeida
             </h3>
-              <div class="review_indice">
+            <div class="review_indice">
                 <i class="fa-solid fa-star"></i>
                 <i class="fa-solid fa-star"></i>
                 <i class="fa-solid fa-star"></i>
@@ -228,30 +200,18 @@
     </div>
 </section>
 
-<div id="pricing-card">
 <section class="pricing-section">
     <div class="container">
         <div class="pricing-cards-container">
             <div class="pricing-card pricing-card--pro">
                 <h1>Um pouco de nós</h1>
                 <p> uma plataforma simples e intuitiva.</p>
-                
-            </div>
             </div>
         </div>
     </div>
 </section>
 
 
-
-
-
-
-
-
-
-
-<class id="fac"> 
 <section class="contact-faq-section" id="fac"> 
     <div class="container contact-faq-container">
         <div class="contact-column">
@@ -303,11 +263,12 @@
                 <h1 class="footer-logo">Pettzy</h1>
                 <nav class="footer-nav">
                     <ul>
-                        <li><a href="#inicio">Início</a></li>
-                        <li><a href="#funcionalidades">Funcionalidades</a></li>
-                        <li><a href="#avaliacoes">Avaliações</a></li>
-                        <li><a href="#precos">plataforma</a></li>
-                        <li><a href="#fale-conosco">Fale Conosco</a></li>
+                        <li><a href="#home">Início</a></li>
+                        <li><a href="#freatures">Funcionalidades</a></li>
+                        <li><a href="#reviews"> Avaliações</a></li>
+                        <li><a href="#pricing-card"> Plataforma</a></li>
+                        <li><a href="#fac">Fale Conosco </a></li>
+
                     </ul>
                 </nav>
             </div>
@@ -319,40 +280,11 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <script>
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
   function activateMenuItem(navSelector) {
    
     const navLinks = document.querySelectorAll(`${navSelector} .nav-item a`);
