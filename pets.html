@@ -8,7 +8,7 @@
     <title>Pets - PETTYZ</title>
 </head>
 <body>
-
+ 
     <header>
         <nav id="navbar">
             <div id="nav_logo">
@@ -17,15 +17,16 @@
             </div>
         
             <ul id="nav_list">
-                <li class="nav-item"><a href="#home">Início</a></li>
-                <li class="nav-item active"><a href="#pets">Pets</a></li>
-                <li class="nav-item"><a href="#agenda">Agenda</a></li>
-                <li class="nav-item"><a href="#funcionalidades">Funcionalidades</a></li>
+                <li class="nav-item"><a href="#">Dashboard</a></li>
+                <li class="nav-item active"><a href="#">Pets</a></li>
+                <li class="nav-item"><a href="#">Funcionários</a></li>
+                <li class="nav-item"><a href="#">Agenda</a></li>
             </ul>
 
             <button class="btn-default">
-                Acesse sua conta
-                <i class="fa-solid fa-right-to-bracket"></i>
+                Sua conta
+
+                <i class="fa-solid fa-user"></i>
             </button>
 
             <button id="mobile_btn">
@@ -35,20 +36,22 @@
 
         <div id="mobile_menu">
             <ul id="mobile_nav_list">
-                <li class="nav-item"><a href="#home">Início</a></li>
-                <li class="nav-item active"><a href="#pets">Pets</a></li>
-                <li class="nav-item"><a href="#agenda">Agenda</a></li>
-                <li class="nav-item"><a href="#funcionalidades">Funcionalidades</a></li>
+                <li class="nav-item"><a href="#">Dashboard</a></li>
+                <li class="nav-item active"><a href="#">Pets</a></li>
+                <li class="nav-item"><a href="#">Funcionários</a></li>
+                <li class="nav-item"><a href="#">Agenda</a></li>
             </ul>
+             
 
             <button class="btn-default">
-                Acesse sua conta
-                <i class="fa-solid fa-right-to-bracket"></i>
+                Sua conta
+
+               <i class="fa-solid fa-user"></i>
             </button>
         </div>
     </header>
 
-    
+   
     <main id="content">
         <section id="pets-section">
             <div id="pets-header">
@@ -56,14 +59,35 @@
                 <p>Registre os detalhes dos seus pets!</p>
             </div>
 
-            <div id="pets-container"> 
-             
-                <div class="pet-card status-red">
+            <div class="status-tabs-container">
+                <button class="status-tab active" data-status="all">Todos</button>
+                <button class="status-tab" data-status="red">Urgente</button>
+                <button class="status-tab" data-status="yellow">Atenção</button>
+                <button class="status-tab" data-status="green">Saudável</button>
+            </div>
+
+         
+            <div id="search-bar-container">
+                <div class="search-bar">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="searchInput" placeholder="Buscar..." class="search-input">
+                    <button id="clearSearchBtn" class="clear-search-btn" style="display: none;">
+                        <i class="fa-solid fa-times"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div id="pets-container">
+               
+                <div class="pet-card status-red" data-status="red">
+                    <div class="pet-card-header-id">
+                        <span class="pet-id">ID: #001</span>
+                    </div>
                     <div class="pet-card-top">
-                        <img src="#" alt="Fred" class="Fred">
+                        <img src="img/fred.png" alt="Fred" class="pet-image">
                         <div class="pet-info">
                             <h3>Fred</h3>
-                            <p>Cabra</p>
+                            <p>Coelho</p>
                         </div>
                         <span class="status-badge red">Urgente</span>
                     </div>
@@ -73,9 +97,13 @@
                     </div>
                 </div>
 
-                <div class="pet-card status-yellow">
+          
+                <div class="pet-card status-yellow" data-status="yellow">
+                    <div class="pet-card-header-id">
+                        <span class="pet-id">ID: #002</span>
+                    </div>
                     <div class="pet-card-top">
-                        <img src="#" alt="Valentina" class="Valentina">
+                        <img src="img/valentina.jpg" alt="Valentina" class="pet-image">
                         <div class="pet-info">
                             <h3>Valentina</h3>
                             <p>Gato</p>
@@ -88,31 +116,34 @@
                     </div>
                 </div>
 
-
-                <div class="pet-card status-green">
+                <div class="pet-card status-green" data-status="green">
+                    <div class="pet-card-header-id">
+                        <span class="pet-id">ID: #003</span>
+                    </div>
                     <div class="pet-card-top">
-                        <img src="#" alt="Sebastião" class="Sebastiao">
+                        <img src="img/sebastiao.jpg" alt="Alfredo" class="pet-image">
                         <div class="pet-info">
-                            <h3>Sebastião</h3>
-                            <p>Bulldog</p>
+                            <h3>Alfredo</h3>
+                            <p>Cachorro</p>
                         </div>
-                        <span class="status-badge green">Saúdavel</span>
+                        <span class="status-badge green">Saudável</span>
                     </div>
                     <div class="pet-card-bottom">
-                        <span class="pet-detail">4 anos</span>
-                        <span class="pet-detail">30 kg</span>
+                        <span class="pet-detail">2 anos</span>
+                        <span class="pet-detail">25 kg</span>
                     </div>
                 </div>
 
-             
-                <div class="add-pet-btn">
-                    <i class="fa-solid fa-plus"></i>
-                </div>
+                <button class="add-pet-btn" id="addPetBtn">
+                    <div class="add-pet-content">
+                        <i class="fa-solid fa-plus"></i>
+                        <span>Adicionar Novo Pet</span>
+                    </div>
+                </button>
             </div>
         </section>
     </main>
 
-   
     <div id="petModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -126,6 +157,7 @@
                 <div class="pet-detail-hero">
                     <img id="modalPetImage" src="" alt="Pet" class="pet-detail-image">
                     <div class="pet-detail-info">
+                        <span class="modal-pet-id" id="modalPetId">ID: #000</span>
                         <h3 class="pet-detail-name" id="modalPetName">Nome do Pet</h3>
                         <p class="pet-detail-type" id="modalPetType">Tipo de Animal</p>
                         <span class="pet-detail-status" id="modalPetStatus">Status</span>
@@ -142,7 +174,7 @@
                         Informações
                     </h4>
                     <div class="info-grid" id="modalPetInfo">
-                        
+                      
                     </div>
                 </div>
 
@@ -159,10 +191,10 @@
                 <div class="modal-section">
                     <h4 class="modal-section-title">
                         <i class="fa-solid fa-notes-medical"></i>
-                        Notas Importantes
+                    
                     </h4>
                     <ul class="notes-list" id="modalPetNotes">
-
+                    
                     </ul>
                 </div>
 
