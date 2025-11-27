@@ -94,8 +94,10 @@ function renderizarFuncionarios(dados) {
         const vinculoClass = getVinculoClass(funcionario.vinculo);
         const iniciais = getIniciais(funcionario.nome);
 
+        
+
         row.innerHTML = `
-            <td>
+            <td data-label="Nome">
                 <div class="funcionario-nome-cell">
                     <div class="funcionario-avatar" style="background-color: ${funcionario.cor};">
                         ${iniciais}
@@ -103,24 +105,24 @@ function renderizarFuncionarios(dados) {
                     <span class="funcionario-nome">${funcionario.nome}</span>
                 </div>
             </td>
-            <td>
+            <td data-label="Profissão">
                 <span class="profissao-badge ${profissaoClass}">
                     ${funcionario.profissao}
                 </span>
             </td>
-            <td>
+            <td data-label="Vínculo">
                 <span class="vinculo-badge ${vinculoClass}">
                     ${funcionario.vinculo}
                 </span>
             </td>
-            <td class="data-cell">${funcionario.entrada}</td>
-            <td class="data-cell">${funcionario.saida}</td>
-            <td>
+            <td data-label="Entrada" class="data-cell">${funcionario.entrada}</td>
+            <td data-label="Saída" class="data-cell">${funcionario.saida}</td>
+            <td data-label="Contato">
                 <a href="mailto:${funcionario.contato}" class="contato-cell">
                     ${funcionario.contato}
                 </a>
             </td>
-            <td>
+            <td data-label="Ações">
                 <div class="acoes-cell">
                     <button class="btn-acao btn-editar" title="Editar" onclick="editarFuncionario(${funcionario.id})">
                         <i class="fa-solid fa-pen"></i>
@@ -131,6 +133,7 @@ function renderizarFuncionarios(dados) {
                 </div>
             </td>
         `;
+
 
         tbody.appendChild(row);
     });
@@ -163,7 +166,7 @@ function getIniciais(nome) {
 
 
 function inicializarEventos() {
-    // Dropdown de Conta
+
     const userDropdown = document.querySelector('.user-account-dropdown');
     const btnAccount = document.querySelector('.btn-account');
     
@@ -284,6 +287,21 @@ function deletarFuncionario(id) {
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

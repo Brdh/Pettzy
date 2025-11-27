@@ -14,6 +14,7 @@
     <title>Pets - PETTYZ</title>
   </head>
   <body>
+     
     <header>
       <nav id="navbar">
         <div id="nav_logo">
@@ -23,8 +24,8 @@
 
         <ul id="nav_list">
           <li class="nav-item"><a href="dashboard.html">Dashboard</a></li>
-          <li class="nav-item active"><a href="#">Pets</a></li>
-          <li class="nav-item"><a href="funcionarios.html">Funcionários</a></li>
+          <li class="nav-item"><a href="pets.html">Pets</a></li>
+          <li class="nav-item active"><a href="funcionarios.html">Funcionários</a></li>
           <li class="nav-item"><a href="agenda.html">Agenda</a></li>
         </ul>
 
@@ -41,12 +42,12 @@
       <div id="mobile_menu">
         <ul id="mobile_nav_list">
           <li class="nav-item"><a href="dashboard.html">Dashboard</a></li>
-          <li class="nav-item active"><a href="#">Pets</a></li>
-          <li class="nav-item"><a href="funcionarios.html">Funcionários</a></li>
+          <li class="nav-item"><a href="pets.html">Pets</a></li>
+          <li class="nav-item active"><a href="funcionarios.html">Funcionários</a></li>
           <li class="nav-item"><a href="agenda.html">Agenda</a></li>
         </ul>
 
-        <button class="btn-default">
+        <button class="btn-default" href="configuracoes.html">
           Sua conta
 
           <i class="fa-solid fa-user"></i>
@@ -68,24 +69,36 @@
           <button class="status-tab" data-status="green">Saudável</button>
         </div>
 
-        <div id="search-bar-container">
-          <div class="search-bar">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input
-              type="text"
-              id="searchInput"
-              placeholder="Buscar..."
-              class="search-input"
-            />
-            <button
-              id="clearSearchBtn"
-              class="clear-search-btn"
-              style="display: none"
-            >
-              <i class="fa-solid fa-times"></i>
-            </button>
+         <div class="search-filter-container">
+              <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input
+                  type="text"
+                  id="searchInput"
+                  placeholder="Pesquise pelo nome, função..."
+                />
+              </div>
+
+              <button class="btn-novo-pet">
+                <i class="fa-solid fa-plus"></i>
+                Novo Pet
+              </button>
+            </div>
           </div>
-        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         <div id="pets-container">
           <div class="pet-card status-red" data-status="red">
@@ -142,12 +155,7 @@
             </div>
           </div>
 
-          <button class="add-pet-btn" id="addPetBtn">
-            <div class="add-pet-content">
-              <i class="fa-solid fa-plus"></i>
-              <span>Adicionar Novo Pet</span>
-            </div>
-          </button>
+          
         </div>
       </section>
     </main>

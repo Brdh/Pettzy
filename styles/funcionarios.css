@@ -1,16 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 :root {
-    --color-primary-1: #fbfbfb;
+    --color-primary-1: #ffffff;
     --color-primary-2: #5b814b;
-    --color-primary-3: #e0d42c;
-    --color-primary-4: #e0d42c;
-    --color-primary-5: #5c8a4c;
-    --color-primary-6: #a42c2c;
-
-    --color-status-red: #a42c2c;
-    --color-status-yellow: #e0d42c;
-    --color-status-green: #5c8a4c;
+    --color-primary-3: #4d7fc1b0;
+    --color-primary-4: #88b0ca;
+    --color-primary-5: #b65e1f;
+    --color-primary-6: #5d448f;
 
     --color-neutral-0: #fff;
     --color-neutral-1: #1d1d1d;
@@ -35,7 +31,7 @@ body {
     min-height: 100vh;
 }
 
-/* ===== HEADER ===== */
+
 header {
     width: 100%;
     padding: 28px 8%;
@@ -171,6 +167,7 @@ header {
     gap: 16px;
     border-bottom: 2px solid #e0e0e0;
     padding-bottom: 12px;
+    scrollbar-width: none;
 }
 
 .status-tab {
@@ -254,12 +251,14 @@ header {
     gap: 6px;
     transition: all 0.3s ease;
     color: var(--color-neutral-1);
+    
 }
 
 .filter-btn:hover,
 .sort-btn:hover {
     background-color: #f5f5f5;
     border-color: #ccc;
+    
 }
 
 .btn-novo-funcionario {
@@ -641,3 +640,40 @@ header {
         font-size: 0.75rem;
     }
 }
+
+
+@media screen and (max-width: 1170px) {
+    #nav_list,
+    #navbar .btn-default {
+        display: none;
+    }
+
+    #mobile_btn {
+        display: block;
+        border: none;
+        background-color: transparent;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: var(--color-primary-6);
+    }
+
+    #mobile_menu.active {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 0;
+    }
+
+    #mobile_nav_list {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin: 12px 0px;
+    }
+
+    #mobile_nav_list .nav-item {
+        list-style: none;
+        text-align: center;
+    }
+}
+

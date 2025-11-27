@@ -47,24 +47,6 @@ $(document).ready(function () {
     });
 
 
-
-
-
-
-
-
-
-
-
-
-    ScrollReveal().reveal('.reveal-banner', {
-        delay: 300,
-        duration: 1000,
-        origin: 'right',
-        distance: '50px',
-        easing: 'ease-in-out'
-    });
-
-
 });
+
 

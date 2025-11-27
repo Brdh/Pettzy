@@ -232,6 +232,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
+});
+
+
+
+ 
     const mobileBtn = document.getElementById('mobile_btn');
     const mobileMenu = document.getElementById('mobile_menu');
 
@@ -247,7 +252,5 @@ document.addEventListener('DOMContentLoaded', () => {
             mobileMenu.classList.remove('active');
         });
     });
-});
-
 
 

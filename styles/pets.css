@@ -194,59 +194,83 @@ main {
     height: 3px;
     background-color: var(--color-primary-3);
 }
-
-#search-bar-container {
-    margin: 24px 0 20px 0;
+.search-filter-container {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
-.search-bar {
+.search-box {
+    flex: 1;
+    min-width: 250px;
     display: flex;
     align-items: center;
-    gap: 12px;
     background-color: var(--color-neutral-0);
-    border: 2px solid #ddd;
-    border-radius: 8px;
-    padding: 12px 16px;
-    transition: all 0.3s ease;
-    max-width: 500px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 10px 14px;
+    gap: 8px;
 }
 
-.search-bar:focus-within {
-    border-color: var(--color-primary-5);
-    box-shadow: 0px 4px 12px rgba(92, 138, 76, 0.1);
-}
-
-.search-bar i {
+.search-box i {
     color: #999;
-    font-size: 1.1rem;
+    font-size: 0.9rem;
 }
 
-.search-input {
+.search-box input {
     flex: 1;
     border: none;
     outline: none;
-    font-size: 1rem;
-    font-family: Poppins, sans-serif;
+    font-size: 0.9rem;
     color: var(--color-neutral-1);
 }
 
-.search-input::placeholder {
+.search-box input::placeholder {
     color: #ccc;
 }
 
-.clear-search-btn {
-    background: none;
+
+
+.btn-novo-pet {
+    background-color: var(--color-neutral-1);
+    color: var(--color-neutral-0);
     border: none;
+    padding: 12px 18px;
+    border-radius: 6px;
+    font-weight: 600;
     cursor: pointer;
-    color: #999;
-    font-size: 1rem;
-    transition: color 0.3s ease;
-    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+    width: fit-content;
 }
 
-.clear-search-btn:hover {
-    color: var(--color-primary-6);
+.btn-novo-pet:hover {
+    background-color: #333;
+    transform: translateY(-2px);
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #pets-container {
     display: grid;
@@ -575,7 +599,7 @@ main {
     padding: 16px;
     background-color: #f9f9f9;
     border-radius: 8px;
-    border-left: 4px solid var(--color-primary-5);
+  
 }
 
 .modal-section {
@@ -593,7 +617,7 @@ main {
 }
 
 .modal-section-title i {
-    color: var(--color-primary-5);
+    color: rgb(128, 126, 126);
 }
 
 .info-grid {
@@ -606,7 +630,7 @@ main {
     padding: 12px;
     background-color: #f9f9f9;
     border-radius: 8px;
-    border-left: 3px solid var(--color-primary-5);
+    
 }
 
 .info-label {
@@ -632,7 +656,6 @@ main {
     background-color: #f9f9f9;
     border-radius: 8px;
     margin-bottom: 8px;
-    border-left: 3px solid var(--color-primary-5);
     font-size: 0.95rem;
     color: #666;
     line-height: 1.5;

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap' );
 @import url('header.css');
 @import url('menu.css');
 @import url('home.css');
@@ -11,15 +11,16 @@
 @import url('cadastro.css');
 @import url('pets.css');
 @import url('funcionarios.css');
+@import url('header.css');
 
 
 :root {
     --color-primary-1: #ffffff;
     --color-primary-2: #5b814b;
-    --color-primary-3: #e0d42c;
-    --color-primary-4: #e0d42c;
-    --color-primary-5: #5c8a4c;
-    --color-primary-6: #a42c2c;
+    --color-primary-3: #4d7fc1b0;
+    --color-primary-4: #88b0ca;
+    --color-primary-5: #b65e1f;
+    --color-primary-6: #5d448f;
 
     --color-neutral-0: #fff;
     --color-neutral-1: #1d1d1d;
@@ -46,6 +47,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    
 }
 
 section {

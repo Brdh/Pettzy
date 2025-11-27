@@ -13,8 +13,8 @@ html, body {
     margin-left: -50vw; 
     margin-right: -50vw; 
   
-    background-color:#ecc21621;
-    padding-top: 20px;   
+     background-color:#23047e44;
+    padding-top: 25px;   
   padding-bottom: 20px; 
 }
 
@@ -41,7 +41,7 @@ html, body {
     white-space: nowrap;
     border-right: 1px solid #444;
     padding-right: 40px;
-    color: #a42c2c;
+    color: #5d448f;
 }
 
 .footer-nav ul {
@@ -52,14 +52,14 @@ html, body {
 }
 
 .footer-nav a {
-    color: #68975b;
+    color: #9a6b39;
     text-decoration: none;
     font-size: 14px;
     transition: color 0.3s ease;
 }
 
 .footer-nav a:hover {
-    color: #930c0c;
+    color: #0c4876;
 }
 
 .footer-right {
@@ -70,7 +70,7 @@ html, body {
 
 .footer-copyright {
     font-size: 13px;
-    color: #3e3d3d;
+    color: #000000;
     text-align: right;
 }
 
@@ -88,7 +88,7 @@ html, body {
 
     .footer-logo {
         border-right: none;
-        border-bottom: 1px solid #444;
+        border-bottom: 1px solid #000000;
         padding-right: 0;
         padding-bottom: 20px;
     }
