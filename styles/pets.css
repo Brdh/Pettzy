@@ -1,16 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
 :root {
-    --color-primary-1: #fbfbfb;
+    --color-primary-1: #ffffff;
     --color-primary-2: #5b814b;
-    --color-primary-3: #e0d42c;
-    --color-primary-4: #e0d42c;
-    --color-primary-5: #5c8a4c;
-    --color-primary-6: #a42c2c;
-
-    --color-status-red: #a42c2c;
-    --color-status-yellow: #e0d42c;
-    --color-status-green: #5c8a4c;
+    --color-primary-3: #4d7fc1b0;
+    --color-primary-4: #88b0ca;
+    --color-primary-5: #2e5f9e;
+    --color-primary-6: #043971;
 
     --color-neutral-0: #fff;
     --color-neutral-1: #1d1d1d;
@@ -34,7 +28,6 @@ body {
     flex-direction: column;
     min-height: 100vh;
 }
-
 
 header {
     width: 100%;
@@ -103,7 +96,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--color-primary-5);
+    background-color: #043971;
     border-radius: 4px;
     padding: 10px 14px;
     font-weight: 600;
@@ -116,8 +109,8 @@ header {
 }
 
 .btn-default:hover {
-    background-color: var(--color-primary-3);
-    color: var(--color-neutral-1);
+    background-color: #2e5f9e; 
+    color: #fff;
 }
 
 #mobile_btn {
@@ -169,7 +162,7 @@ main {
     border: none;
     padding: 10px 18px;
     font-size: 0.95rem;
-    color: #999;
+    color: #7394b3;
     cursor: pointer;
     font-weight: 600;
     transition: all 0.3s ease;
@@ -178,11 +171,11 @@ main {
 }
 
 .status-tab:hover {
-    color: var(--color-neutral-1);
+    color: #1a3d5e;
 }
 
 .status-tab.active {
-    color: var(--color-neutral-1);
+    color: #2c73b5;
 }
 
 .status-tab.active::after {
@@ -233,7 +226,7 @@ main {
 
 
 .btn-novo-pet {
-    background-color: var(--color-neutral-1);
+    background-color: #043971;
     color: var(--color-neutral-0);
     border: none;
     padding: 12px 18px;
@@ -249,7 +242,7 @@ main {
 }
 
 .btn-novo-pet:hover {
-    background-color: #333;
+    background-color: #2e5f9e; 
     transform: translateY(-2px);
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
 }
@@ -285,10 +278,12 @@ main {
     box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.15);
     cursor: pointer;
     transition: all 0.3s ease;
-    border-left: 6px solid;
+   
     display: flex;
     flex-direction: column;
     gap: 12px;
+    
+
 }
 
 .pet-card:hover {
@@ -340,6 +335,7 @@ main {
 
 .pet-info {
     flex: 1;
+
 }
 
 .pet-info h3 {
@@ -366,7 +362,7 @@ main {
 
 .status-badge.red {
     background-color: var(--color-status-red);
-    color: var(--color-neutral-0);
+    color: var(--color-neutral-1);
 }
 
 .status-badge.yellow {
@@ -376,7 +372,7 @@ main {
 
 .status-badge.green {
     background-color: var(--color-status-green);
-    color: var(--color-neutral-0);
+    color: var(--color-neutral-1);
 }
 
 .pet-card-bottom {
@@ -391,6 +387,7 @@ main {
     align-items: center;
     gap: 4px;
 }
+
 
 .add-pet-btn {
     display: flex;

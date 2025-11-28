@@ -5,8 +5,8 @@
     --color-primary-2: #5b814b;
     --color-primary-3: #4d7fc1b0;
     --color-primary-4: #88b0ca;
-    --color-primary-5: #b65e1f;
-    --color-primary-6: #5d448f;
+    --color-primary-5: #2e5f9e;
+    --color-primary-6: #043971;
 
     --color-neutral-0: #fff;
     --color-neutral-1: #1d1d1d;
@@ -99,7 +99,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--color-primary-5);
+    background-color: #043971;
     border-radius: 4px;
     padding: 10px 14px;
     font-weight: 600;
@@ -112,8 +112,8 @@ header {
 }
 
 .btn-default:hover {
-    background-color: var(--color-primary-3);
-    color: var(--color-neutral-1);
+    background-color: #2e5f9e; 
+    color: #fff;
 }
 
 #mobile_btn {
@@ -124,6 +124,7 @@ header {
     display: none;
     gap: 5px;
 }
+
 
 
 #funcionarios-section {
@@ -261,8 +262,9 @@ header {
     
 }
 
+
 .btn-novo-funcionario {
-    background-color: var(--color-neutral-1);
+    background-color: #043971;
     color: var(--color-neutral-0);
     border: none;
     padding: 12px 18px;
@@ -278,11 +280,10 @@ header {
 }
 
 .btn-novo-funcionario:hover {
-    background-color: #333;
+    background-color: #2e5f9e; 
     transform: translateY(-2px);
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
 }
-
 
 .funcionarios-table-container {
     background-color: var(--color-neutral-0);
