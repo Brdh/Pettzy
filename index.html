@@ -32,8 +32,8 @@
                 <li class="nav-item"><a href="#fac">Fale Conosco </a></li>
         </ul>
 
-        <a class="btn-default" href="configuracoes.html">
-          Sua conta
+        <a class="btn-default" href="cadastro.html">
+          Acesse conta
           <i class="fa-solid fa-right-to-bracket"></i>
         </a>
 
@@ -51,7 +51,7 @@
                 <li class="nav-item"><a href="#fac">Fale Conosco </a></li>
             </ul>
 
-        <button class="btn-default" href="configuracoes.html">
+        <button class="btn-default" href="cadastro.html">
           Acesse sua conta
 
           <i class="fa-solid fa-right-to-bracket"></i>
@@ -92,10 +92,50 @@
                 </div>
             </div>
 
+                      <!-- CÓDIGO DO CARROSSEL CORRIGIDO -->
             <div id="banner">
-                <img src="#" alt="" class="reveal-banner">
+                <div class="carousel-container">
+                    <div class="carousel-track">
+                        <img src="img/carousel1.jpg" alt="Creche de Pets - Gestão" class="carousel-slide reveal-banner">
+                        <img src="img/carousel2.png" alt="Cães em área de recreação" class="carousel-slide reveal-banner">
+                        <img src="img/carousel3.png" alt="Interação com clientes" class="carousel-slide reveal-banner">
+                        <img src="img/carousel4.jpg" alt="Cão confortável" class="carousel-slide reveal-banner">
+                    </div>
+                    
+                    <!-- Controles de navegação -->
+                    <button class="carousel-btn carousel-prev" id="carouselPrev">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+                    <button class="carousel-btn carousel-next" id="carouselNext">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                    
+                    <!-- Indicadores de slides -->
+                    <div class="carousel-indicators">
+                        <button class="indicator active" data-slide="0"></button>
+                        <button class="indicator" data-slide="1"></button>
+                        <button class="indicator" data-slide="2"></button>
+                        <button class="indicator" data-slide="3"></button>
+                    </div>
+                </div>
             </div>
+            <!-- FIM DO CÓDIGO DO CARROSSEL CORRIGIDO -->
         </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
      <section id="freatures">
             <div>
@@ -212,6 +252,24 @@
                 O sistema revolucionou nossa forma de trabalhar! Agora consigo gerenciar todas as estadias, enviar relatórios detalhados e fotos para os tutores com apenas alguns cliques. A redução de 30% no tempo de administração nos permitiu receber mais pets sem perder a qualidade do serviço.
             </span>
           
+        </div>  
+          <div class="review-card">
+            
+            <img src="img/token4.jpeg" alt="Lucas">
+            <h3 class="review-title">
+                Lucas Zoldyck
+            </h3>
+            <div class="review_indice">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+            </div>
+            <span class="review-description">
+            "Desde que implementamos o Pettyz, a gestão da nossa creche se tornou incrivelmente mais eficiente. A organização dos agendamentos e o acompanhamento diário nos poupam muito tempo e garantem a satisfação total dos tutores. Ferramenta indispensável!"
+            </span>
+          
         </div>   
     </div>
 </section>
@@ -245,7 +303,7 @@
                     <label for="message">Mensagem</label>
                     <textarea id="message" name="message" rows="5" placeholder="Insira sua mensagem" required></textarea>
                 </div>
-                <button type="submit" class="button">Enviar Mensagem</button>
+                <button type="submit" class="button">Enviar</button>
             </form>
         </div>
         <div class="faq-column">
@@ -276,7 +334,8 @@
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-left">
-                <h1 class="footer-logo">Pettzy</h1>
+          <h1 class="footer-logo">Pettzy</h1>
+                 
                 <nav class="footer-nav">
                     <ul>
                         <li><a href="#home">Início</a></li>
@@ -295,7 +354,13 @@
     </footer>
 
 
-<script src="script.js"></script>
+                  
+
+
+
+<script src="script.js"> </script>
+<script src="carrossel.js"></script>
+
 
 </body>
 </html>

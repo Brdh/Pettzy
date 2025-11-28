@@ -33,7 +33,6 @@ body {
     padding-top: 80px;
 }
 
-/* ===== HEADER ===== */
 header {
     width: 100%;
     padding: 28px 8%;
@@ -129,7 +128,6 @@ header {
     color: var(--color-primary-6);
 }
 
-/* Menu Mobile - Dropdown dentro do header */
 #mobile_menu {
     display: none;
     position: absolute;
@@ -606,7 +604,7 @@ header {
     color: #fff;
 }
 
-/* Funcionário Card */
+
 .employee-card {
     padding: 15px;
     border-radius: 10px;

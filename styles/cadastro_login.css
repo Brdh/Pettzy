@@ -1,6 +1,20 @@
+
+:root {
+    --color-primary-1: #ffffff;
+    --color-primary-2: #5b814b;
+    --color-primary-3: #4d7fc1b0;
+    --color-primary-4: #88b0ca;
+    --color-primary-5: #2e5f9e;
+    --color-primary-6: #043971;
+
+    --color-neutral-0: #fff;
+    --color-neutral-1: #1d1d1d;
+}
+
+
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: #f5f1e1;
+    background-color: #ffffff;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -27,12 +41,12 @@ body {
     background-color: #1c1c1c; 
     color: #ffffff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    background-color:#5c8a4c;
+      background-color: #88b0ca;
 }
 
 
 .login-card {
-    background-color: #5c8a4c; 
+    background-color: #88b0ca;
     color: #ffffff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
 }
@@ -91,7 +105,7 @@ input::placeholder {
 .btn-primary {
     width: 100%;
     padding: 10px;
-    background-color:#022506;
+    background-color: #2e5f9e;
     color: #ffffff;
     border: none;
     border-radius: 4px;
@@ -118,7 +132,7 @@ input::placeholder {
 
 
 .login-card .divider {
-    color: #000000;
+    color: #ffffff;
 }
 
 .divider::before,
@@ -158,9 +172,9 @@ input::placeholder {
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;
-    border: 1px solid #110a0a; 
+    border: 1px solid  #2e5f9e;
     background-color: #ffffff;
-    color: #000000;
+    color: #2e5f9e;
     border-radius: 4px;
     cursor: pointer;
     font-size: 16px;
@@ -177,7 +191,7 @@ input::placeholder {
 }
 
 .btn-social:hover {
-    background-color: #f0f0f0;
+    background-color: #f0f0f0a1;
 }
 
 .login-link, .register-link {
@@ -187,14 +201,14 @@ input::placeholder {
 
 
 .card:not(.login-card) .login-link a {
-    color: #ffffff;
+    color: #043971;
     text-decoration: none;
     font-weight: 700;
 }
 
 
 .login-card .register-link a {
-    color: #000000;
+    color: #043971;
     text-decoration: none;
     font-weight: 700;
 }
@@ -215,6 +229,8 @@ input::placeholder {
 .remember-me {
     display: flex;
     align-items: center;
+    color: #2e5f9e9d;
+
 }
 
 .remember-me input[type="checkbox"] {
@@ -241,7 +257,7 @@ input::placeholder {
 
 
 .login-card .forgot-password {
-    color: #000000;
+    color:#043971;
 }
 
 
@@ -252,7 +268,7 @@ input::placeholder {
 
 @media (max-width: 600px) {
     .card {
-        margin: 20px;
+        margin: 45px;
         padding: 20px;
     }
 

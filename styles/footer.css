@@ -1,3 +1,19 @@
+
+:root {
+    --color-primary-1: #ffffff;
+    --color-primary-2: #5b814b;
+    --color-primary-3: #4d7fc1b0;
+    --color-primary-4: #88b0ca;
+    --color-primary-5: #b65e1f;
+    --color-primary-6: #043971;
+
+    --color-neutral-0: #fff;
+    --color-neutral-1: #1d1d1d;
+}
+
+
+
+
 html, body {
     margin: 0; 
     padding: 0;
@@ -13,7 +29,7 @@ html, body {
     margin-left: -50vw; 
     margin-right: -50vw; 
   
-     background-color:#23047e44;
+     background-color: #043971;
     padding-top: 25px;   
   padding-bottom: 20px; 
 }
@@ -39,9 +55,9 @@ html, body {
     font-size: 28px;
     font-weight: 700;
     white-space: nowrap;
-    border-right: 1px solid #444;
+    border-right: 1px solid #fff;
     padding-right: 40px;
-    color: #5d448f;
+    color: #fff;
 }
 
 .footer-nav ul {
@@ -52,25 +68,26 @@ html, body {
 }
 
 .footer-nav a {
-    color: #9a6b39;
+    color:  #fff;
     text-decoration: none;
     font-size: 14px;
     transition: color 0.3s ease;
 }
 
 .footer-nav a:hover {
-    color: #0c4876;
+    color: #4d7fc1;
 }
 
 .footer-right {
     display: flex;
     align-items: center;
     justify-content: flex-end;
+
 }
 
 .footer-copyright {
     font-size: 13px;
-    color: #000000;
+    color: #fff;
     text-align: right;
 }
 
@@ -88,7 +105,7 @@ html, body {
 
     .footer-logo {
         border-right: none;
-        border-bottom: 1px solid #000000;
+        border-bottom: 1px solid #fff;
         padding-right: 0;
         padding-bottom: 20px;
     }

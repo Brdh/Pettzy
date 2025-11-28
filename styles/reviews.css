@@ -3,8 +3,8 @@
     --color-primary-2: #5b814b;
     --color-primary-3: #4d7fc1b0;
     --color-primary-4: #88b0ca;
-    --color-primary-5: #b65e1f;
-    --color-primary-6: #5d448f;
+    --color-primary-5: #2e5f9e;
+    --color-primary-6: #043971;
 
     --color-neutral-0: #fff;
     --color-neutral-1: #1d1d1d;
@@ -16,13 +16,14 @@
     align-items: center;
     justify-content: center;
     padding: 40px 20px;
-    background-color:#23047e44;
+    background-color: #88b0ca;
 }
 
 #reviews .section-subtitle {
     text-align: center;
     margin-bottom: 2rem;
     font-size: 1.5rem;
+    color: #ffffff;
 }
 
 #review-container {
@@ -80,7 +81,7 @@
 
 
 .review_indice i {
-    color: #f6e7b0; 
+    color: #eec73a; 
 }
 
 
