@@ -6,20 +6,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 :root {
-    --color-primary-1: #fbfbfb;
+    --color-primary-1: #ffffff;
     --color-primary-2: #5b814b;
-    --color-primary-3: #e0d42c;
-    --color-primary-4: #3169b8;
-    --color-primary-5: #c04823c1;
-    --color-primary-6: #49247de4;
-
-    --color-status-red: #a42c2c;
-    --color-status-yellow: #e0d42c;
-    --color-status-green: #5c8a4c;
+    --color-primary-3: #4d7fc1b0;
+    --color-primary-4: #88b0ca;
+    --color-primary-5: #2e5f9e;
+    --color-primary-6: #043971;
 
     --color-neutral-0: #fff;
     --color-neutral-1: #1d1d1d;
 }
+
 
 * {
     font-family: 'Poppins', sans-serif;
@@ -94,8 +91,6 @@ header {
 .nav-item.active {
     background-color: transparent !important;
 }
-
-
 
 .btn-default {
     border: none;

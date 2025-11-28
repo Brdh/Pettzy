@@ -1,477 +1,196 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pettzy - Dashboard</title>
-    <link rel="stylesheet" href="styles/painel.css" />
-  </head>
-  <body>
-    <div class="container">
-      <aside class="sidebar">
-        <div class="logo">🐾 PETTZY</div>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"/>
 
-        <ul class="nav-menu">
-          <li class="nav-item">
-            <a
-              href="dashboard.html"
-              style="
-                text-decoration: none;
-                color: inherit;
-                display: flex;
-                align-items: center;
-                gap: 10px;
-                width: 100%;
-              "
-            >
-              <span>📊</span>
-              Dashboard
-            </a>
-          </li>
-          <li class="nav-item active">
-            <a
-              href="#"
-              style="
-                text-decoration: none;
-                color: inherit;
-                display: flex;
-                align-items: center;
-                gap: 10px;
-                width: 100%;
-              "
-            >
-              <span>📅</span>
-              Agenda
-            </a>
-          </li>
-          <li class="nav-item">
-            <a
-              href="pets.html"
-              style="
-                text-decoration: none;
-                color: inherit;
-                display: flex;
-                align-items: center;
-                gap: 10px;
-                width: 100%;
-              "
-            >
-              <span>🐾</span>
-              Pets
-            </a>
-          </li>
-          <li class="nav-item">
-            <span>👥</span>
-            <a href="funcionarios.html"> Funcionários </a>
-          </li>
+    <link rel="stylesheet" href="styles/agenda.css" />
+    <title>Agenda - PETTYZ</title>
+  </head>
+  
+  <body>
+
+    <header>
+      <nav id="navbar">
+        <div id="nav_logo">
+          <i class="fa-solid fa-otter"></i>
+          <span>PETTYZ</span>
+        </div>
+
+        <ul id="nav_list">
+          <li class="nav-item"><a href="dashboard.html">Dashboard</a></li>
+          <li class="nav-item"><a href="pets.html">Pets</a></li>
+          <li class="nav-item"><a href="funcionarios.html">Funcionários</a></li>
+          <li class="nav-item active"><a href="agenda.html">Agenda</a></li>
         </ul>
 
-        <div
-          style="
-            margin-top: auto;
-            border-top: 1px solid #e0e0e0;
-            padding-top: 20px;
-          "
-        >
-          <div class="nav-item">
-            <span>⚙</span>
-            Configurações
-          </div>
-          <div class="nav-item">
-            <span>❓</span>
-            Suporte
-          </div>
-          <div class="user-section">
-            <span class="user-avatar">👤</span>
-            <span class="user-name">CaringPet</span>
-            <span>▼</span>
-          </div>
-        </div>
-      </aside>
+        <a class="btn-default" href="configuracoes.html">
+          Sua conta
+          <i class="fa-solid fa-user"></i>
+        </a>
 
-      <main class="main-content">
-        <h1 class="page-title">Dashboard</h1>
-        <p style="color: #666; margin-bottom: 30px; font-size: 14px">
-          Um panorama das coisas mais importantes
-        </p>
+        <button id="mobile_btn">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </nav>
 
-        <div class="grid">
-          <div class="dashboard-section">
-            <div class="section-title">
-              <span>Agenda</span>
-              <select
-                style="
-                  border: 1px solid #ddd;
-                  padding: 5px 10px;
-                  border-radius: 6px;
-                  font-size: 12px;
-                "
-              >
-                <option>Semanal</option>
-              </select>
-            </div>
+      <div id="mobile_menu">
+        <ul id="mobile_nav_list">
+          <li class="nav-item"><a href="dashboard.html">Dashboard</a></li>
+          <li class="nav-item"><a href="pets.html">Pets</a></li>
+          <li class="nav-item"><a href="funcionarios.html">Funcionários</a></li>
+          <li class="nav-item active"><a href="agenda.html">Agenda</a></li>
+        </ul>
 
-            <div class="day-tabs">
-              <button class="day-tab">Hoje/Dia</button>
-              <button class="day-tab">Segunda-Feira</button>
-              <button class="day-tab active">Terça-Feira</button>
-              <button class="day-tab">Quarta-Feira</button>
-              <button class="day-tab">Quinta-Feira</button>
-              <button class="day-tab">Sexta-Feira</button>
-            </div>
+        <button class="btn-default" href="configuracoes.html">
+          Sua conta
+          <i class="fa-solid fa-user"></i>
+        </button>
+      </div>
+    </header>
 
-            <div class="timeline">
-              <div class="time-slot">
-                <div class="time-label">07:00</div>
-                <div></div>
-              </div>
-              <div class="time-slot">
-                <div class="time-label">08:00</div>
-                <div></div>
-              </div>
-              <div class="time-slot">
-                <div class="time-label">09:00</div>
-                <div></div>
-              </div>
-              <div class="time-slot">
-                <div class="time-label">10:00</div>
-                <div class="appointment green">
-                  <div class="appointment-label">Veterinário</div>
-                  <div class="appointment-time">às 10:00</div>
-                  <div class="appointment-text">
-                    Repor posse suspeita de doença
-                  </div>
-                </div>
-              </div>
-              <div class="time-slot">
-                <div class="time-label">11:00</div>
-                <div></div>
-              </div>
-              <div class="time-slot">
-                <div class="time-label">12:00</div>
-                <div></div>
-              </div>
-              <div class="time-slot">
-                <div class="time-label">13:00</div>
-                <div></div>
-              </div>
-              <div class="time-slot">
-                <div class="time-label">14:00</div>
-                <div></div>
-              </div>
-              <div class="time-slot">
-                <div class="time-label">15:00</div>
-                <div class="appointment pink">
-                  <div class="appointment-label">Adestrador</div>
-                  <div class="appointment-time">às 15:00</div>
-                  <div class="appointment-text">Um passeio com Sebastião</div>
-                </div>
-              </div>
-              <div class="time-slot">
-                <div class="time-label">16:00</div>
-                <div></div>
-              </div>
-              <div class="time-slot">
-                <div class="time-label">17:00</div>
-                <div></div>
-              </div>
-              <div class="time-slot">
-                <div class="time-label">18:00</div>
-                <div></div>
-              </div>
-              <div class="time-slot">
-                <div class="time-label">19:00</div>
-                <div></div>
-              </div>
-              <div class="time-slot">
-                <div class="time-label">20:00</div>
-                <div></div>
-              </div>
-            </div>
+    <main id="content">
+      <section id="agenda-section">
+        <div class="agenda-container">
+          <div class="agenda-header">
+            <h2>Agenda</h2>
+            <p>Os eventos e compromissos da semana</p>
           </div>
 
-          <div class="dashboard-section">
-            <div class="section-title">
-              <span>Pet</span>
-              <button
-                style="
-                  background: none;
-                  border: none;
-                  font-size: 20px;
-                  cursor: pointer;
-                "
-              >
-                +
+          <div class="agenda-controls">
+            <div class="date-navigation">
+              <button class="nav-btn prev-btn" id="prevBtn">
+                <i class="fa-solid fa-chevron-left"></i>
+              </button>
+              <span class="current-date" id="currentDate">01, Mai - 10, Mai, 2025</span>
+              <button class="nav-btn next-btn" id="nextBtn">
+                <i class="fa-solid fa-chevron-right"></i>
               </button>
             </div>
 
-            <div class="pet-list">
-              <div class="pet-list-item pink">
-                <img
-                  src="https://via.placeholder.com/50/c4a582/ffffff?text=F"
-                  alt="Fred"
-                  class="pet-list-avatar"
-                />
-                <div class="pet-list-info">
-                  <div class="pet-list-name">Fred</div>
-                  <div class="pet-list-breed">Coelho Leão</div>
-                  <div class="pet-list-age">1 ano</div>
-                  <div class="pet-list-owner">Luiza Fernandes</div>
-                </div>
-                <div class="pet-status">Urgente</div>
-              </div>
-
-              <div class="pet-list-item yellow">
-                <img
-                  src="https://via.placeholder.com/50/8b7355/ffffff?text=V"
-                  alt="Valentina"
-                  class="pet-list-avatar"
-                />
-                <div class="pet-list-info">
-                  <div class="pet-list-name">Valentina</div>
-                  <div class="pet-list-breed">Gato Siamês</div>
-                  <div class="pet-list-age">9 meses</div>
-                  <div class="pet-list-owner">Fernando Silva</div>
-                </div>
-                <div class="pet-status">A Verificar</div>
-              </div>
-
-              <div class="pet-list-item green">
-                <img
-                  src="https://via.placeholder.com/50/f5a442/ffffff?text=A"
-                  alt="Alfredo"
-                  class="pet-list-avatar"
-                />
-                <div class="pet-list-info">
-                  <div class="pet-list-name">Alfredo</div>
-                  <div class="pet-list-breed">Lagarto Dragão-Barbudo</div>
-                  <div class="pet-list-age">3 anos</div>
-                  <div class="pet-list-owner">Marcela Freitas</div>
-                </div>
-                <div class="pet-status">Saudável</div>
-              </div>
-
-              <div class="pet-list-item green">
-                <img
-                  src="https://via.placeholder.com/50/000000/ffffff?text=S"
-                  alt="Sebastião"
-                  class="pet-list-avatar"
-                />
-                <div class="pet-list-info">
-                  <div class="pet-list-name">Sebastião</div>
-                  <div class="pet-list-breed">Bulldog</div>
-                  <div class="pet-list-age">2 anos</div>
-                  <div class="pet-list-owner">Maria Santos</div>
-                </div>
-                <div class="pet-status">Saudável</div>
-              </div>
+            <div class="view-filters">
+              <button class="filter-btn" id="dayBtn">Dia</button>
+              <button class="filter-btn active" id="weekBtn">Semana</button>
+              <button class="filter-btn" id="monthBtn">Mês</button>
             </div>
-          </div>
-        </div>
 
-        <div class="grid" style="margin-top: 30px">
-          <div class="dashboard-section">
-            <div class="section-title">
-              <span>Funcionários</span>
-              <button
-                style="
-                  background: none;
-                  border: none;
-                  font-size: 20px;
-                  cursor: pointer;
-                "
-              >
-                +
+            <div class="search-filter-container">
+              <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input
+                  type="text"
+                  id="searchInput"
+                  placeholder="Pesquise por pet, serviço..."
+                />
+              </div>
+
+              <button class="btn-novo-agendamento">
+                <i class="fa-solid fa-plus"></i>
+                Novo Agendamento
               </button>
             </div>
+          </div>
 
-            <div class="employee-card blue">
-              <img
-                src="https://via.placeholder.com/60/4a7bff/ffffff?text=MF"
-                alt="Marcela Figueiredo"
-                class="employee-avatar"
-              />
-              <div class="employee-info">
-                <div class="employee-name">Marcela Figueiredo</div>
-                <div class="employee-role">Veterinário</div>
-                <div class="employee-details">25 anos</div>
-                <div class="employee-details">Em atividade, há 2 anos</div>
-                <div class="employee-details">
-                  Chega às 09:00 - Sai às 20:00
-                </div>
-              </div>
+          <div class="calendar-view">
+            <!-- Day Headers -->
+            <div class="day-headers" id="dayHeaders">
+              <!-- Populated by JavaScript -->
             </div>
 
-            <div class="employee-card green">
-              <img
-                src="https://via.placeholder.com/60/5ce08c/ffffff?text=BA"
-                alt="Bruno Alencar"
-                class="employee-avatar"
-              />
-              <div class="employee-info">
-                <div class="employee-name">Bruno Alencar</div>
-                <div class="employee-role">Adestrador</div>
-                <div class="employee-details">28 anos</div>
-                <div class="employee-details">Em atividade, há 4 anos</div>
-                <div class="employee-details">
-                  Chega às 07:00 - Sai às 18:00
-                </div>
+            <!-- Time Grid -->
+            <div class="time-grid">
+              <!-- Time Column -->
+              <div class="time-column">
+                <div class="time-slot-header"></div>
+                <div class="time-slot" id="time-07:00">07:00</div>
+                <div class="time-slot" id="time-08:00">08:00</div>
+                <div class="time-slot" id="time-09:00">09:00</div>
+                <div class="time-slot" id="time-10:00">10:00</div>
+                <div class="time-slot" id="time-11:00">11:00</div>
+                <div class="time-slot" id="time-12:00">12:00</div>
+                <div class="time-slot" id="time-13:00">13:00</div>
+                <div class="time-slot" id="time-14:00">14:00</div>
+                <div class="time-slot" id="time-15:00">15:00</div>
+                <div class="time-slot" id="time-16:00">16:00</div>
+                <div class="time-slot" id="time-17:00">17:00</div>
+                <div class="time-slot" id="time-18:00">18:00</div>
+                <div class="time-slot" id="time-19:00">19:00</div>
+                <div class="time-slot" id="time-20:00">20:00</div>
               </div>
-            </div>
 
-            <div class="employee-card pink">
-              <img
-                src="https://via.placeholder.com/60/ff8899/ffffff?text=FT"
-                alt="Fernanda Tavares"
-                class="employee-avatar"
-              />
-              <div class="employee-info">
-                <div class="employee-name">Fernanda Tavares</div>
-                <div class="employee-role">Recepcionista</div>
-                <div class="employee-details">23 anos</div>
-                <div class="employee-details">Em atividade, há 1 anos</div>
-                <div class="employee-details">
-                  Chega às 13:00 - Sai às 17:00
-                </div>
+              <!-- Days Grid -->
+              <div class="days-grid" id="daysGrid">
+                <!-- Populated by JavaScript -->
               </div>
             </div>
           </div>
 
-          <div class="dashboard-section">
-            <div class="section-title">
-              <span>Day Care</span>
-              <select
-                style="
-                  border: 1px solid #ddd;
-                  padding: 5px 10px;
-                  border-radius: 6px;
-                  font-size: 12px;
-                "
-              >
-                <option>Semanal</option>
-              </select>
+          <!-- Events List -->
+          <div class="events-sidebar" id="eventsSidebar">
+            <h3>Próximos Eventos</h3>
+            <div class="events-list" id="eventsList">
+              <!-- Populated by JavaScript -->
             </div>
-
-            <table class="data-table">
-              <thead>
-                <tr>
-                  <th>Pet</th>
-                  <th>Dono</th>
-                  <th>Chegada</th>
-                  <th>Saída</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <div class="table-pet">
-                      <div class="table-indicator pink"></div>
-                      <img
-                        src="https://via.placeholder.com/40/c4a582/ffffff?text=F"
-                        alt="Fred"
-                        class="table-pet-avatar"
-                      />
-                      <span>Fred</span>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="table-owner">
-                      <img
-                        src="https://via.placeholder.com/35/999/ffffff?text=LF"
-                        alt="Luiza Fernandes"
-                        class="table-owner-avatar"
-                      />
-                      <span>Luiza Fernandes</span>
-                    </div>
-                  </td>
-                  <td>Chega às 09:00</td>
-                  <td>Sai às 16:30</td>
-                  <td><div class="table-status finalizado">Finalizado</div></td>
-                </tr>
-                <tr>
-                  <td>
-                    <div class="table-pet">
-                      <div class="table-indicator yellow"></div>
-                      <img
-                        src="https://via.placeholder.com/40/8b7355/ffffff?text=V"
-                        alt="Valentina"
-                        class="table-pet-avatar"
-                      />
-                      <span>Valentina</span>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="table-owner">
-                      <img
-                        src="https://via.placeholder.com/35/999/ffffff?text=FS"
-                        alt="Fernando Silva"
-                        class="table-owner-avatar"
-                      />
-                      <span>Fernando Silva</span>
-                    </div>
-                  </td>
-                  <td>Chega às 09:00</td>
-                  <td>Sai às 17:00</td>
-                  <td><div class="table-status finalizado">Finalizado</div></td>
-                </tr>
-                <tr>
-                  <td>
-                    <div class="table-pet">
-                      <div class="table-indicator green"></div>
-                      <img
-                        src="https://via.placeholder.com/40/f5a442/ffffff?text=A"
-                        alt="Alfredo"
-                        class="table-pet-avatar"
-                      />
-                      <span>Alfredo</span>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="table-owner">
-                      <img
-                        src="https://via.placeholder.com/35/999/ffffff?text=MF"
-                        alt="Marcela Freitas"
-                        class="table-owner-avatar"
-                      />
-                      <span>Marcela Freitas</span>
-                    </div>
-                  </td>
-                  <td>Chega às 11:00</td>
-                  <td>.....................</td>
-                  <td><div class="table-status a-caminho">A caminho</div></td>
-                </tr>
-                <tr>
-                  <td>
-                    <div class="table-pet">
-                      <div class="table-indicator green"></div>
-                      <img
-                        src="https://via.placeholder.com/40/000000/ffffff?text=S"
-                        alt="Sebastião"
-                        class="table-pet-avatar"
-                      />
-                      <span>Sebastião</span>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="table-owner">
-                      <img
-                        src="https://via.placeholder.com/35/999/ffffff?text=MS"
-                        alt="Maria Santos"
-                        class="table-owner-avatar"
-                      />
-                      <span>Maria Santos</span>
-                    </div>
-                  </td>
-                  <td>Chega às 17:00</td>
-                  <td>Sai às 18:00</td>
-                  <td><div class="table-status finalizado">Finalizado</div></td>
-                </tr>
-              </tbody>
-            </table>
           </div>
         </div>
-      </main>
+      </section>
+    </main>
+
+    <!-- Modal for New Event -->
+    <div class="modal" id="eventModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Novo Agendamento</h2>
+          <button class="close-btn" id="closeModalBtn">
+            <i class="fa-solid fa-times"></i>
+          </button>
+        </div>
+        <form class="event-form" id="eventForm">
+          <div class="form-group">
+            <label for="petName">Pet</label>
+            <input type="text" id="petName" placeholder="Nome do pet" required>
+          </div>
+          <div class="form-group">
+            <label for="serviceType">Serviço</label>
+            <select id="serviceType" required>
+              <option value="">Selecione um serviço</option>
+              <option value="banho">Banho</option>
+              <option value="tosa">Tosa</option>
+              <option value="consulta">Consulta Veterinária</option>
+              <option value="vacinacao">Vacinação</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="eventDate">Data</label>
+            <input type="date" id="eventDate" required>
+          </div>
+          <div class="form-group">
+            <label for="eventTime">Hora</label>
+            <input type="time" id="eventTime" required>
+          </div>
+          <div class="form-group">
+            <label for="eventDuration">Duração (minutos)</label>
+            <input type="number" id="eventDuration" value="60" min="15" step="15" required>
+          </div>
+          <div class="form-group">
+            <label for="eventNotes">Observações</label>
+            <textarea id="eventNotes" placeholder="Adicione notas sobre o agendamento"></textarea>
+          </div>
+          <div class="form-actions">
+            <button type="button" class="btn-cancel" id="cancelEventBtn">Cancelar</button>
+            <button type="submit" class="btn-save">Salvar Agendamento</button>
+          </div>
+        </form>
+      </div>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="agenda.js"></script>
   </body>
 </html>
