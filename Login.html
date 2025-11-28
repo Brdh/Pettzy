@@ -59,10 +59,6 @@
       </div>
     </div>
 
-
-
-
-    
     <script src="script.js"></script>
 
     <script>
@@ -104,9 +100,9 @@
 
             if (response.ok) {
               alert("Login realizado com sucesso!");
-              
+
               localStorage.setItem("token", result.token);
-              window.location.href = "dashboard.html"; 
+              window.location.href = "dashboard.html";
             } else {
               alert(result.message || "Credenciais inválidas.");
             }

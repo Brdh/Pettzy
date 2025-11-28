@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pettzy - Dashboard</title>
-     <link
+    <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
       integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
@@ -14,19 +14,19 @@
     <link rel="stylesheet" href="styles/painel.css" />
   </head>
   <body>
-
- <header>
+    <header>
       <nav id="navbar">
-        <nav id="navbar">
         <div id="nav_logo">
           <i class="fa-solid fa-otter"></i>
           <span>PETTYZ</span>
         </div>
 
         <ul id="nav_list">
-          <li class="nav-item active"><a href="dashboard.html">Dashboard</a></li>
+          <li class="nav-item active">
+            <a href="dashboard.html">Dashboard</a>
+          </li>
           <li class="nav-item"><a href="pets.html">Pets</a></li>
-          <li class="nav-item "><a href="funcionarios.html">Funcionários</a></li>
+          <li class="nav-item"><a href="funcionarios.html">Funcionários</a></li>
           <li class="nav-item"><a href="agenda.html">Agenda</a></li>
         </ul>
 
@@ -42,9 +42,11 @@
 
       <div id="mobile_menu">
         <ul id="mobile_nav_list">
-          <li class="nav-item active"><a href="dashboard.html">Dashboard</a></li>
+          <li class="nav-item active">
+            <a href="dashboard.html">Dashboard</a>
+          </li>
           <li class="nav-item"><a href="pets.html">Pets</a></li>
-          <li class="nav-item "><a href="funcionarios.html">Funcionários</a></li>
+          <li class="nav-item"><a href="funcionarios.html">Funcionários</a></li>
           <li class="nav-item"><a href="agenda.html">Agenda</a></li>
         </ul>
 
@@ -56,395 +58,374 @@
       </div>
     </header>
 
+    <main class="main-content">
+      <h1 class="page-title">Dashboard</h1>
+      <p
+        style="
+          color: #666;
+          margin-bottom: 30px;
+          font-size: 14px;
+          margin-top: 4px;
+        "
+      >
+        Um panorama das coisas mais importantes
+      </p>
 
+      <div class="grid">
+        <div class="dashboard-section">
+          <div class="section-title">
+            <span>Agenda</span>
+            <select
+              style="
+                border: 1px solid #ddd;
+                padding: 5px 10px;
+                border-radius: 6px;
+                font-size: 12px;
+              "
+            >
+              <option>Semanal</option>
+            </select>
+          </div>
 
+          <div class="day-tabs">
+            <button class="day-tab">Hoje/Dia</button>
+            <button class="day-tab">Segunda-Feira</button>
+            <button class="day-tab active">Terça-Feira</button>
+            <button class="day-tab">Quarta-Feira</button>
+            <button class="day-tab">Quinta-Feira</button>
+            <button class="day-tab">Sexta-Feira</button>
+          </div>
 
+          <div class="timeline">
+            <div class="time-slot">
+              <div class="time-label">07:00</div>
+              <div></div>
+            </div>
+            <div class="time-slot">
+              <div class="time-label">08:00</div>
+              <div></div>
+            </div>
+            <div class="time-slot">
+              <div class="time-label">09:00</div>
+              <div></div>
+            </div>
+            <div class="time-slot">
+              <div class="time-label">10:00</div>
+              <div class="appointment green">
+                <div class="appointment-label">Veterinário</div>
+                <div class="appointment-time">às 10:00</div>
+                <div class="appointment-text">
+                  Reportar caso suspeito de doença
+                </div>
+              </div>
+            </div>
+            <div class="time-slot">
+              <div class="time-label">11:00</div>
+              <div></div>
+            </div>
+            <div class="time-slot">
+              <div class="time-label">12:00</div>
+              <div></div>
+            </div>
+            <div class="time-slot">
+              <div class="time-label">13:00</div>
+              <div></div>
+            </div>
+            <div class="time-slot">
+              <div class="time-label">14:00</div>
+              <div></div>
+            </div>
+            <div class="time-slot">
+              <div class="time-label">15:00</div>
+              <div class="appointment pink">
+                <div class="appointment-label">Adestrador</div>
+                <div class="appointment-time">às 15:00</div>
+                <div class="appointment-text">Um passeio com Sebastião</div>
+              </div>
+            </div>
+            <div class="time-slot">
+              <div class="time-label">16:00</div>
+              <div></div>
+            </div>
+            <div class="time-slot">
+              <div class="time-label">17:00</div>
+              <div></div>
+            </div>
+            <div class="time-slot">
+              <div class="time-label">18:00</div>
+              <div></div>
+            </div>
+            <div class="time-slot">
+              <div class="time-label">19:00</div>
+              <div></div>
+            </div>
+            <div class="time-slot">
+              <div class="time-label">20:00</div>
+              <div></div>
+            </div>
+          </div>
+        </div>
 
+        <div class="dashboard-section">
+          <div class="section-title">
+            <span>Pet</span>
+            <button
+              style="
+                background: none;
+                border: none;
+                font-size: 20px;
+                cursor: pointer;
+              "
+            >
+              +
+            </button>
+          </div>
 
-
-
-
-
-
-
-   
-
-      <main class="main-content">
-        <h1 class="page-title">Dashboard</h1>
-        <p style="color: #666; margin-bottom: 30px; font-size: 14px; margin-top: 4px">
-          Um panorama das coisas mais importantes
-        </p>
-
-        <div class="grid">
-          <div class="dashboard-section">
-            <div class="section-title">
-              <span>Agenda</span>
-              <select
-                style="
-                  border: 1px solid #ddd;
-                  padding: 5px 10px;
-                  border-radius: 6px;
-                  font-size: 12px;
-                "
-              >
-                <option>Semanal</option>
-              </select>
+          <div class="pet-list">
+            <div class="pet-list-item pink">
+              <img src="img/fred.png" alt="Fred" class="pet-list-avatar" />
+              <div class="pet-list-info">
+                <div class="pet-list-name">Fred</div>
+                <div class="pet-list-breed">Coelho Leão</div>
+                <div class="pet-list-age">1 ano</div>
+                <div class="pet-list-owner">Luiza Fernandes</div>
+              </div>
+              <div class="pet-status">Urgente</div>
             </div>
 
-            <div class="day-tabs">
-              <button class="day-tab">Hoje/Dia</button>
-              <button class="day-tab">Segunda-Feira</button>
-              <button class="day-tab active">Terça-Feira</button>
-              <button class="day-tab">Quarta-Feira</button>
-              <button class="day-tab">Quinta-Feira</button>
-              <button class="day-tab">Sexta-Feira</button>
+            <div class="pet-list-item yellow">
+              <img src="img/fred.png" alt="Valentina" class="pet-list-avatar" />
+              <div class="pet-list-info">
+                <div class="pet-list-name">Valentina</div>
+                <div class="pet-list-breed">Gato Siamês</div>
+                <div class="pet-list-age">9 meses</div>
+                <div class="pet-list-owner">Fernando Silva</div>
+              </div>
+              <div class="pet-status">A Verificar</div>
             </div>
 
-            <div class="timeline">
-              <div class="time-slot">
-                <div class="time-label">07:00</div>
-                <div></div>
+            <div class="pet-list-item green">
+              <img src="img/fred.png" alt="Alfredo" class="pet-list-avatar" />
+              <div class="pet-list-info">
+                <div class="pet-list-name">Alfredo</div>
+                <div class="pet-list-breed">Lagarto Dragão-Barbudo</div>
+                <div class="pet-list-age">3 anos</div>
+                <div class="pet-list-owner">Marcela Freitas</div>
               </div>
-              <div class="time-slot">
-                <div class="time-label">08:00</div>
-                <div></div>
+              <div class="pet-status">Saudável</div>
+            </div>
+
+            <div class="pet-list-item green">
+              <img src="img/fred.png" alt="Sebastião" class="pet-list-avatar" />
+              <div class="pet-list-info">
+                <div class="pet-list-name">Sebastião</div>
+                <div class="pet-list-breed">Bulldog</div>
+                <div class="pet-list-age">2 anos</div>
+                <div class="pet-list-owner">Maria Santos</div>
               </div>
-              <div class="time-slot">
-                <div class="time-label">09:00</div>
-                <div></div>
-              </div>
-              <div class="time-slot">
-                <div class="time-label">10:00</div>
-                <div class="appointment green">
-                  <div class="appointment-label">Veterinário</div>
-                  <div class="appointment-time">às 10:00</div>
-                  <div class="appointment-text">
-                    Reportar caso suspeito de doença
+              <div class="pet-status">Saudável</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid" style="margin-top: 30px">
+        <div class="dashboard-section">
+          <div class="section-title">
+            <span>Funcionários</span>
+            <button
+              style="
+                background: none;
+                border: none;
+                font-size: 20px;
+                cursor: pointer;
+              "
+            >
+              +
+            </button>
+          </div>
+
+          <div class="employee-card blue">
+            <img
+              src="https://placehold.co/300x200?text=Funcionário"
+              alt="Marcela Figueiredo"
+              class="employee-avatar"
+            />
+            <div class="employee-info">
+              <div class="employee-name">Marcela Figueiredo</div>
+              <div class="employee-role">Veterinário</div>
+              <div class="employee-details">25 anos</div>
+              <div class="employee-details">Em atividade, há 2 anos</div>
+              <div class="employee-details">Chega às 09:00 - Sai às 20:00</div>
+            </div>
+          </div>
+
+          <div class="employee-card green">
+            <img
+              src="https://placehold.co/300x200?text=Funcionário"
+              alt="Bruno Alencar"
+              class="employee-avatar"
+            />
+            <div class="employee-info">
+              <div class="employee-name">Bruno Alencar</div>
+              <div class="employee-role">Adestrador</div>
+              <div class="employee-details">28 anos</div>
+              <div class="employee-details">Em atividade, há 4 anos</div>
+              <div class="employee-details">Chega às 07:00 - Sai às 18:00</div>
+            </div>
+          </div>
+
+          <div class="employee-card pink">
+            <img
+              src="https://placehold.co/300x200?text=Funcionário"
+              alt="Fernanda Tavares"
+              class="employee-avatar"
+            />
+            <div class="employee-info">
+              <div class="employee-name">Fernanda Tavares</div>
+              <div class="employee-role">Recepcionista</div>
+              <div class="employee-details">23 anos</div>
+              <div class="employee-details">Em atividade, há 1 anos</div>
+              <div class="employee-details">Chega às 13:00 - Sai às 17:00</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboard-section">
+          <div class="section-title">
+            <span>Day Care</span>
+            <select
+              style="
+                border: 1px solid #ddd;
+                padding: 5px 10px;
+                border-radius: 6px;
+                font-size: 12px;
+              "
+            >
+              <option>Semanal</option>
+            </select>
+          </div>
+
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Pet</th>
+                <th>Dono</th>
+                <th>Chegada</th>
+                <th>Saída</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div class="table-pet">
+                    <div class="table-indicator pink"></div>
+                    <img
+                      src="https://placehold.co/300x200?text=Pet"
+                      alt="Fred"
+                      class="table-pet-avatar"
+                    />
+                    <span>Fred</span>
                   </div>
-                </div>
-              </div>
-              <div class="time-slot">
-                <div class="time-label">11:00</div>
-                <div></div>
-              </div>
-              <div class="time-slot">
-                <div class="time-label">12:00</div>
-                <div></div>
-              </div>
-              <div class="time-slot">
-                <div class="time-label">13:00</div>
-                <div></div>
-              </div>
-              <div class="time-slot">
-                <div class="time-label">14:00</div>
-                <div></div>
-              </div>
-              <div class="time-slot">
-                <div class="time-label">15:00</div>
-                <div class="appointment pink">
-                  <div class="appointment-label">Adestrador</div>
-                  <div class="appointment-time">às 15:00</div>
-                  <div class="appointment-text">Um passeio com Sebastião</div>
-                </div>
-              </div>
-              <div class="time-slot">
-                <div class="time-label">16:00</div>
-                <div></div>
-              </div>
-              <div class="time-slot">
-                <div class="time-label">17:00</div>
-                <div></div>
-              </div>
-              <div class="time-slot">
-                <div class="time-label">18:00</div>
-                <div></div>
-              </div>
-              <div class="time-slot">
-                <div class="time-label">19:00</div>
-                <div></div>
-              </div>
-              <div class="time-slot">
-                <div class="time-label">20:00</div>
-                <div></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="dashboard-section">
-            <div class="section-title">
-              <span>Pet</span>
-              <button
-                style="
-                  background: none;
-                  border: none;
-                  font-size: 20px;
-                  cursor: pointer;
-                "
-              >
-                +
-              </button>
-            </div>
-
-            <div class="pet-list">
-              <div class="pet-list-item pink">
-                <img src="img/fred.png" alt="Fred" class="pet-list-avatar" />
-                <div class="pet-list-info">
-                  <div class="pet-list-name">Fred</div>
-                  <div class="pet-list-breed">Coelho Leão</div>
-                  <div class="pet-list-age">1 ano</div>
-                  <div class="pet-list-owner">Luiza Fernandes</div>
-                </div>
-                <div class="pet-status">Urgente</div>
-              </div>
-
-              <div class="pet-list-item yellow">
-                <img
-                  src="img/fred.png"
-                  alt="Valentina"
-                  class="pet-list-avatar"
-                />
-                <div class="pet-list-info">
-                  <div class="pet-list-name">Valentina</div>
-                  <div class="pet-list-breed">Gato Siamês</div>
-                  <div class="pet-list-age">9 meses</div>
-                  <div class="pet-list-owner">Fernando Silva</div>
-                </div>
-                <div class="pet-status">A Verificar</div>
-              </div>
-
-              <div class="pet-list-item green">
-                <img src="img/fred.png" alt="Alfredo" class="pet-list-avatar" />
-                <div class="pet-list-info">
-                  <div class="pet-list-name">Alfredo</div>
-                  <div class="pet-list-breed">Lagarto Dragão-Barbudo</div>
-                  <div class="pet-list-age">3 anos</div>
-                  <div class="pet-list-owner">Marcela Freitas</div>
-                </div>
-                <div class="pet-status">Saudável</div>
-              </div>
-
-              <div class="pet-list-item green">
-                <img
-                  src="img/fred.png"
-                  alt="Sebastião"
-                  class="pet-list-avatar"
-                />
-                <div class="pet-list-info">
-                  <div class="pet-list-name">Sebastião</div>
-                  <div class="pet-list-breed">Bulldog</div>
-                  <div class="pet-list-age">2 anos</div>
-                  <div class="pet-list-owner">Maria Santos</div>
-                </div>
-                <div class="pet-status">Saudável</div>
-              </div>
-            </div>
-          </div>
+                </td>
+                <td>
+                  <div class="table-owner">
+                    <img
+                      src="https://placehold.co/300x200?text=Tutor"
+                      alt="Luiza Fernandes"
+                      class="table-owner-avatar"
+                    />
+                    <span>Luiza Fernandes</span>
+                  </div>
+                </td>
+                <td>Chega às 09:00</td>
+                <td>Sai às 16:30</td>
+                <td><div class="table-status finalizado">Finalizado</div></td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="table-pet">
+                    <div class="table-indicator yellow"></div>
+                    <img
+                      src="https://placehold.co/300x200?text=Pet"
+                      alt="Valentina"
+                      class="table-pet-avatar"
+                    />
+                    <span>Valentina</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="table-owner">
+                    <img
+                      src="https://placehold.co/300x200?text=Tutor"
+                      alt="Fernando Silva"
+                      class="table-owner-avatar"
+                    />
+                    <span>Fernando Silva</span>
+                  </div>
+                </td>
+                <td>Chega às 09:00</td>
+                <td>Sai às 17:00</td>
+                <td><div class="table-status finalizado">Finalizado</div></td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="table-pet">
+                    <div class="table-indicator green"></div>
+                    <img
+                      src="https://placehold.co/300x200?text=Pet"
+                      alt="Alfredo"
+                      class="table-pet-avatar"
+                    />
+                    <span>Alfredo</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="table-owner">
+                    <img
+                      src="https://placehold.co/300x200?text=Tutor"
+                      alt="Marcela Freitas"
+                      class="table-owner-avatar"
+                    />
+                    <span>Marcela Freitas</span>
+                  </div>
+                </td>
+                <td>Chega às 11:00</td>
+                <td>.....................</td>
+                <td><div class="table-status a-caminho">A caminho</div></td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="table-pet">
+                    <div class="table-indicator green"></div>
+                    <img
+                      src="https://placehold.co/300x200?text=Pet"
+                      alt="Sebastião"
+                      class="table-pet-avatar"
+                    />
+                    <span>Sebastião</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="table-owner">
+                    <img
+                      src="https://placehold.co/300x200?text=Tutor"
+                      alt="Maria Santos"
+                      class="table-owner-avatar"
+                    />
+                    <span>Maria Santos</span>
+                  </div>
+                </td>
+                <td>Chega às 17:00</td>
+                <td>Sai às 18:00</td>
+                <td><div class="table-status finalizado">Finalizado</div></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-
-        <div class="grid" style="margin-top: 30px">
-          <div class="dashboard-section">
-            <div class="section-title">
-              <span>Funcionários</span>
-              <button
-                style="
-                  background: none;
-                  border: none;
-                  font-size: 20px;
-                  cursor: pointer;
-                "
-              >
-                +
-              </button>
-            </div>
-
-            <div class="employee-card blue">
-              <img
-                src="https://placehold.co/300x200?text=Funcionário"
-                alt="Marcela Figueiredo"
-                class="employee-avatar"
-              />
-              <div class="employee-info">
-                <div class="employee-name">Marcela Figueiredo</div>
-                <div class="employee-role">Veterinário</div>
-                <div class="employee-details">25 anos</div>
-                <div class="employee-details">Em atividade, há 2 anos</div>
-                <div class="employee-details">
-                  Chega às 09:00 - Sai às 20:00
-                </div>
-              </div>
-            </div>
-
-            <div class="employee-card green">
-              <img
-                src="https://placehold.co/300x200?text=Funcionário"
-                alt="Bruno Alencar"
-                class="employee-avatar"
-              />
-              <div class="employee-info">
-                <div class="employee-name">Bruno Alencar</div>
-                <div class="employee-role">Adestrador</div>
-                <div class="employee-details">28 anos</div>
-                <div class="employee-details">Em atividade, há 4 anos</div>
-                <div class="employee-details">
-                  Chega às 07:00 - Sai às 18:00
-                </div>
-              </div>
-            </div>
-
-            <div class="employee-card pink">
-              <img
-                src="https://placehold.co/300x200?text=Funcionário"
-                alt="Fernanda Tavares"
-                class="employee-avatar"
-              />
-              <div class="employee-info">
-                <div class="employee-name">Fernanda Tavares</div>
-                <div class="employee-role">Recepcionista</div>
-                <div class="employee-details">23 anos</div>
-                <div class="employee-details">Em atividade, há 1 anos</div>
-                <div class="employee-details">
-                  Chega às 13:00 - Sai às 17:00
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="dashboard-section">
-            <div class="section-title">
-              <span>Day Care</span>
-              <select
-                style="
-                  border: 1px solid #ddd;
-                  padding: 5px 10px;
-                  border-radius: 6px;
-                  font-size: 12px;
-                "
-              >
-                <option>Semanal</option>
-              </select>
-            </div>
-
-            <table class="data-table">
-              <thead>
-                <tr>
-                  <th>Pet</th>
-                  <th>Dono</th>
-                  <th>Chegada</th>
-                  <th>Saída</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <div class="table-pet">
-                      <div class="table-indicator pink"></div>
-                      <img
-                        src="https://placehold.co/300x200?text=Pet"
-                        alt="Fred"
-                        class="table-pet-avatar"
-                      />
-                      <span>Fred</span>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="table-owner">
-                      <img
-                        src="https://placehold.co/300x200?text=Tutor"
-                        alt="Luiza Fernandes"
-                        class="table-owner-avatar"
-                      />
-                      <span>Luiza Fernandes</span>
-                    </div>
-                  </td>
-                  <td>Chega às 09:00</td>
-                  <td>Sai às 16:30</td>
-                  <td><div class="table-status finalizado">Finalizado</div></td>
-                </tr>
-                <tr>
-                  <td>
-                    <div class="table-pet">
-                      <div class="table-indicator yellow"></div>
-                      <img
-                        src="https://placehold.co/300x200?text=Pet"
-                        alt="Valentina"
-                        class="table-pet-avatar"
-                      />
-                      <span>Valentina</span>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="table-owner">
-                      <img
-                        src="https://placehold.co/300x200?text=Tutor"
-                        alt="Fernando Silva"
-                        class="table-owner-avatar"
-                      />
-                      <span>Fernando Silva</span>
-                    </div>
-                  </td>
-                  <td>Chega às 09:00</td>
-                  <td>Sai às 17:00</td>
-                  <td><div class="table-status finalizado">Finalizado</div></td>
-                </tr>
-                <tr>
-                  <td>
-                    <div class="table-pet">
-                      <div class="table-indicator green"></div>
-                      <img
-                        src="https://placehold.co/300x200?text=Pet"
-                        alt="Alfredo"
-                        class="table-pet-avatar"
-                      />
-                      <span>Alfredo</span>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="table-owner">
-                      <img
-                        src="https://placehold.co/300x200?text=Tutor"
-                        alt="Marcela Freitas"
-                        class="table-owner-avatar"
-                      />
-                      <span>Marcela Freitas</span>
-                    </div>
-                  </td>
-                  <td>Chega às 11:00</td>
-                  <td>.....................</td>
-                  <td><div class="table-status a-caminho">A caminho</div></td>
-                </tr>
-                <tr>
-                  <td>
-                    <div class="table-pet">
-                      <div class="table-indicator green"></div>
-                      <img
-                        src="https://placehold.co/300x200?text=Pet"
-                        alt="Sebastião"
-                        class="table-pet-avatar"
-                      />
-                      <span>Sebastião</span>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="table-owner">
-                      <img
-                        src="https://placehold.co/300x200?text=Tutor"
-                        alt="Maria Santos"
-                        class="table-owner-avatar"
-                      />
-                      <span>Maria Santos</span>
-                    </div>
-                  </td>
-                  <td>Chega às 17:00</td>
-                  <td>Sai às 18:00</td>
-                  <td><div class="table-status finalizado">Finalizado</div></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </main>
-    </div>
+      </div>
+    </main>
 
     <script src="painel.js"></script>
   </body>
