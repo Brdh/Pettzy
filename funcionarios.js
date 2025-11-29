@@ -76,7 +76,7 @@ function carregarDadosUsuario() {
 }
 
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     renderizarFuncionarios(funcionariosData);
     inicializarEventos();
 });
@@ -89,12 +89,12 @@ function renderizarFuncionarios(dados) {
 
     dados.forEach(funcionario => {
         const row = document.createElement('tr');
-        
+
         const profissaoClass = getProfissaoClass(funcionario.profissao);
         const vinculoClass = getVinculoClass(funcionario.vinculo);
         const iniciais = getIniciais(funcionario.nome);
 
-        
+
 
         row.innerHTML = `
             <td data-label="Nome">
@@ -169,13 +169,13 @@ function inicializarEventos() {
 
     const userDropdown = document.querySelector('.user-account-dropdown');
     const btnAccount = document.querySelector('.btn-account');
-    
+
     if (btnAccount) {
-        btnAccount.addEventListener('click', function() {
+        btnAccount.addEventListener('click', function () {
             userDropdown.classList.toggle('active');
         });
 
-        document.addEventListener('click', function(e) {
+        document.addEventListener('click', function (e) {
             if (!userDropdown.contains(e.target)) {
                 userDropdown.classList.remove('active');
             }
@@ -187,43 +187,43 @@ function inicializarEventos() {
 
     const statusTabs = document.querySelectorAll('.status-tab');
     statusTabs.forEach(tab => {
-        tab.addEventListener('click', function() {
+        tab.addEventListener('click', function () {
             statusTabs.forEach(t => t.classList.remove('active'));
             this.classList.add('active');
             filtrarPorStatus(this.dataset.status);
         });
     });
 
-    
+
     const searchInput = document.getElementById('searchInput');
-    searchInput.addEventListener('input', function() {
+    searchInput.addEventListener('input', function () {
         buscarFuncionarios(this.value);
     });
 
-    
+
     const btnNovoFuncionario = document.querySelector('.btn-novo-funcionario');
-    btnNovoFuncionario.addEventListener('click', function() {
+    btnNovoFuncionario.addEventListener('click', function () {
         novoFuncionario();
     });
 
-    
+
     const filterBtn = document.querySelector('.filter-btn');
-    filterBtn.addEventListener('click', function() {
+    filterBtn.addEventListener('click', function () {
         abrirFiltros();
     });
 
-    
+
     const sortBtn = document.querySelector('.sort-btn');
-    sortBtn.addEventListener('click', function() {
+    sortBtn.addEventListener('click', function () {
         abrirOrdenacao();
     });
 
-    
+
     const mobileBtn = document.getElementById('mobile_btn');
     const mobileMenu = document.getElementById('mobile_menu');
-    
+
     if (mobileBtn) {
-        mobileBtn.addEventListener('click', function() {
+        mobileBtn.addEventListener('click', function () {
             mobileMenu.classList.toggle('active');
         });
     }
@@ -249,9 +249,9 @@ function buscarFuncionarios(termo) {
     const termoLower = termo.toLowerCase();
     const filtrados = funcionariosData.filter(f => {
         return f.nome.toLowerCase().includes(termoLower) ||
-               f.profissao.toLowerCase().includes(termoLower) ||
-               f.vinculo.toLowerCase().includes(termoLower) ||
-               f.contato.toLowerCase().includes(termoLower);
+            f.profissao.toLowerCase().includes(termoLower) ||
+            f.vinculo.toLowerCase().includes(termoLower) ||
+            f.contato.toLowerCase().includes(termoLower);
     });
     renderizarFuncionarios(filtrados);
 }
@@ -291,38 +291,19 @@ function deletarFuncionario(id) {
 
 
 
+const mobileBtn = document.getElementById('mobile_btn');
+const mobileMenu = document.getElementById('mobile_menu');
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-    const mobileBtn = document.getElementById('mobile_btn');
-    const mobileMenu = document.getElementById('mobile_menu');
-
-    if (mobileBtn) {
-        mobileBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('active');
-        });
-    }
-
-
-    document.querySelectorAll('#mobile_nav_list a').forEach(link => {
-        link.addEventListener('click', () => {
-            mobileMenu.classList.remove('active');
-        });
+if (mobileBtn) {
+    mobileBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('active');
     });
+}
+
+
+document.querySelectorAll('#mobile_nav_list a').forEach(link => {
+    link.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+    });
+});
 
