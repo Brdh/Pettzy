@@ -82,7 +82,6 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-
 function renderizarFuncionarios(dados) {
     const tbody = document.getElementById('funcionariosTableBody');
     tbody.innerHTML = '';
@@ -93,7 +92,6 @@ function renderizarFuncionarios(dados) {
         const profissaoClass = getProfissaoClass(funcionario.profissao);
         const vinculoClass = getVinculoClass(funcionario.vinculo);
         const iniciais = getIniciais(funcionario.nome);
-
 
 
         row.innerHTML = `
@@ -164,7 +162,6 @@ function getIniciais(nome) {
 }
 
 
-
 function inicializarEventos() {
 
     const userDropdown = document.querySelector('.user-account-dropdown');
@@ -230,7 +227,6 @@ function inicializarEventos() {
 }
 
 
-
 function filtrarPorStatus(status) {
     if (status === 'all') {
         renderizarFuncionarios(funcionariosData);
@@ -265,7 +261,6 @@ function abrirOrdenacao() {
 }
 
 
-
 function novoFuncionario() {
     alert('Abrir formulário para novo funcionário em desenvolvimento!');
 }
@@ -289,8 +284,6 @@ function deletarFuncionario(id) {
 }
 
 
-
-
 const mobileBtn = document.getElementById('mobile_btn');
 const mobileMenu = document.getElementById('mobile_menu');
 
@@ -306,4 +299,3 @@ document.querySelectorAll('#mobile_nav_list a').forEach(link => {
         mobileMenu.classList.remove('active');
     });
 });
-

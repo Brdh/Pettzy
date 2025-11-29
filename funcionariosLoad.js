@@ -1,113 +1,174 @@
+// VARIÁVEIS GLOBAIS
+let funcionarios = [];
+
+
+// Carrega funcionarios do banco
 async function carregarFuncionarios() {
     try {
         const response = await fetch("http://localhost:3000/api/employees");
-        const funcionarios = await response.json();
+        funcionarios = await response.json();
 
-        const container = document.getElementById("funcionariosTableBody");
-        container.innerHTML = "";
-
+        // Ajusta profissão quando o backend usa "cargo"
         funcionarios.forEach(funcionario => {
-
-            const status = funcionario.status?.toLowerCase() || "yellow";
-            const statusClass = `status-${status}`;
-            const badgeClass = status;
-
-            const idadeTexto =
-                funcionario.idade != null
-                    ? funcionario.idade === 1
-                        ? "1 ano"
-                        : `${funcionario.idade} anos`
-                    : "";
-
-            const pesoTexto =
-                funcionario.peso != null
-                    ? `${funcionario.peso} kg`
-                    : "";
-
-            const card = document.createElement("div");
-            card.classList.add("pet-card", statusClass);
-            card.dataset.status = status;
-
-            // ------------------------------
-            // 🔥 ADICIONAR O CLICK DO MODAL
-            // ------------------------------
-            card.addEventListener("click", () => openModal({
-                id: pet._id,
-                image: pet.foto,
-                name: pet.nome,
-                type: pet.especie,
-                description: pet.descricao || "Comportamento não informado",
-                status: status,
-                statusText: badgeClass === "green" ? "Estável" : badgeClass === "yellow" ? "Atenção" : "Urgente",
-
-                age: idadeTexto,
-                weight: pesoTexto,
-                breed: pet.raca || "Não informado",
-                lastVaccine: pet.ultimaVacina || "Não informado",
-
-                healthStatus: pet.saude || "Não informado",
-                lastCheckup: pet.ultimaConsulta || "Não informado",
-                medications: pet.medicacoes || "Nenhuma",
-
-                observations: pet.observacoes || [],
-
-                tutor: {
-                    name: pet.dono?.nome || "-",
-                    phone: pet.dono?.telefone || "-"
-                }
-            }));
-
-            // ------------------------------
-            // CARD HTML ORIGINAL DO SEU TIME
-            // ------------------------------
-            card.innerHTML = `
-                <div class="pet-card-header-id">
-                    <span class="pet-id">ID: #${pet._id?.slice(-4) ?? "0000"}</span>
-                </div>
-
-                <div class="pet-card-top">
-                    <img src="${pet.foto}" alt="${pet.nome}" class="pet-image" />
-
-                    <div class="pet-info">
-                        <h3>${pet.nome}</h3>
-                        <p>${pet.especie}</p>
-                    </div>
-
-                    <span class="status-badge ${badgeClass}">
-                        ${status === "green" ? "Estável" :
-                    status === "yellow" ? "Atenção" :
-                        "Urgente"}
-                    </span>
-                </div>
-
-                <div class="pet-card-bottom">
-                    <span class="pet-detail">${idadeTexto}</span>
-                    <span class="pet-detail">${pesoTexto}</span>
-                </div>
-            `;
-
-            container.appendChild(card);
+            funcionario.profissao = funcionario.profissao || funcionario.cargo;
         });
 
-        // ---------------------------
-        // 🔥 BOTÃO DE ADICIONAR PET
-        // ---------------------------
-        const addBtn = document.createElement("button");
-        addBtn.classList.add("add-pet-btn");
-        addBtn.id = "addPetBtn";
+        // Ajusta contato quando o backend usa "email"
+        funcionarios.forEach(funcionario => {
+            funcionario.contato = funcionario.contato || funcionario.email;
+        });
 
-        addBtn.innerHTML = `
-            <div class="add-pet-content">
-                <i class="fa-solid fa-plus"></i>
-                <span>Adicionar Novo Pet</span>
-            </div>
-        `;
 
-        container.appendChild(addBtn);
-
+        renderizarTabela(funcionarios);
     } catch (err) {
-        console.error("Erro ao carregar pets:", err);
+        console.error("Erro ao carregar funcionarios:", err);
     }
 }
 
-carregarPets();
+
+
+// renderiza tabela com dados carregados
+function renderizarTabela(lista) {
+    const tbody = document.getElementById("funcionariosTableBody");
+    tbody.innerHTML = "";
+
+    lista.forEach(funcionario => {
+        const row = document.createElement("tr");
+
+        const profissaoClass = getProfissaoClass(funcionario.profissao);
+        const vinculoClass = getVinculoClass(funcionario.vinculo);
+        const iniciais = getIniciais(funcionario.nome);
+
+        row.innerHTML = `
+            <td data-label="Nome">
+                <div class="funcionario-nome-cell">
+                    <div class="funcionario-avatar" style="background-color: ${funcionario.cor};">
+                        ${iniciais}
+                    </div>
+                    <span class="funcionario-nome">${funcionario.nome}</span>
+                </div>
+            </td>
+
+            <td data-label="Profissão">
+                <span class="profissao-badge ${profissaoClass}">
+                    ${funcionario.profissao}
+                </span>
+            </td>
+
+            <td data-label="Vínculo">
+                <span class="vinculo-badge ${vinculoClass}">
+                    ${funcionario.vinculo}
+                </span>
+            </td>
+
+            <td data-label="Entrada" class="data-cell">${funcionario.entrada || ""}</td>
+            <td data-label="Saída" class="data-cell">${funcionario.saida || ""}</td>
+
+            <td data-label="Contato">
+                <a href="mailto:${funcionario.contato}" class="contato-cell">
+                    ${funcionario.contato}
+                </a>
+            </td>
+
+            <td data-label="Ações">
+                <div class="acoes-cell">
+                    <button class="btn-acao btn-editar" title="Editar" onclick="editarFuncionario('${funcionario._id}')">
+                        <i class="fa-solid fa-pen"></i>
+                    </button>
+
+                    <button class="btn-acao btn-deletar" title="Deletar" onclick="deletarFuncionario('${funcionario._id}')">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                </div>
+            </td>
+        `;
+
+        tbody.appendChild(row);
+    });
+}
+
+
+// Classes para etilização no CSS
+function getProfissaoClass(profissao) {
+    const classMap = {
+        "Gerente": "profissao-gerente",
+        "Veterinário": "profissao-veterinario",
+        "Administrador": "profissao-administrador",
+        "Secretário": "profissao-secretario"
+    };
+    return classMap[profissao] || "";
+}
+
+function getVinculoClass(vinculo) {
+    return vinculo === "Ativo" ? "vinculo-ativo" : "vinculo-inativo";
+}
+
+
+// Pegar as iniciais das pessoa
+function getIniciais(nome) {
+    return nome
+        .split(" ")
+        .map(p => p[0])
+        .join("")
+        .toUpperCase()
+        .slice(0, 2);
+}
+
+
+//  Função buscar
+function buscarFuncionarios(termo) {
+    const termoLower = termo.toLowerCase();
+
+    const filtrados = funcionarios.filter(f =>
+        f.nome.toLowerCase().includes(termoLower) ||
+        f.profissao.toLowerCase().includes(termoLower) ||
+        f.vinculo.toLowerCase().includes(termoLower) ||
+        f.contato.toLowerCase().includes(termoLower)
+    );
+
+    renderizarTabela(filtrados);
+}
+
+
+//  Função filtrar
+function filtrarPorStatus(status) {
+    let filtrados = funcionarios;
+
+    if (status === "ativo") {
+        filtrados = funcionarios.filter(f => f.vinculo === "Ativo");
+    }
+    if (status === "inativo") {
+        filtrados = funcionarios.filter(f => f.vinculo === "Inativo");
+    }
+
+    renderizarTabela(filtrados);
+}
+
+
+// Deleta funcionário do Banco de Dados
+async function deletarFuncionario(id) {
+    if (!confirm("Tem certeza que deseja deletar?")) return;
+
+    await fetch(`http://localhost:3000/api/employees/${id}`, {
+        method: "DELETE"
+    });
+
+    carregarFuncionarios();
+}
+
+
+// Edita funcionário do Banco de Dados
+function editarFuncionario(id) {
+    // window.location.href = `/editar.html?id=${id}`;
+    const funcionario = funcionarios.find(f => f._id === id);
+    if (funcionario) {
+        alert(`Editar funcionário: ${funcionario.nome}`);
+        console.log(funcionario._id)
+    } else {
+        console.log("Funcionario não encontrado", id)
+    }
+}
+
+
+// Execução do código
+carregarFuncionarios();
