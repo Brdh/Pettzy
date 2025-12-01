@@ -10,8 +10,8 @@
     --color-neutral-1: #1d1d1d;
 
     --color-status-red: #FFADAD;
-    --color-status-yellow: #FFFFAD;
-    --color-status-green: #ADFFAD;
+    --color-status-yellow: #ebeb55;
+    --color-status-green: #97f897;
 }
 
 * {
@@ -166,7 +166,7 @@ main {
     border: none;
     padding: 10px 18px;
     font-size: 0.95rem;
-    color: #7394b3;
+    color: #999;
     cursor: pointer;
     font-weight: 600;
     transition: all 0.3s ease;
@@ -175,11 +175,12 @@ main {
 }
 
 .status-tab:hover {
-    color: #1a3d5e;
+    color: var(--color-neutral-1);
+
 }
 
 .status-tab.active {
-    color: #2c73b5;
+    color:var(--color-neutral-1);
 }
 
 .status-tab.active::after {

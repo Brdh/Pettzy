@@ -533,6 +533,8 @@ header {
     background-color: #ffebee;
 }
 
+/* ===== MEDIA QUERIES (Ajustes de Responsividade) ===== */
+
 @media screen and (max-width: 1024px) {
     .search-filter-container {
         flex-direction: column;
@@ -573,75 +575,109 @@ header {
         white-space: nowrap;
     }
 
+    /* 1. Esconder o container de rolagem horizontal */
     .funcionarios-table-container {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
+        overflow-x: hidden;
+        box-shadow: none;
+        background-color: transparent;
     }
 
-    .funcionarios-table {
-        font-size: 0.75rem;
-        min-width: 900px;
+    /* 2. Esconder o cabeçalho da tabela */
+    .funcionarios-table thead {
+        display: none;
     }
 
-    .funcionarios-table thead th,
-    .funcionarios-table tbody td {
-        padding: 10px 6px;
+    /* 3. Transformar elementos da tabela em blocos */
+    .funcionarios-table,
+    .funcionarios-table tbody,
+    .funcionarios-table tr,
+    .funcionarios-table td {
+        display: block;
+        width: 100%;
     }
 
+    /* 4. Estilizar a linha da tabela como um card */
+    .funcionarios-table tr {
+        margin-bottom: 16px;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.08);
+        padding: 15px;
+        background-color: var(--color-neutral-0);
+    }
+
+    /* 5. Estilizar as células (td) */
+    .funcionarios-table td {
+        border: none;
+        position: relative;
+        padding-left: 50%; /* Espaço para o label */
+        text-align: right;
+        padding-top: 8px;
+        padding-bottom: 8px;
+        font-size: 0.9rem;
+    }
+
+    /* 6. Mostrar o label da coluna usando pseudo-elemento */
+    .funcionarios-table td::before {
+        content: '';
+        position: absolute;
+        left: 15px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align: left;
+        font-weight: 600;
+        color: #666;
+        font-size: 0.85rem;
+    }
+
+    /* Mapeamento dos labels para cada coluna (td) */
+    .funcionarios-table td:nth-of-type(1) {
+        padding-left: 15px; /* Nome já tem avatar, não precisa de label */
+        text-align: left;
+        border-bottom: 1px solid #f0f0f0;
+        padding-bottom: 15px;
+        margin-bottom: 10px;
+    }
+    .funcionarios-table td:nth-of-type(1)::before { content: none; } /* Remove label do Nome */
+
+    .funcionarios-table td:nth-of-type(2)::before { content: "Profissão:"; }
+    .funcionarios-table td:nth-of-type(3)::before { content: "Vínculo:"; }
+    .funcionarios-table td:nth-of-type(4)::before { content: "Entrada:"; }
+    .funcionarios-table td:nth-of-type(5)::before { content: "Saída:"; }
+    .funcionarios-table td:nth-of-type(6)::before { content: "Contato:"; }
+
+    /* Ajuste especial para a célula de Ações */
+    .funcionarios-table td:nth-of-type(7) {
+        text-align: center;
+        padding-left: 15px;
+        padding-top: 15px;
+    }
+    .funcionarios-table td:nth-of-type(7)::before { content: none; } /* Remove label de Ações */
+    .funcionarios-table td:nth-of-type(7) .acoes-cell {
+        justify-content: center;
+        gap: 15px;
+    }
+
+    /* Ajuste para o nome e avatar */
     .funcionario-nome-cell {
-        gap: 8px;
-    }
-
-    .funcionario-avatar {
-        width: 32px;
-        height: 32px;
-        font-size: 0.7rem;
-        flex-shrink: 0;
-    }
-
-    .funcionario-nome {
-        font-size: 0.8rem;
-    }
-
-    .profissao-badge,
-    .vinculo-badge {
-        padding: 4px 8px;
-        font-size: 0.75rem;
-    }
-
-    .acoes-cell {
-        gap: 4px;
-        flex-wrap: nowrap;
-    }
-
-    .btn-acao {
-        padding: 4px;
-        font-size: 0.75rem;
+        justify-content: flex-start;
     }
 
     .btn-novo-funcionario {
         width: 100%;
+        justify-content: center;
     }
 }
 
 @media screen and (max-width: 480px) {
-    .funcionarios-table-container {
-        overflow-x: auto;
+    .funcionarios-table td {
+        padding-left: 45%;
     }
-
-    .funcionarios-table {
-        min-width: 600px;
-    }
-
-    .search-box input {
-        font-size: 0.85rem;
-    }
-
-    .search-box input::placeholder {
-        font-size: 0.75rem;
+    .funcionarios-table td::before {
+        width: 40%;
     }
 }
-
 
 @media screen and (max-width: 1170px) {
 
