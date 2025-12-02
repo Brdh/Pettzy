@@ -1,3 +1,62 @@
+// #1. NO INÍCIO DO ARQUIVO (ESCOPO GLOBAL)
+// Definições e funções do Modal de Adição (Add Pet)
+// ----------------------------------------------------
+const addPetModal = document.getElementById('addPetModal');
+const addPetForm = document.getElementById('addPetForm');
+
+// Função de Abertura do Modal
+function openAddPetModal() {
+    if (addPetModal) {
+        addPetModal.classList.add('active');
+    }
+}
+
+// Função de Fechamento do Modal
+function closeAddPetModal() {
+    if (addPetModal) {
+        addPetModal.classList.remove('active');
+    }
+    if (addPetForm) {
+        addPetForm.reset(); // Limpa o formulário ao fechar
+    }
+}
+
+// Função de Envio do Formulário (POST para a API)
+async function handleAddPetSubmit(event) {
+    event.preventDefault();
+
+    const formData = new FormData(addPetForm);
+    // Cria o objeto de dados com base nos campos do formulário (ex: {nome: '...', especie: '...', ...})
+    const petData = Object.fromEntries(formData.entries());
+
+    const token = localStorage.getItem('token');
+
+    try {
+        const response = await fetch("http://localhost:3000/api/pets", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify(petData)
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.message || "Erro ao adicionar o pet.");
+        }
+
+        alert("Pet adicionado com sucesso!");
+        closeAddPetModal();
+        await carregarPets(); // Recarrega a lista para mostrar o novo pet
+
+    } catch (error) {
+        console.error("Falha ao adicionar pet:", error);
+        alert(`Erro: ${error.message}`);
+    }
+}
+
+
 async function carregarPets() {
     const token = localStorage.getItem('token');
 
@@ -133,7 +192,14 @@ async function carregarPets() {
             </div>
         `;
 
+        addBtn.addEventListener('click', openAddPetModal);
+
         container.appendChild(addBtn);
+
+        // Otimização: Chama o filtro após o carregamento, se a função existir no pets.js
+        if (typeof aplicarFiltros === 'function') {
+            aplicarFiltros();
+        }
 
     } catch (err) {
         console.error("Erro ao carregar pets:", err);
@@ -141,3 +207,36 @@ async function carregarPets() {
 }
 
 carregarPets();
+
+// Anexar listeners de fechar/enviar após a execução do script
+if (addPetModal && addPetForm) {
+    // Listener para o botão de fechar (X) dentro do modal
+    const closeAddModalBtn = document.getElementById('closeAddModalBtn');
+    if (closeAddModalBtn) {
+        closeAddModalBtn.addEventListener('click', closeAddPetModal);
+    }
+
+    // Listener para o botão 'Cancelar'
+    const cancelAddModalBtn = document.getElementById('cancelAddModalBtn');
+    if (cancelAddModalBtn) {
+        cancelAddModalBtn.addEventListener('click', closeAddPetModal);
+    }
+
+    // Listener para o clique fora do modal
+    addPetModal.addEventListener('click', (e) => {
+        if (e.target.id === 'addPetModal') {
+            closeAddPetModal();
+        }
+    });
+
+    const pet = {
+        nome: document.getElementById("petName").value.trim() || "Sem Nome",
+        especie: document.getElementById("petSpecies").value.trim(),
+        status: document.getElementById("petStatus").value,
+        foto: document.getElementById("petImage").value.trim() || "https://placehold.co/300x200?text=Pet",
+        idade: document.getElementById("petSpecies").value.trim(),
+    };
+
+    // Listener para o envio do formulário
+    addPetForm.addEventListener('submit', handleAddPetSubmit);
+}

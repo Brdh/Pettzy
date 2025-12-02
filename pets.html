@@ -92,7 +92,7 @@
               <span class="pet-id">ID: #001</span>
             </div>
             <div class="pet-card-top">
-              <img src="img/fred.png" alt="Fred" class="pet-image" />
+              <img src="img/petsImages/fred.png" alt="Fred" class="pet-image" />
               <div class="pet-info">
                 <h3>Fred</h3>
                 <p>Coelho</p>
@@ -110,7 +110,11 @@
               <span class="pet-id">ID: #002</span>
             </div>
             <div class="pet-card-top">
-              <img src="img/valentina.jpg" alt="Valentina" class="pet-image" />
+              <img
+                src="img/petsImages/valentina.jpg"
+                alt="Valentina"
+                class="pet-image"
+              />
               <div class="pet-info">
                 <h3>Valentina</h3>
                 <p>Gato</p>
@@ -128,7 +132,11 @@
               <span class="pet-id">ID: #003</span>
             </div>
             <div class="pet-card-top">
-              <img src="img/sebastiao.jpg" alt="Alfredo" class="pet-image" />
+              <img
+                src="img/petsImages/sebastiao.jpg"
+                alt="Alfredo"
+                class="pet-image"
+              />
               <div class="pet-info">
                 <h3>Alfredo</h3>
                 <p>Cachorro</p>
@@ -219,6 +227,69 @@
           >
             Fechar
           </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal para adicionar pets -->
+    <div id="addPetModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title">Adicionar Novo Pet</h2>
+          <button class="modal-close" id="closeAddModalBtn">
+            <i class="fa-solid fa-times"></i>
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <form id="addPetForm">
+            <div class="form-group">
+              <label for="petName">Nome:</label>
+              <input type="text" id="petName" name="nome" required />
+            </div>
+
+            <div class="form-group">
+              <label for="petImage">URL da Imagem:</label>
+              <input
+                type="text"
+                id="petImage"
+                name="foto"
+                placeholder="https://..."
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="petSpecies">Espécie:</label>
+              <input type="text" id="petSpecies" name="especie" required />
+            </div>
+            
+            <div class="form-group">
+              <label for="petSpecies">Idade:</label>
+              <input type="number" id="petIdade" name="idade" />
+            </div>
+
+            <div class="form-group">
+              <label for="petStatus">Status de Saúde:</label>
+              <select id="petStatus" name="status" required>
+                <option value="green">Saudável</option>
+                <option value="yellow">Atenção</option>
+                <option value="red">Urgente</option>
+              </select>
+            </div>
+
+            <div class="modal-actions">
+              <button type="submit" class="modal-btn modal-btn-primary">
+                <i class="fa-solid fa-save"></i> Salvar Pet
+              </button>
+              <button
+                type="button"
+                class="modal-btn modal-btn-secondary"
+                id="cancelAddModalBtn"
+              >
+                Cancelar
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </div>

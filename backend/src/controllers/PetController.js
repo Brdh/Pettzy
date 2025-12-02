@@ -10,7 +10,7 @@ export const createPet = async (req, res) => {
       ...petData,
       companyId: companyId
     });
-
+    
     res.status(201).json(novoPet);
   } catch (error) {
     res.status(400).json({ error: error.message });

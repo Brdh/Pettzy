@@ -6,6 +6,7 @@ const PetSchema = new mongoose.Schema({
     especie: { type: String, required: true },
     raca: { type: String },
     idade: { type: Number },
+    foto: { type: String },
     peso: { type: Number },
     dono: { type: mongoose.Schema.Types.ObjectId, ref: "Owner" },
     companyId: {
