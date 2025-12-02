@@ -77,7 +77,6 @@ const petsData = [
 ];
 
 
-
 function openModal(pet) {
     const modal = document.getElementById('petModal');
     const modalContent = document.querySelector('.modal-content');
@@ -233,8 +232,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 });
-
-
 
 
 const mobileBtn = document.getElementById('mobile_btn');

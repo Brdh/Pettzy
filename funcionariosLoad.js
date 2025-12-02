@@ -1,11 +1,41 @@
 // VARIÁVEIS GLOBAIS
 let funcionarios = [];
 
-
 // Carrega funcionarios do banco
 async function carregarFuncionarios() {
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+        console.error("Usuário não autenticado. Redirecionando...");
+        // Se não houver token, redirecione para a página de login
+        window.location.href = 'login.html';
+        return;
+    }
+
     try {
-        const response = await fetch("http://localhost:3000/api/employees");
+        const response = await fetch("http://localhost:3000/api/employees", {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                // --- AÇÃO CRÍTICA: ENVIA O TOKEN JWT ---
+                'Authorization': `Bearer ${token}`
+            }
+        });
+
+        // Trata erro de autenticação (Token inválido/expirado)
+        if (response.status === 401) {
+            console.error("Token inválido ou expirado.");
+            localStorage.removeItem('token');
+            alert("Sessão expirada. Faça login novamente.");
+            window.location.href = 'login.html';
+            return;
+        }
+
+        // Se a resposta não for OK (404, 500, etc.)
+        if (!response.ok) {
+            throw new Error(`Erro de rede: ${response.status} ${response.statusText}`);
+        }
+
         funcionarios = await response.json();
 
         // Ajusta profissão quando o backend usa "cargo"

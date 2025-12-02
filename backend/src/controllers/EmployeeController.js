@@ -2,18 +2,28 @@ import Employee from "../models/EmployeeModel.js";
 
 // Criar um novo employee
 export const createEmployee = async (req, res) => {
-    try {
-        const employee = await Employee.create(req.body);
-        res.status(201).json(employee);
-    } catch (error) {
-        res.status(400).json({ error: error.message });
-    }
+  try {
+    const companyId = req.companyId;
+    const employeeData = req.body;
+
+    const novoEmployee = await Employee.create({
+      ...employeeData,
+      companyId: companyId
+    });
+
+    res.status(201).json(novoEmployee);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
 };
 
 // Listar todos os employees
 export const getEmployees = async (req, res) => {
   try {
-    const employees = await Employee.find();
+    const companyId = req.companyId;
+
+    const employees = await Employee.find({ companyId: companyId });
+
     res.status(200).json(employees);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -23,7 +33,14 @@ export const getEmployees = async (req, res) => {
 // Buscar employee por ID
 export const getEmployeeById = async (req, res) => {
   try {
-    const employee = await Employee.findById(req.params.id);
+    const companyId = req.companyId
+    const employeeId = req.params.id;
+
+    const employee = await Employee.findOne({
+      _id: employeeId,
+      companyId: companyId
+    });
+
     if (!employee) return res.status(404).json({ error: "Employee not found" });
     res.status(200).json(employee);
   } catch (err) {
@@ -34,7 +51,16 @@ export const getEmployeeById = async (req, res) => {
 // Atualizar employee
 export const updateEmployee = async (req, res) => {
   try {
-    const employee = await Employee.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    const companyId = req.companyId
+    const employeeId = req.params.id;
+
+    const employee = await Employee.findByIdAndUpdate({
+      _id: employeeId,
+      companyId: companyId
+    },
+      req.body,
+      { new: true });
+
     if (!employee) return res.status(404).json({ error: "Employee not found" });
     res.status(200).json(employee);
   } catch (err) {
@@ -45,7 +71,14 @@ export const updateEmployee = async (req, res) => {
 // Deletar employee
 export const deleteEmployee = async (req, res) => {
   try {
-    const employee = await Employee.findByIdAndDelete(req.params.id);
+    const companyId = req.companyId
+    const employeeId = req.params.id;
+
+    const employee = await Employee.findByIdAndDelete({
+      _id: employeeId,
+      companyId: companyId
+    });
+
     if (!employee) return res.status(404).json({ error: "Employee not found" });
     res.status(200).json({ message: "Employee deleted successfully" });
   } catch (err) {

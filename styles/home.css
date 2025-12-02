@@ -11,15 +11,14 @@
 }
 
 
-
 #home {
     display: flex;
-    min-height: 50vh; 
+    min-height: 50vh;
     position: relative;
-    margin: 0; 
-    padding-top: 0; 
-    align-items: center; 
-  
+    margin: 0;
+    padding-top: 0;
+    align-items: center;
+
 }
 
 #cta {
@@ -62,7 +61,7 @@
     font-weight: 500;
     box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.1);
     border-radius: 12px;
-    
+
 }
 
 #phone_button button {
@@ -71,28 +70,46 @@
 
 
 #banner {
- 
+
     display: flex;
     align-items: flex-end;
     justify-content: flex-end;
     width: 65%;
     padding-bottom: 20px;
-    
 
-    height: 80vh; 
-    max-height: 700px; 
-    position: relative; 
+
+    height: 80vh;
+    max-height: 700px;
+    position: relative;
 }
 
 
 .carousel-container {
-    position: absolute; 
+    position: absolute;
     right: 0;
     bottom: 0;
-    width: 100%; 
+    width: 100%;
     height: 100%;
     overflow: hidden;
     border-radius: 8px;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+.carousel-btn {
+    display: none !important;
+}
+
+
+#banner {
+
+    height: 60vh;
+    max-height: 500px;
+    position: relative;
 }
 
 
@@ -106,39 +123,26 @@
     #banner img {
         display: none;
         width: 10px;
-        height: auto; 
+        height: auto;
 
     }
-
-   
 
     #cta {
         width: 100%;
         text-align: center;
         align-items: center;
     }
-}
 
-
-html {
-    scroll-behavior: smooth;
-}
-
-
-.carousel-btn {
-    display: none !important; 
-}
-
-
-#banner {
-
-    height: 60vh; 
-    max-height: 500px; 
-    position: relative; 
 }
 
 @media screen and (max-width: 450px) {
     #phone_button button {
         display: none;
     }
+
+    #cta .title {
+        font-size: 3rem;
+        line-height: 1.25;
+    }
+
 }

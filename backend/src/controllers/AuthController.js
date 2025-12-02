@@ -4,6 +4,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import validator from 'validator';
 
+// Registrar nova empresa
 export const registerCompany = async (req, res) => {
   const { nome, cnpj, email, senha } = req.body;
   try {
@@ -35,12 +36,14 @@ export const registerCompany = async (req, res) => {
   }
 };
 
+// Login de empresa
 export const loginCompany = async (req, res) => {
   try {
     const { email, senha } = req.body;
 
     // Procura a empresa
     const company = await Company.findOne({ email });
+
     if (!company) return res.status(404).json({ message: "Usuário não encontrado" });
 
     // Valida a senha
@@ -48,14 +51,29 @@ export const loginCompany = async (req, res) => {
     if (!senhaValida) return res.status(401).json({ message: "Senha incorreta" });
 
     // Gera token JWT
-    const token = jwt.sign({ id: company._id }, process.env.JWT_SECRET, { expiresIn: "1d" });
+    const token = jwt.sign({
+      companyId: company._id
+    },
+      process.env.JWT_SECRET, { expiresIn: "1d" });
 
-    res.status(200).json({ message: "Login bem-sucedido", token });
+    res.status(200).json({
+      message: "Login bem-sucedido",
+      token,
+      user: {
+        companyId: company._id,
+        nome: company.nome,
+        email: company.email
+      }
+    });
+
+
   } catch (error) {
+    console.error(error);
     res.status(500).json({ message: "Erro ao fazer login", error });
   }
 };
 
+// Gera token de reset de senha
 export const sendResetLink = async (req, res) => {
   const { email } = req.body;
 
@@ -86,6 +104,7 @@ export const sendResetLink = async (req, res) => {
   }
 };
 
+// Troca de senha
 export const resetPassword = async (req, res) => {
   const { token } = req.params;
   const { novaSenha } = req.body;

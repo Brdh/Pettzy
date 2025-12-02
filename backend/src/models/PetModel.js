@@ -2,19 +2,17 @@ import mongoose from "mongoose";
 
 const PetSchema = new mongoose.Schema({
     nome: { type: String, required: true },
-    status: {type: String},
+    status: { type: String },
     especie: { type: String, required: true },
     raca: { type: String },
     idade: { type: Number },
-    peso: {type:Number},
+    peso: { type: Number },
     dono: { type: mongoose.Schema.Types.ObjectId, ref: "Owner" },
-    empresaId: { type: mongoose.Schema.Types.ObjectId, ref: "Company" }
+    companyId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Company",
+        required: true
+    }
 }, { timestamps: true });
 
 export default mongoose.model('Pet', PetSchema);
-
-
-// const PetModel = mongoose.model('Pet', PetSchema);
-// module.exports = PetModel;
-
-

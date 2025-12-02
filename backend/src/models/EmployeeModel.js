@@ -6,10 +6,7 @@ const EmployeeSchema = new mongoose.Schema({
     telefone: { type: String },                         // telefone (opcional)
     email: { type: String, required: true, unique: true }, // email único
     salario: { type: Number },                       // salário (opcional)
+    companyId: { type: mongoose.Schema.Types.ObjectId, ref: "Company" }
 }, { timestamps: true });
 
 export default mongoose.model('Employee', EmployeeSchema);
-
-
-// const EmployeeModel = mongoose.model('Employee', EmployeeSchema);
-// module.exports = EmployeeModel;
