@@ -3,7 +3,7 @@
     --color-primary-2: #5b814b;
     --color-primary-3: #4d7fc1b0;
     --color-primary-4: #88b0ca;
-    --color-primary-5: #2e5f9e;
+    --color-primary-5: #2e5f9e; /* Azul Principal: Usado para foco e botões primários */
     --color-primary-6: #043971;
 
     --color-neutral-0: #fff;
@@ -467,8 +467,12 @@ main {
     overflow-y: auto;
     box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.2);
     animation: slideUp 0.3s ease;
-    border-top: 6px solid #999;
+    border-top: 6px solid #999; /* Cor padrão, será sobrescrita se tiver status */
 }
+
+/* ------------------------------------------- */
+/* --- ESTILO MODAL GERAL (DETALHES DO PET) --- */
+/* ------------------------------------------- */
 
 .modal-content.status-red {
     border-top-color: var(--color-status-red);
@@ -670,11 +674,16 @@ main {
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px; /* Adicionado para ícones */
 }
 
 .modal-btn-primary {
     background-color: var(--color-primary-5);
     color: var(--color-neutral-0);
+    border: 2px solid var(--color-primary-5); /* Adicionado para consistência */
 }
 
 .modal-btn-primary:hover {
@@ -684,12 +693,102 @@ main {
 .modal-btn-secondary {
     background-color: #e0e0e0;
     color: var(--color-neutral-1);
+    border: 2px solid #e0e0e0; /* Adicionado para consistência */
 }
 
 .modal-btn-secondary:hover {
     background-color: #d0d0d0;
 }
 
+/* ---------------------------------------------------- */
+/* --- ESTILO MODAL DE ADIÇÃO DE PET (AJUSTES FINOS) --- */
+/* ---------------------------------------------------- */
+
+/* 1. Borda superior do modal de adição na cor primária */
+#addPetModal .modal-content {
+    border-top-color: var(--color-primary-5);
+    border-top-style: solid;
+}
+
+/* 2. Estilização dos campos do formulário (Inputs e Selects modernos) */
+#addPetModal .form-group {
+    margin-bottom: 20px;
+}
+
+#addPetModal .form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: var(--color-neutral-1);
+    font-size: 0.95rem;
+}
+
+#addPetModal input[type="text"],
+#addPetModal input[type="number"],
+#addPetModal select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ccc; /* Borda padrão mais clara */
+    border-radius: 8px; /* Arredondamento suave */
+    font-size: 1rem;
+    color: var(--color-neutral-1);
+    box-sizing: border-box;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    background-color: var(--color-neutral-0);
+}
+
+/* Estado de foco moderno para inputs/selects */
+#addPetModal input:focus,
+#addPetModal select:focus {
+    border-color: var(--color-primary-5);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(46, 95, 158, 0.15); 
+}
+
+/* 3. Estilização dos Botões de Ação do Modal de Adição */
+#addPetModal .modal-actions {
+    /* Alinha os botões à direita por padrão em telas grandes */
+    justify-content: flex-end; 
+    gap: 15px;
+    flex-direction: row; 
+    
+    padding: 24px;
+    border-top: 1px solid #eee;
+    background-color: var(--color-neutral-0);
+    border-radius: 0 0 16px 16px;
+}
+
+/* Botão Salvar Pet (Primário) - Mantém o estilo sólido */
+#addPetModal .modal-btn-primary {
+    background-color: var(--color-primary-5);
+    color: var(--color-neutral-0);
+    border: 2px solid var(--color-primary-5);
+    flex: 0 1 auto; /* Desfaz o 'flex: 1' herdado do .modal-btn genérico */
+}
+
+#addPetModal .modal-btn-primary:hover {
+    background-color: var(--color-primary-6);
+    border-color: var(--color-primary-6);
+}
+
+/* Botão Cancelar (Secundário - Estilo Outline) */
+#addPetModal .modal-btn-secondary {
+    background-color: var(--color-neutral-0); /* Fundo branco */
+    color: var(--color-primary-5); /* Texto na cor primária */
+    border: 2px solid var(--color-primary-5); /* Borda na cor primária */
+    flex: 0 1 auto; /* Desfaz o 'flex: 1' herdado */
+}
+
+#addPetModal .modal-btn-secondary:hover {
+    /* Inverte as cores no hover */
+    background-color: var(--color-primary-5);
+    color: var(--color-neutral-0);
+    border-color: var(--color-primary-5);
+}
+
+/* ------------------------------------------- */
+/* --- MEDIA QUERIES (Responsividade) --- */
+/* ------------------------------------------- */
 
 @media screen and (max-width: 1170px) {
 
@@ -766,11 +865,24 @@ main {
         grid-template-columns: 1fr;
     }
 
+    /* Regra Genérica para Ações do Modal em Mobile */
     .modal-actions {
         flex-direction: column;
     }
 
     .modal-btn {
         width: 100%;
+        flex: 1; 
+    }
+    
+    /* Garantir que o modal de adição também use o layout em coluna */
+    #addPetModal .modal-actions {
+        flex-direction: column;
+    }
+
+    #addPetModal .modal-btn-primary,
+    #addPetModal .modal-btn-secondary {
+        width: 100%; /* Ocupa a largura total */
+        flex: 1;
     }
 }
