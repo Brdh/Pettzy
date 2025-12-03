@@ -152,6 +152,7 @@
       </section>
     </main>
 
+    <!-- Modal para mostrar dados de pets -->
     <div id="petModal" class="modal">
       <div class="modal-content">
         <div class="modal-header">
@@ -218,7 +219,7 @@
         </div>
 
         <div class="modal-actions">
-          <button class="modal-btn modal-btn-primary">
+          <button class="modal-btn modal-btn-primary" id="editPetBtn">
             <i class="fa-solid fa-edit"></i> Editar
           </button>
           <button
@@ -231,7 +232,6 @@
       </div>
     </div>
 
-    
     <!-- Modal para adicionar pets -->
     <div id="addPetModal" class="modal">
       <div class="modal-content">
@@ -263,7 +263,7 @@
               <label for="petSpecies">Espécie:</label>
               <input type="text" id="petSpecies" name="especie" required />
             </div>
-            
+
             <div class="form-group">
               <label for="petSpecies">Idade:</label>
               <input type="number" id="petIdade" name="idade" />
@@ -286,6 +286,116 @@
                 type="button"
                 class="modal-btn modal-btn-secondary"
                 id="cancelAddModalBtn"
+              >
+                Cancelar
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal para editar pets -->
+    <div id="formModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 id="modalTitle">Editar Pet</h2>
+          <button class="modal-close" onclick="closeFormModal()">
+            <i class="fa-solid fa-times"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="editPetForm" autocomplete="off">
+            <input type="hidden" id="editPetId" />
+
+            <!-- Dados principais -->
+            <div class="form-group">
+              <label for="editImage">URL da Imagem:</label>
+              <input
+                type="text"
+                id="editImage"
+                name="foto"
+                placeholder="https://..."
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="editName">Nome:</label>
+              <input type="text" id="editName" name="nome" required />
+            </div>
+
+            <div class="form-group">
+              <label for="editType">Espécie:</label>
+              <input type="text" id="editType" name="especie" required />
+            </div>
+
+            <div class="form-group">
+              <label for="editStatus">Status:</label>
+              <select id="editStatus" name="status">
+                <option value="green">Saudável</option>
+                <option value="yellow">Atenção</option>
+                <option value="red">Urgente</option>
+              </select>
+            </div>
+
+            <!-- Comportamento -->
+            <div class="form-group">
+              <label for="editComportamento">Comportamento:</label>
+              <input type="text" id="editCompotamento" name="comportamento" />
+            </div>
+
+            <!-- Informações -->
+            <div class="form-group">
+              <label for="editAge">Idade:</label>
+              <input type="text" id="editAge" name="idade" />
+            </div>
+
+            <div class="form-group">
+              <label for="editPeso">Peso:</label>
+              <input type="text" id="editPeso" name="peso" />
+            </div>
+
+            <div class="form-group">
+              <label for="editRaca">Raça:</label>
+              <input type="text" id="editRaca" name="raca" />
+            </div>
+
+            <!-- Atenção à Saúde -->
+            <!--    Status de saúde    -->
+            <div class="form-group">
+              <label for="editUltimaConsulta">Última consulta:</label>
+              <input
+                type="text"
+                id="editUltimaConsulta"
+                name="ultimaConsulta"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="editMedicacoes">Medicações:</label>
+              <input type="text" id="editMedicacoes" name="medicacoes" />
+            </div>
+
+            <!-- Tutor Responsável -->
+            <div class="form-group">
+              <label for="editOwnerName">Tutor:</label>
+              <input type="text" id="editOwnerName" name="Owner" />
+            </div>
+
+            <div class="form-group">
+              <label for="editOwnerTelefone">Telefone:</label>
+              <input type="text" id="editOwnerTelefone" name="telefone" />
+            </div>
+
+            <!-- Ações da modal -->
+            <div class="modal-actions">
+              <button type="submit" class="modal-btn modal-btn-primary">
+                <i class="fa-solid fa-save"></i> Salvar Alterações
+              </button>
+              <button
+                type="button"
+                class="modal-btn modal-btn-secondary"
+                id="cancelEditModalBtn"
               >
                 Cancelar
               </button>

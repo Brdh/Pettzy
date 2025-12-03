@@ -139,7 +139,21 @@ function openModal(pet) {
     document.getElementById('modalTutorName').textContent = pet.tutor.name;
     document.getElementById('modalTutorPhone').textContent = pet.tutor.phone;
 
+
+    const editBtn = document.getElementById('editPetBtn');
+
+    // Removemos eventos anteriores para não duplicar o click
+    const novoBtn = editBtn.cloneNode(true);
+    editBtn.parentNode.replaceChild(novoBtn, editBtn);
+
+    // Adicionamos o evento de click passando o objeto PET completo
+    novoBtn.addEventListener('click', () => {
+        closeModal(); // Fecha a modal de visualização
+        abrirModalEdicao(pet); // Abre a modal de formulário (função criada no passo 3)
+    });
+
     modal.classList.add('active');
+
 }
 
 
@@ -147,6 +161,108 @@ function closeModal() {
     const modal = document.getElementById('petModal');
     modal.classList.remove('active');
 }
+
+
+// Função para abrir o modal de formulário preenchido
+function abrirModalEdicao(pet) {
+    const formModal = document.getElementById('formModal');
+
+    // 1. Preenche o ID (usa _id se vier do banco, ou id se for estático)
+    const petId = pet._id || pet.id;
+    document.getElementById('editPetId').value = petId;
+
+    // 2. Preenche os inputs visuais (IDs corrigidos conforme seu HTML)
+    document.getElementById('editName').value = pet.name || pet.nome || '';
+    document.getElementById('editImage').value = pet.image || pet.foto || '';
+    document.getElementById('editType').value = pet.type || pet.especie || '';
+    // Remove texto como " anos" quando for uma string (deixa só o número)
+    const rawAge = pet.age || pet.idade || '';
+    let ageForInput = '';
+    if (rawAge !== null && rawAge !== undefined) {
+        if (typeof rawAge === 'number') {
+            ageForInput = String(rawAge);
+        } else if (typeof rawAge === 'string') {
+            const match = rawAge.match(/(\d+)/);
+            ageForInput = match ? match[0] : '';
+        }
+    }
+    document.getElementById('editAge').value = ageForInput;
+
+    // Para o Select, precisamos garantir que o valor bata com as options (green, yellow, red)
+    document.getElementById('editStatus').value = pet.status;
+
+    // Muda o título
+    document.getElementById('modalTitle').innerText = "Editar Pet";
+
+    formModal.classList.add('active');
+}
+
+function closeFormModal() {
+    document.getElementById('formModal').classList.remove('active');
+}
+
+// --- Listener de Envio do Formulário (PUT) ---
+// CORREÇÃO: O ID do form no HTML é 'editPetForm'
+document.getElementById('editPetForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const id = document.getElementById('editPetId').value;
+    const token = localStorage.getItem('token');
+
+    // Cria o objeto com os dados corrigidos
+    // Build payload and ensure `idade` (age) is sent as a Number or omitted if empty
+    const fotoVal = document.getElementById('editImage').value;
+    const nomeVal = document.getElementById('editName').value;
+    const especieVal = document.getElementById('editType').value;
+    const statusVal = document.getElementById('editStatus').value || "";
+    const idadeRaw = document.getElementById('editAge').value.trim();
+
+    const dadosAtualizados = {
+        nome: nomeVal,
+        foto: fotoVal,
+        especie: especieVal,
+        status: statusVal
+    };
+
+    if (idadeRaw !== '') {
+        const idadeNumber = Number(idadeRaw);
+        if (!Number.isNaN(idadeNumber)) {
+            dadosAtualizados.idade = idadeNumber;
+        }
+    }
+
+    try {
+        const response = await fetch(`http://localhost:3000/api/pets/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify(dadosAtualizados)
+        });
+
+        if (response.ok) {
+            alert('Pet atualizado com sucesso!');
+            closeFormModal();
+            // Verifica se a função carregarPets existe (geralmente está no petsLoad.js)
+            if (typeof carregarPets === 'function') {
+                carregarPets();
+            } else {
+                location.reload(); // Recarrega a página se não houver função de recarregar
+            }
+        } else {
+            const erro = await response.json();
+            alert('Erro ao atualizar: ' + (erro.message || erro.error));
+        }
+
+    } catch (error) {
+        console.error('Erro:', error);
+        alert('Erro de conexão com o servidor');
+    }
+});
+
+// Listener do botão Cancelar do formulário
+document.getElementById('cancelEditModalBtn').addEventListener('click', closeFormModal);
 
 document.getElementById('closeModalBtn').addEventListener('click', closeModal);
 document.getElementById('closeModalBtnFooter').addEventListener('click', closeModal);

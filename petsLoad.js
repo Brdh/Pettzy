@@ -1,11 +1,13 @@
-// #1. NO INÍCIO DO ARQUIVO (ESCOPO GLOBAL)
-// Definições e funções do Modal de Adição (Add Pet)
-// ----------------------------------------------------
 const addPetModal = document.getElementById('addPetModal');
 const addPetForm = document.getElementById('addPetForm');
 
+let currentEditingPetId = null;
+let currentPet = null; // objeto completo do pet (vindo do backend)
+
+
 // Função de Abertura do Modal
 function openAddPetModal() {
+    currentEditingPetId = null; // garante que não é edição
     if (addPetModal) {
         addPetModal.classList.add('active');
     }
@@ -20,6 +22,7 @@ function closeAddPetModal() {
         addPetForm.reset(); // Limpa o formulário ao fechar
     }
 }
+
 
 // Função de Envio do Formulário (POST para a API)
 async function handleAddPetSubmit(event) {
@@ -54,6 +57,10 @@ async function handleAddPetSubmit(event) {
         console.error("Falha ao adicionar pet:", error);
         alert(`Erro: ${error.message}`);
     }
+}
+
+function openEditPetModal(pet) {
+
 }
 
 
