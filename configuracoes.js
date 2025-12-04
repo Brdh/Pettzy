@@ -1,6 +1,6 @@
 const usuarioLogado = {
     nome: 'João Silva',
-    email: 'caringpet2002@gmail.com',
+    email: 'ababa@email.com',
     empresa: 'CaringPet'
 };
 
@@ -85,8 +85,8 @@ function editarSenha() {
         if (senha1 === senha2 && senha1.length >= 6) {
             senhaInput1.readOnly = true;
             senhaInput2.readOnly = true;
-            senhaInput1.value = '••••••••••••••••';
-            senhaInput2.value = '••••••••••••••••';
+            senhaInput1.value = '•••••••••';
+            senhaInput2.value = '•••••••••';
             alert('Senha atualizada com sucesso!');
         } else if (senha1 !== senha2) {
             alert('As senhas não coincidem!');
