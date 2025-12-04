@@ -132,7 +132,7 @@ async function carregarPets() {
                 image: pet.foto,
                 name: pet.nome,
                 type: pet.especie,
-                description: pet.descricao || "Comportamento não informado",
+                comportamento: pet.comportamento || "Comportamento não informado",
                 status: status,
                 statusText: badgeClass === "green" ? "Estável" : badgeClass === "yellow" ? "Atenção" : "Urgente",
 
@@ -148,8 +148,8 @@ async function carregarPets() {
                 observations: pet.observacoes || [],
 
                 tutor: {
-                    name: pet.dono?.nome || "-",
-                    phone: pet.dono?.telefone || "-"
+                    name: pet.Owner || "-",
+                    phone: pet.telefone || "-"
                 }
             }));
 

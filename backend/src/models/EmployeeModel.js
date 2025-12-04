@@ -8,6 +8,8 @@ const EmployeeSchema = new mongoose.Schema({
     salario: { type: Number },                       // salário (opcional)
     cor: { type: String },
     vinculo: { type: String },
+    entrada: { type: String },
+    saida: { type: String },
     companyId: { type: mongoose.Schema.Types.ObjectId, ref: "Company" }
 }, { timestamps: true });
 

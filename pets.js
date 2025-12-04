@@ -90,7 +90,7 @@ function openModal(pet) {
     document.getElementById('modalPetType').textContent = pet.type;
     document.getElementById('modalPetStatus').textContent = pet.statusText;
     document.getElementById('modalPetStatus').className = `pet-detail-status ${pet.status}`;
-    document.getElementById('modalPetDescription').textContent = pet.description;
+    document.getElementById('modalPetComportamento').textContent = pet.comportamento;
 
     const infoGrid = document.getElementById('modalPetInfo');
     infoGrid.innerHTML = `
@@ -116,17 +116,23 @@ function openModal(pet) {
     healthGrid.innerHTML = `
         <div class="info-item">
             <div class="info-label">Status de Saúde</div>
-            <div class="info-value">${pet.healthStatus}</div>
+            <div class="info-value">${pet.statusText}</div>
         </div>
         <div class="info-item">
             <div class="info-label">Última Consulta</div>
-            <div class="info-value">${pet.lastCheckup}</div>
+            <div class="info-value">${pet.lastCheckup || pet.ultimaConsulta}</div>
         </div>
         <div class="info-item">
             <div class="info-label">Medicações</div>
             <div class="info-value">${pet.medications}</div>
         </div>
     `;
+
+    // Preenchendo dados do tutor
+    const tutorNameEl = document.getElementById('modalTutorName');
+    const tutorPhoneEl = document.getElementById('modalTutorPhone');
+    if (tutorNameEl) tutorNameEl.textContent = pet.tutor?.name || '-';
+    if (tutorPhoneEl) tutorPhoneEl.textContent = pet.tutor?.phone || '-';
 
     const notesList = document.getElementById('modalPetNotes');
     notesList.innerHTML = '';
@@ -135,9 +141,6 @@ function openModal(pet) {
         li.textContent = note;
         notesList.appendChild(li);
     });
-
-    document.getElementById('modalTutorName').textContent = pet.tutor.name;
-    document.getElementById('modalTutorPhone').textContent = pet.tutor.phone;
 
 
     const editBtn = document.getElementById('editPetBtn');
@@ -176,7 +179,7 @@ function abrirModalEdicao(pet) {
     document.getElementById('editImage').value = pet.image || pet.foto || '';
     document.getElementById('editType').value = pet.type || pet.especie || '';
     document.getElementById('editStatus').value = pet.status;
-    
+
     // Novos campos unificados
     document.getElementById('editCompotamento').value = pet.comportamento || '';
     document.getElementById('editAge').value = pet.age || pet.idade || '';
@@ -189,7 +192,7 @@ function abrirModalEdicao(pet) {
 
     // Muda o título
     document.getElementById('modalTitle').innerText = "Editar Pet";
-    
+
     // Exibe o botão de exclusão e muda o texto do botão de salvar
     document.getElementById('deletePetBtn').style.display = 'inline-flex';
     document.querySelector('#editPetForm button[type="submit"]').innerHTML = '<i class="fa-solid fa-save"></i> Salvar Alterações';
@@ -201,14 +204,14 @@ function abrirModalEdicao(pet) {
 function abrirModalAdicao() {
     const formModal = document.getElementById('formModal');
     const form = document.getElementById('editPetForm');
-    
+
     // Limpa o formulário
     form.reset();
     document.getElementById('editPetId').value = ''; // Garante que o ID está vazio para POST
 
     // Muda o título
     document.getElementById('modalTitle').innerText = "Adicionar Novo Pet";
-    
+
     // Esconde o botão de exclusão e muda o texto do botão de salvar
     document.getElementById('deletePetBtn').style.display = 'none';
     document.querySelector('#editPetForm button[type="submit"]').innerHTML = '<i class="fa-solid fa-plus"></i> Adicionar Pet';
@@ -416,13 +419,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('searchInput');
     searchInput.addEventListener('input', buscarPets);
 
-    const clearBtn = document.getElementById('clearSearchBtn');
-    clearBtn.addEventListener('click', limparBusca);
+    // const clearBtn = document.getElementById('clearSearchBtn');
+    // clearBtn.addEventListener('click', limparBusca);
 
 
     const addPetBtn = document.getElementById('addPetBtn');
-    addPetBtn.addEventListener('click', abrirModalAdicao);
+    if (addPetBtn) {
+        addPetBtn.addEventListener('click', abrirModalAdicao);
+    }
 
+    const addPetBtn2 = document.getElementById('addPetBtn2');
+    if (addPetBtn2) {
+        addPetBtn2.addEventListener('click', abrirModalAdicao);
+    }
 
 });
 
