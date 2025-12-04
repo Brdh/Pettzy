@@ -188,6 +188,18 @@ function abrirModalEdicao(pet) {
     }
     document.getElementById('editAge').value = ageForInput;
 
+    const rawPeso = pet.peso || pet.weight || '';
+    let pesoForInput = '';
+    if (rawPeso !== null && rawPeso !== undefined) {
+        if (typeof rawPeso === 'number') {
+            pesoForInput = String(rawPeso);
+        } else if (typeof rawPeso === 'string') {
+            const match = rawPeso.match(/(\d+)/);
+            pesoForInput = match ? match[0] : '';
+        }
+    }
+    document.getElementById('editPeso').value = pesoForInput;
+
     // Para o Select, precisamos garantir que o valor bata com as options (green, yellow, red)
     document.getElementById('editStatus').value = pet.status;
 
@@ -216,6 +228,8 @@ document.getElementById('editPetForm').addEventListener('submit', async (e) => {
     const especieVal = document.getElementById('editType').value;
     const statusVal = document.getElementById('editStatus').value || "";
     const idadeRaw = document.getElementById('editAge').value.trim();
+    const pesoRaw = document.getElementById('editPeso').value.trim();
+
 
     const dadosAtualizados = {
         nome: nomeVal,
@@ -228,6 +242,13 @@ document.getElementById('editPetForm').addEventListener('submit', async (e) => {
         const idadeNumber = Number(idadeRaw);
         if (!Number.isNaN(idadeNumber)) {
             dadosAtualizados.idade = idadeNumber;
+        }
+    }
+
+    if (pesoRaw !== '') {
+        const pesoNumber = Number(pesoRaw);
+        if (!Number.isNaN(pesoNumber)) {
+            dadosAtualizados.peso = pesoNumber;
         }
     }
 
