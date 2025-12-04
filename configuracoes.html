@@ -1,15 +1,23 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="styles/style.css">
-    <link rel="stylesheet" href="styles/configuracoes.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="styles/style.css" />
+    <link rel="stylesheet" href="styles/configuracoes.css" />
+
+    <link rel="icon" type="image/png" href="img/paw2.png" />
+
     <title>Configurações - PETTZY</title>
-</head>
-<body>
-    
+  </head>
+  <body>
     <header>
       <nav id="navbar">
         <div id="nav_logo">
@@ -22,7 +30,9 @@
           <li class="nav-item"><a href="pets.html">Pets</a></li>
           <li class="nav-item"><a href="funcionarios.html">Funcionários</a></li>
           <li class="nav-item"><a href="agenda.html">Agenda</a></li>
-           <li class="nav-item active"><a href="configuracoes.html"> configurações </a></li>
+          <li class="nav-item active">
+            <a href="configuracoes.html"> configurações </a>
+          </li>
         </ul>
 
         <a class="btn-default" href="configuracoes.html">
@@ -41,7 +51,9 @@
           <li class="nav-item"><a href="pets.html">Pets</a></li>
           <li class="nav-item"><a href="funcionarios.html">Funcionários</a></li>
           <li class="nav-item"><a href="agenda.html">Agenda</a></li>
-           <li class="nav-item active"><a href="configuracoes.html"> configurações </a></li>
+          <li class="nav-item active">
+            <a href="configuracoes.html"> configurações </a>
+          </li>
         </ul>
 
         <button class="btn-default">
@@ -52,126 +64,158 @@
       </div>
     </header>
 
-        
-        <main class="config-main">
-            <div class="config-header">
-                <h1>Configurações</h1>
-            
+    <main class="config-main">
+      <div class="config-header">
+        <h1>Configurações</h1>
+      </div>
+
+      <div class="config-content">
+        <div class="config-left">
+          <section class="config-section">
+            <h2 class="section-title">Informações da Sua Conta</h2>
+
+            <div class="config-item">
+              <div class="config-item-header">
+                <label>E-mail</label>
+                <p class="config-item-description">
+                  Aqui, você pode confirir seu e-mail e editar como desejar!
+                </p>
+              </div>
+              <div class="config-item-body">
+                <input
+                  type="email"
+                  id="emailInput"
+                  class="config-input"
+                  value="ababa@email.com"
+                  readonly
+                />
+                <button class="btn-edit" onclick="editarEmail()">
+                  <i class="fa-solid fa-pen"></i>
+                  Editar E-mail
+                </button>
+              </div>
             </div>
 
-            <div class="config-content">
-            
-                <div class="config-left">
-                    <section class="config-section">
-                        <h2 class="section-title">Informações da Sua Conta</h2>
-
-                
-                        <div class="config-item">
-                            <div class="config-item-header">
-                                <label>E-mail</label>
-                                <p class="config-item-description">Aqui, você pode confirir seu e-mail e editar como desejar!</p>
-                            </div>
-                            <div class="config-item-body">
-                                <input type="email" id="emailInput" class="config-input" value="ababa@email.com" readonly>
-                                <button class="btn-edit" onclick="editarEmail()">
-                                    <i class="fa-solid fa-pen"></i>
-                                    Editar E-mail
-                                </button>
-                            </div>
-                        </div>
-
-                        
-                        <div class="config-item">
-                            <div class="config-item-header">
-                                <label>Senha</label>
-                                <p class="config-item-description">Aqui, você pode confirir sua senha e editar da forma que desejar!</p>
-                            </div>
-                            <div class="config-item-body">
-                                <div class="password-inputs">
-                                    <div class="password-input-group">
-                                        <input type="password" id="senhaInput1" class="config-input" value="••••••••••••••••" readonly>
-                                        <button class="btn-toggle-password" onclick="togglePassword('senhaInput1')">
-                                            <i class="fa-solid fa-eye"></i>
-                                        </button>
-                                    </div>
-                                    <div class="password-input-group">
-                                        <input type="password" id="senhaInput2" class="config-input" value="••••••••••••••••" readonly>
-                                        <button class="btn-toggle-password" onclick="togglePassword('senhaInput2')">
-                                            <i class="fa-solid fa-eye"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                                <button class="btn-edit" onclick="editarSenha()">
-                                    <i class="fa-solid fa-pen"></i>
-                                    Editar Senha
-                                </button>
-                            </div>
-                        </div>
-
-        
-                        <div class="config-item">
-                            <div class="config-item-header">
-                                <label>CNPJ</label>
-                                <p class="config-item-description">Aqui, você pode confirir seu CNPJ!</p>
-                            </div>
-                            <div class="config-item-body">
-                                <input type="text" id="cnpjInput" class="config-input" value="XX.XXX.XXX/XXXX-XX" readonly>
-                                <button class="btn-toggle-password" onclick="toggleCNPJ()">
-                                    <i class="fa-solid fa-eye"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </section>
+            <div class="config-item">
+              <div class="config-item-header">
+                <label>Senha</label>
+                <p class="config-item-description">
+                  Aqui, você pode confirir sua senha e editar da forma que
+                  desejar!
+                </p>
+              </div>
+              <div class="config-item-body">
+                <div class="password-inputs">
+                  <div class="password-input-group">
+                    <input
+                      type="password"
+                      id="senhaInput1"
+                      class="config-input"
+                      value="••••••••••••••••"
+                      readonly
+                    />
+                    <button
+                      class="btn-toggle-password"
+                      onclick="togglePassword('senhaInput1')"
+                    >
+                      <i class="fa-solid fa-eye"></i>
+                    </button>
+                  </div>
+                  <div class="password-input-group">
+                    <input
+                      type="password"
+                      id="senhaInput2"
+                      class="config-input"
+                      value="••••••••••••••••"
+                      readonly
+                    />
+                    <button
+                      class="btn-toggle-password"
+                      onclick="togglePassword('senhaInput2')"
+                    >
+                      <i class="fa-solid fa-eye"></i>
+                    </button>
+                  </div>
                 </div>
-
-            
-                <div class="config-right">
-                    <section class="config-section danger-section">
-                        <h2 class="section-title">Sair da conta</h2>
-
-                        <div class="danger-content">
-                            <p class="danger-description">
-                                Ao sair da sua conta, você será redirecionado para a página inicial.
-                            </p>
-                            <button class="btn-logout" onclick="sairDaConta()">
-                                <i class="fa-solid fa-right-from-bracket"></i>
-                                Sair da Conta
-                            </button>
-                        </div>
-
-                        <hr class="section-divider">
-
-                        <h2 class="section-title">Desativar sua conta</h2>
-
-                        <div class="danger-content">
-                            <p class="danger-description">
-                                Ao desativar sua conta, você poderá reativá-la a qualquer momento. Seus dados serão preservados.
-                            </p>
-                            <button class="btn-deactivate" onclick="desativarConta()">
-                                <i class="fa-solid fa-pause"></i>
-                                Desativar Conta
-                            </button>
-                        </div>
-
-                        <hr class="section-divider">
-
-                        <h2 class="section-title danger-title">Excluir sua conta</h2>
-
-                        <div class="danger-content">
-                            <p class="danger-description danger-text">
-                                Ao excluir sua conta, todos os seus dados serão permanentemente removidos. Esta ação não pode ser desfeita.
-                            </p>
-                            <button class="btn-delete" onclick="excluirConta()">
-                                <i class="fa-solid fa-trash"></i>
-                                Excluir sua conta
-                            </button>
-                        </div>
-                    </section>
-                </div>
+                <button class="btn-edit" onclick="editarSenha()">
+                  <i class="fa-solid fa-pen"></i>
+                  Editar Senha
+                </button>
+              </div>
             </div>
-        </main>
-    </div>
+
+            <div class="config-item">
+              <div class="config-item-header">
+                <label>CNPJ</label>
+                <p class="config-item-description">
+                  Aqui, você pode confirir seu CNPJ!
+                </p>
+              </div>
+              <div class="config-item-body">
+                <input
+                  type="text"
+                  id="cnpjInput"
+                  class="config-input"
+                  value="XX.XXX.XXX/XXXX-XX"
+                  readonly
+                />
+                <button class="btn-toggle-password" onclick="toggleCNPJ()">
+                  <i class="fa-solid fa-eye"></i>
+                </button>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <div class="config-right">
+          <section class="config-section danger-section">
+            <h2 class="section-title">Sair da conta</h2>
+
+            <div class="danger-content">
+              <p class="danger-description">
+                Ao sair da sua conta, você será redirecionado para a página
+                inicial.
+              </p>
+              <button class="btn-logout" onclick="sairDaConta()">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                Sair da Conta
+              </button>
+            </div>
+
+            <hr class="section-divider" />
+
+            <h2 class="section-title">Desativar sua conta</h2>
+
+            <div class="danger-content">
+              <p class="danger-description">
+                Ao desativar sua conta, você poderá reativá-la a qualquer
+                momento. Seus dados serão preservados.
+              </p>
+              <button class="btn-deactivate" onclick="desativarConta()">
+                <i class="fa-solid fa-pause"></i>
+                Desativar Conta
+              </button>
+            </div>
+
+            <hr class="section-divider" />
+
+            <h2 class="section-title danger-title">Excluir sua conta</h2>
+
+            <div class="danger-content">
+              <p class="danger-description danger-text">
+                Ao excluir sua conta, todos os seus dados serão permanentemente
+                removidos. Esta ação não pode ser desfeita.
+              </p>
+              <button class="btn-delete" onclick="excluirConta()">
+                <i class="fa-solid fa-trash"></i>
+                Excluir sua conta
+              </button>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
 
     <script src="configuracoes.js"></script>
-</body>
+  </body>
 </html>
