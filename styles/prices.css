@@ -1,123 +1,92 @@
-.pricing-section {
-    padding: 3rem 1rem;
+:root {
+    --color-primary-1: #ffffff;
+    --color-primary-2: #5b814b;
+    --color-primary-3: #4d7fc1b0;
+    --color-primary-4: #88b0ca;
+    --color-primary-5: #2e5f9e; /* Azul Principal: Usado para foco e botões primários */
+    --color-primary-6: #043971;
+
+    --color-neutral-0: #fff;
+    --color-neutral-1: #1d1d1d;
+
+    --color-status-red: #FFADAD;
+    --color-status-yellow: #ebeb55;
+    --color-status-green: #97f897;
 }
 
 
-.pricing-cards-container {
+
+.pricing-section {
+    padding-top: 60px;
+    padding-bottom: 60px; /* Se este valor for 300px, ele causará um grande espaço! */
+    padding: 80px 0;
+    background-color: #f8f9fa; /* Fundo cinza claro para destacar a seção */
+}
+
+/* Container principal para centralizar e limitar a largura na tela */
+.pricing-section .container {
+    max-width: 1500px; /* Alarga o container principal */
+    width: 58%;
+    margin: 0 auto;
+}
+
+/* Container que envolve o vídeo e o texto */
+.video-cards-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
-    padding-top: 5rem;
-    gap: 1;
+    width: 100%;
 }
 
-
-.pricing-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 390px;
-    padding: 2rem 3rem;
-    border-radius: 2px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
-    color: #fff;
+/* Estilo da caixa que contém o player */
+.video-container {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 12px;
+    /* Sombra mais suave para um visual moderno */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); 
     text-align: center;
-    position: relative;
+    
+    /* 🚨 AQUI DEFINIMOS A LARGURA MÁXIMA PARA O VÍDEO */
+    max-width: 1100px; /* Vídeo grande, mas com margem */
+    width: 95%; /* Garante que use 95% do container principal */
+    
+    transition: all 0.5s ease-in-out;
+    
 }
 
-
-.pricing-card--pro {
-    background-color: #444;
-    z-index: 2;
-    font-size: 30px;
-}
-
-
-.pricing-card--enterprise {
-    background-color: #1a1a1a;
-    margin-left: -50px;
-    z-index: 3;
-    font-size: 28px;
-}
-
-
-.plan-subtitle {
-    font-size: 0.9rem;
-    margin-top: 1;
-    opacity: 0.8;
-    font-style: italic;
-
-}
-
-
-.plan-price {
-    font-size: 2.5rem;
-    font-weight: bold;
-    margin: 1.5rem 0 1rem;
-}
-
-
-.plan-price small {
-    font-size: 1rem;
-    font-weight: normal;
-}
-
-
-.pricing-card ul {
-    list-style: none;
-    padding: 0;
-    margin-bottom: 2rem;
-    text-align: left;
-}
-
-
-.pricing-card li {
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
-    position: relative;
-    padding-left: 1.5rem;
-    opacity: 0.8;
-}
-
-
-.pricing-card li::before {
-    content: '+';
-    color: #fff;
-    position: absolute;
-    left: 0;
+/* Estilo dos títulos e textos */
+.video-container h1 {
+    color: #043971;/* Ou a cor principal da sua marca */
+    margin-bottom: 5px;
+    font-size: 2.5em;
     font-weight: bold;
 }
 
-
-@media (max-width: 768px) {
-    .pricing-cards-container {
-        flex-direction: column;
-        gap: 2rem;
-        padding-top: 2rem;
-    }
-
-
-    .pricing-card--enterprise {
-        margin-left: 0;
-    }
+.video-container p {
+    color: #495057;
+    margin-bottom: 30px;
+    font-size: 1.1em;
 }
 
-@media screen and (max-width: 450px) {
+/* Estilo do player de vídeo */
+.video-demo {
+    width: 100%; /* Ocupa 100% dos 1100px do container */
+    height: auto;
+    border-radius: 8px;
+    /* Sombra discreta para dar profundidade ao player */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); 
+    display: block; /* Garante que ocupe a linha inteira */
+}
 
-    .pricing-card {
-        width: 100%;
-        padding: 2rem 3rem;
-        border-radius: 2px;
-    }
+.video-info-text {
+    margin-top: 15px;
+    font-size: 0.9em;
+    color: #888;
+}
 
-    .pricing-card h1 {
-        line-height: 1.25;
-        margin-bottom: 10px;
-    }
-
-    .pricing-card--pro {
-        font-size: 28px;
-    }
-
+/* Efeito de hover (opcional: dá um feedback visual) */
+.video-container:hover {
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15); 
+    transform: translateY(-5px);
 }
