@@ -3,7 +3,8 @@
     --color-primary-2: #5b814b;
     --color-primary-3: #4d7fc1b0;
     --color-primary-4: #88b0ca;
-    --color-primary-5: #2e5f9e; /* Azul Principal: Usado para foco e botões primários */
+    --color-primary-5: #2e5f9e;
+    /* Azul Principal: Usado para foco e botões primários */
     --color-primary-6: #043971;
 
     --color-neutral-0: #fff;
@@ -18,16 +19,18 @@
 
 .pricing-section {
     padding-top: 60px;
-    padding-bottom: 60px; /* Se este valor for 300px, ele causará um grande espaço! */
+    padding-bottom: 60px;
     padding: 80px 0;
-    background-color: #f8f9fa; /* Fundo cinza claro para destacar a seção */
+    background-color: #f8f9fa;
 }
 
 /* Container principal para centralizar e limitar a largura na tela */
 .pricing-section .container {
-    max-width: 1500px; /* Alarga o container principal */
-    width: 58%;
+    max-width: 1500px;
+    width: 85%;
     margin: 0 auto;
+    display: flex;
+    justify-content: center;
 }
 
 /* Container que envolve o vídeo e o texto */
@@ -36,6 +39,7 @@
     justify-content: center;
     align-items: center;
     width: 100%;
+    flex-wrap: wrap;
 }
 
 /* Estilo da caixa que contém o player */
@@ -43,21 +47,17 @@
     background-color: #ffffff;
     padding: 40px;
     border-radius: 12px;
-    /* Sombra mais suave para um visual moderno */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); 
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     text-align: center;
-    
-    /* 🚨 AQUI DEFINIMOS A LARGURA MÁXIMA PARA O VÍDEO */
-    max-width: 1100px; /* Vídeo grande, mas com margem */
-    width: 95%; /* Garante que use 95% do container principal */
-    
+    max-width: 1100px;
+    width: 95%;
+    margin: 0 auto;
     transition: all 0.5s ease-in-out;
-    
 }
 
 /* Estilo dos títulos e textos */
 .video-container h1 {
-    color: #043971;/* Ou a cor principal da sua marca */
+    color: #043971;
     margin-bottom: 5px;
     font-size: 2.5em;
     font-weight: bold;
@@ -71,12 +71,11 @@
 
 /* Estilo do player de vídeo */
 .video-demo {
-    width: 100%; /* Ocupa 100% dos 1100px do container */
+    width: 100%;
     height: auto;
     border-radius: 8px;
-    /* Sombra discreta para dar profundidade ao player */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); 
-    display: block; /* Garante que ocupe a linha inteira */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    display: block;
 }
 
 .video-info-text {
@@ -87,6 +86,96 @@
 
 /* Efeito de hover (opcional: dá um feedback visual) */
 .video-container:hover {
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15); 
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
     transform: translateY(-5px);
+}
+
+/* REGRAS DE RESPONSIVIDADE (MEDIA QUERIES) */
+
+/* Para telas de até 1200px (Exemplo: Notebooks menores e tablets grandes) */
+@media (max-width: 1200px) {
+
+    .pricing-section .container {
+        width: 75%;
+    }
+
+    .video-container {
+        padding: 30px;
+    }
+
+    .video-container h1 {
+        font-size: 2em;
+    }
+
+    .video-container p {
+        font-size: 1em;
+    }
+}
+
+
+/* Para telas de até 768px (Exemplo: Tablets e Smartphones em modo paisagem) */
+@media (max-width: 768px) {
+
+    .pricing-section .container {
+        width: 90%;
+    }
+
+    .pricing-section {
+        padding: 60px 0;
+    }
+
+    .video-container {
+        padding: 20px;
+        margin: 0 auto;
+    }
+
+    .video-container h1 {
+        font-size: 1.8em;
+        margin-bottom: 5px;
+    }
+
+    .video-container p {
+        font-size: 0.95em;
+        margin-bottom: 20px;
+    }
+
+    .video-info-text {
+        font-size: 0.8em;
+    }
+}
+
+
+/* Para telas de até 480px (Exemplo: Smartphones) */
+@media (max-width: 480px) {
+
+    .pricing-section .container {
+        width: 95%;
+    }
+
+    .pricing-section {
+        padding: 40px 0;
+    }
+
+    .video-cards-container {
+        margin: 0 auto;
+    }
+
+    .video-container {
+        padding: 15px;
+        margin: 0 auto;
+
+    }
+
+    #meuVideoDemo {
+        margin: 0 auto;
+    }
+
+    .video-container h1 {
+        font-size: 1.5em;
+    }
+
+    .video-container p {
+        font-size: 0.9em;
+        margin-bottom: 15px;
+    }
 }
