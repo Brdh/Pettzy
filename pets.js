@@ -90,7 +90,7 @@ function openModal(pet) {
     document.getElementById('modalPetType').textContent = pet.type;
     document.getElementById('modalPetStatus').textContent = pet.statusText;
     document.getElementById('modalPetStatus').className = `pet-detail-status ${pet.status}`;
-    document.getElementById('modalPetComportamento').textContent = pet.comportamento;
+    document.getElementById('modalPetComportamento').textContent = pet.comportamento || pet.description || '';
 
     const infoGrid = document.getElementById('modalPetInfo');
     infoGrid.innerHTML = `
@@ -108,7 +108,7 @@ function openModal(pet) {
         </div>
         <div class="info-item">
             <div class="info-label">Última Vacinação</div>
-            <div class="info-value">${pet.lastVaccine}</div>
+            <div class="info-value">${pet.lastVaccine || pet.ultimaVacina || ''}</div>
         </div>
     `;
 
@@ -185,6 +185,7 @@ function abrirModalEdicao(pet) {
     document.getElementById('editAge').value = pet.age || pet.idade || '';
     document.getElementById('editPeso').value = pet.weight || pet.peso || '';
     document.getElementById('editRaca').value = pet.breed || pet.raca || '';
+    document.getElementById('editultimaVacina').value = pet.lastVaccine || pet.ultimaVacina || '';
     document.getElementById('editUltimaConsulta').value = pet.lastCheckup || pet.ultimaConsulta || '';
     document.getElementById('editMedicacoes').value = pet.medications || pet.medicacoes || '';
     document.getElementById('editOwnerName').value = pet.tutor?.name || pet.Owner || '';
@@ -242,6 +243,7 @@ document.getElementById('editPetForm').addEventListener('submit', async (e) => {
     const idadeRaw = document.getElementById('editAge').value.trim();
     const pesoRaw = document.getElementById('editPeso').value.trim();
     const racaVal = document.getElementById('editRaca').value || "";
+    const ultimaVacinaVal = document.getElementById('editultimaVacina').value || "";
     const ultimaConsultaVal = document.getElementById('editUltimaConsulta').value || "";
     const medicacoesVal = document.getElementById('editMedicacoes').value || "";
     const ownerNameVal = document.getElementById('editOwnerName').value || "";
@@ -255,6 +257,7 @@ document.getElementById('editPetForm').addEventListener('submit', async (e) => {
         status: statusVal,
         comportamento: comportamentoVal,
         raca: racaVal,
+        ultimaVacina: ultimaVacinaVal,
         ultimaConsulta: ultimaConsultaVal,
         medicacoes: medicacoesVal,
         Owner: ownerNameVal,
