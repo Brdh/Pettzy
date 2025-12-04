@@ -1,4 +1,3 @@
-
 const usuarioLogado = {
     nome: 'João Silva',
     email: 'caringpet2002@gmail.com',
@@ -130,6 +129,26 @@ function toggleCNPJ() {
 }
 
 
+function sairDaConta() {
+    const confirmacao = confirm(
+        'Tem certeza que deseja sair da sua conta?\n\n' +
+        'Você será redirecionado para a página inicial.'
+    );
+    
+    if (confirmacao) {
+        // Limpar dados da sessão/localStorage
+        localStorage.removeItem('usuarioLogado');
+        sessionStorage.removeItem('token');
+        
+        // Exibir mensagem de confirmação
+        alert('Você foi desconectado com sucesso!');
+        
+        // Redirecionar para página de login após 1 segundo
+        setTimeout(() => {
+            window.location.href = 'index.html';
+        }, 1000);
+    }
+}
 
 function desativarConta() {
     const confirmacao = confirm(
