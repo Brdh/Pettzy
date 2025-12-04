@@ -24,7 +24,7 @@
 
         <ul id="nav_list">
           <li class="nav-item"><a href="dashboard.html">Dashboard</a></li>
-          <li class="nav-item"><a href="pets.html">Pets</a></li>
+          <li class="nav-item"><a href="funcionarios.html">Pets</a></li>
           <li class="nav-item active">
             <a href="funcionarios.html">Funcionários</a>
           </li>
@@ -44,7 +44,7 @@
       <div id="mobile_menu">
         <ul id="mobile_nav_list">
           <li class="nav-item"><a href="dashboard.html">Dashboard</a></li>
-          <li class="nav-item"><a href="pets.html">Pets</a></li>
+          <li class="nav-item"><a href="funcionarios.html">Pets</a></li>
           <li class="nav-item active">
             <a href="funcionarios.html">Funcionários</a>
           </li>
@@ -113,6 +113,74 @@
         </div>
       </section>
     </main>
+
+    <!-- Modal para adicionar novo funcionário -->
+    <div id="addFuncionarioModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title">Adicionar Novo funcionário</h2>
+          <button class="modal-close" id="closeAddModalBtn">
+            <i class="fa-solid fa-times"></i>
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <form id="addFuncionarioForm">
+            <div class="form-group">
+              <label for="funcionarioName">Nome:</label>
+              <input type="text" id="funcionarioName" name="nome" required />
+            </div>
+
+            <div class="form-group">
+              <label for="funcionarioCargo">Profissão:</label>
+              <input type="text" id="funcionarioCargo" name="cargo" required />
+            </div>
+
+            <div class="form-group">
+              <label for="funcionarioTelefone">Telefone:</label>
+              <input type="text" id="funcionarioTelefone" name="telefone" />
+            </div>
+
+            <div class="form-group">
+              <label for="funcionarioEmail">Email:</label>
+              <input type="email" id="funcionarioEmail" name="email" />
+            </div>
+
+            <div class="form-group">
+              <label for="funcionarioVinculo">Vínculo:</label>
+              <select id="funcionarioVinculo" name="vinculo" required>
+                <option value="Ativo">Ativo</option>
+                <option value="Inativo">Inativo</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="cor">Funcionário cor:</label>
+              <input
+                type="color"
+                id="funcionarioCor"
+                name="cor"
+                value="#90caf9"
+              />
+            </div>
+
+            <!-- Ações da modal -->
+            <div class="modal-actions">
+              <button type="submit" class="modal-btn modal-btn-primary">
+                <i class="fa-solid fa-save"></i> Salvar Funcionário
+              </button>
+              <button
+                type="button"
+                class="modal-btn modal-btn-secondary"
+                id="cancelAddModalBtn"
+              >
+                Cancelar
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="funcionarios.js"></script>

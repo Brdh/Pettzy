@@ -28,36 +28,6 @@ const funcionariosData = [
         saida: '--------',
         contato: 'fernandatavares@gmail.com',
         cor: '#f48fb1'
-    },
-    {
-        id: 4,
-        nome: 'Thiago Barbosa',
-        profissao: 'Secretário',
-        vinculo: 'Ativo',
-        entrada: '06/02/2024',
-        saida: '--------',
-        contato: 'thiagobarbosa@gmail.com',
-        cor: '#fff59d'
-    },
-    {
-        id: 5,
-        nome: 'Ana Silva',
-        profissao: 'Gerente',
-        vinculo: 'Inativo',
-        entrada: '15/01/2022',
-        saida: '30/11/2024',
-        contato: 'anasilva@gmail.com',
-        cor: '#ce93d8'
-    },
-    {
-        id: 6,
-        nome: 'Carlos Mendes',
-        profissao: 'Veterinário',
-        vinculo: 'Ativo',
-        entrada: '12/05/2023',
-        saida: '--------',
-        contato: 'carlosmendes@gmail.com',
-        cor: '#ffab91'
     }
 ];
 
@@ -132,35 +102,9 @@ function renderizarFuncionarios(dados) {
             </td>
         `;
 
-
         tbody.appendChild(row);
     });
 }
-
-
-function getProfissaoClass(profissao) {
-    const classMap = {
-        'Gerente': 'profissao-gerente',
-        'Veterinário': 'profissao-veterinario',
-        'Administrador': 'profissao-administrador',
-        'Secretário': 'profissao-secretario'
-    };
-    return classMap[profissao] || '';
-}
-
-function getVinculoClass(vinculo) {
-    return vinculo === 'Ativo' ? 'vinculo-ativo' : 'vinculo-inativo';
-}
-
-function getIniciais(nome) {
-    return nome
-        .split(' ')
-        .map(palavra => palavra[0])
-        .join('')
-        .toUpperCase()
-        .slice(0, 2);
-}
-
 
 function inicializarEventos() {
 
@@ -181,7 +125,6 @@ function inicializarEventos() {
 
     carregarDadosUsuario();
 
-
     const statusTabs = document.querySelectorAll('.status-tab');
     statusTabs.forEach(tab => {
         tab.addEventListener('click', function () {
@@ -195,12 +138,6 @@ function inicializarEventos() {
     const searchInput = document.getElementById('searchInput');
     searchInput.addEventListener('input', function () {
         buscarFuncionarios(this.value);
-    });
-
-
-    const btnNovoFuncionario = document.querySelector('.btn-novo-funcionario');
-    btnNovoFuncionario.addEventListener('click', function () {
-        novoFuncionario();
     });
 
 
@@ -226,7 +163,6 @@ function inicializarEventos() {
     }
 }
 
-
 function filtrarPorStatus(status) {
     if (status === 'all') {
         renderizarFuncionarios(funcionariosData);
@@ -241,49 +177,9 @@ function filtrarPorStatus(status) {
     }
 }
 
-function buscarFuncionarios(termo) {
-    const termoLower = termo.toLowerCase();
-    const filtrados = funcionariosData.filter(f => {
-        return f.nome.toLowerCase().includes(termoLower) ||
-            f.profissao.toLowerCase().includes(termoLower) ||
-            f.vinculo.toLowerCase().includes(termoLower) ||
-            f.contato.toLowerCase().includes(termoLower);
-    });
-    renderizarFuncionarios(filtrados);
-}
-
-function abrirFiltros() {
-    alert('Função de filtros avançados em desenvolvimento!');
-}
-
-function abrirOrdenacao() {
-    alert('Função de ordenação em desenvolvimento!');
-}
 
 
-function novoFuncionario() {
-    alert('Abrir formulário para novo funcionário em desenvolvimento!');
-}
-
-function editarFuncionario(id) {
-    const funcionario = funcionariosData.find(f => f.id === id);
-    if (funcionario) {
-        alert(`Editar funcionário: ${funcionario.nome}`);
-    }
-}
-
-function deletarFuncionario(id) {
-    if (confirm('Tem certeza que deseja deletar este funcionário?')) {
-        const index = funcionariosData.findIndex(f => f.id === id);
-        if (index > -1) {
-            funcionariosData.splice(index, 1);
-            renderizarFuncionarios(funcionariosData);
-            alert('Funcionário deletado com sucesso!');
-        }
-    }
-}
-
-
+// Mobile scripts
 const mobileBtn = document.getElementById('mobile_btn');
 const mobileMenu = document.getElementById('mobile_menu');
 
@@ -292,7 +188,6 @@ if (mobileBtn) {
         mobileMenu.classList.toggle('active');
     });
 }
-
 
 document.querySelectorAll('#mobile_nav_list a').forEach(link => {
     link.addEventListener('click', () => {

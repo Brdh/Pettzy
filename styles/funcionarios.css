@@ -378,6 +378,10 @@ header {
     color: #f57c00;
 }
 
+.profissao-default {
+    background-color: #f5f5f5;
+    color: #616161;
+}
 
 .vinculo-badge {
     display: inline-block;
@@ -533,6 +537,232 @@ header {
     background-color: #ffebee;
 }
 
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.3s ease;
+}
+
+.modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: var(--color-neutral-0);
+    border-radius: 16px;
+    max-width: 700px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.2);
+    animation: slideUp 0.3s ease;
+    border-top: 6px solid #999;
+    /* Cor padrão, será sobrescrita se tiver status */
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px;
+    border-bottom: 1px solid #eee;
+    position: sticky;
+    top: 0;
+    background-color: var(--color-neutral-0);
+    z-index: 10;
+}
+
+.modal-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-neutral-1);
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #999;
+    transition: color 0.3s ease;
+}
+
+.modal-close:hover {
+    color: var(--color-neutral-1);
+}
+
+.modal-body {
+    padding: 24px;
+}
+
+.modal-section {
+    margin-bottom: 24px;
+}
+
+.modal-section-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-neutral-1);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.modal-section-title i {
+    color: rgb(128, 126, 126);
+}
+
+.modal-actions {
+    display: flex;
+    gap: 12px;
+    padding: 24px;
+    border-top: 1px solid #eee;
+    background-color: #f9f9f9;
+    border-radius: 0 0 16px 16px;
+}
+
+.modal-btn {
+    flex: 1;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    /* Adicionado para ícones */
+}
+
+.modal-btn-primary {
+    background-color: var(--color-primary-5);
+    color: var(--color-neutral-0);
+    border: 2px solid var(--color-primary-5);
+    /* Adicionado para consistência */
+}
+
+.modal-btn-primary:hover {
+    background-color: var(--color-primary-2);
+}
+
+.modal-btn-secondary {
+    background-color: #e0e0e0;
+    color: var(--color-neutral-1);
+    border: 2px solid #e0e0e0;
+    /* Adicionado para consistência */
+}
+
+.modal-btn-secondary:hover {
+    background-color: #d0d0d0;
+}
+
+/* ---------------------------------------------------- */
+/* --- ESTILO MODAL DE ADIÇÃO DE FUNCIONARIOS (AJUSTES FINOS) --- */
+/* ---------------------------------------------------- */
+
+/* 1. Borda superior do modal de adição na cor primária */
+#addFuncionarioModal .modal-content {
+    border-top-color: var(--color-primary-5);
+    border-top-style: solid;
+}
+
+/* 2. Estilização dos campos do formulário (Inputs e Selects modernos) */
+#addFuncionarioModal .form-group {
+    margin-bottom: 20px;
+}
+
+#addFuncionarioModal .form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: var(--color-neutral-1);
+    font-size: 0.95rem;
+}
+
+#addFuncionarioModal input[type="text"],
+#addFuncionarioModal input[type="number"],
+#addFuncionarioModal input[type="email"],
+#addFuncionarioModal select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    /* Borda padrão mais clara */
+    border-radius: 8px;
+    /* Arredondamento suave */
+    font-size: 1rem;
+    color: var(--color-neutral-1);
+    box-sizing: border-box;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    background-color: var(--color-neutral-0);
+}
+
+/* Estado de foco moderno para inputs/selects */
+#addFuncionarioModal input:focus,
+#addFuncionarioModal select:focus {
+    border-color: var(--color-primary-5);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(46, 95, 158, 0.15);
+}
+
+/* 3. Estilização dos Botões de Ação do Modal de Adição */
+#addFuncionarioModal .modal-actions {
+    /* Alinha os botões à direita por padrão em telas grandes */
+    justify-content: flex-end;
+    gap: 15px;
+    flex-direction: row;
+
+    padding: 24px;
+    border-top: 1px solid #eee;
+    background-color: var(--color-neutral-0);
+    border-radius: 0 0 16px 16px;
+}
+
+/* Botão Salvar Funcionario (Primário) - Mantém o estilo sólido */
+#addFuncionarioModal .modal-btn-primary {
+    background-color: var(--color-primary-5);
+    color: var(--color-neutral-0);
+    border: 2px solid var(--color-primary-5);
+    flex: 0 1 auto;
+    /* Desfaz o 'flex: 1' herdado do .modal-btn genérico */
+}
+
+#addFuncionarioModal .modal-btn-primary:hover {
+    background-color: var(--color-primary-6);
+    border-color: var(--color-primary-6);
+}
+
+/* Botão Cancelar (Secundário - Estilo Outline) */
+#addFuncionarioModal .modal-btn-secondary {
+    background-color: var(--color-neutral-0);
+    /* Fundo branco */
+    color: var(--color-primary-5);
+    /* Texto na cor primária */
+    border: 2px solid var(--color-primary-5);
+    /* Borda na cor primária */
+    flex: 0 1 auto;
+    /* Desfaz o 'flex: 1' herdado */
+}
+
+#addFuncionarioModal .modal-btn-secondary:hover {
+    /* Inverte as cores no hover */
+    background-color: var(--color-primary-5);
+    color: var(--color-neutral-0);
+    border-color: var(--color-primary-5);
+}
+
 /* ===== MEDIA QUERIES (Ajustes de Responsividade) ===== */
 
 @media screen and (max-width: 1024px) {
@@ -610,7 +840,8 @@ header {
     .funcionarios-table td {
         border: none;
         position: relative;
-        padding-left: 50%; /* Espaço para o label */
+        padding-left: 50%;
+        /* Espaço para o label */
         text-align: right;
         padding-top: 8px;
         padding-bottom: 8px;
@@ -633,19 +864,39 @@ header {
 
     /* Mapeamento dos labels para cada coluna (td) */
     .funcionarios-table td:nth-of-type(1) {
-        padding-left: 15px; /* Nome já tem avatar, não precisa de label */
+        padding-left: 15px;
+        /* Nome já tem avatar, não precisa de label */
         text-align: left;
         border-bottom: 1px solid #f0f0f0;
         padding-bottom: 15px;
         margin-bottom: 10px;
     }
-    .funcionarios-table td:nth-of-type(1)::before { content: none; } /* Remove label do Nome */
 
-    .funcionarios-table td:nth-of-type(2)::before { content: "Profissão:"; }
-    .funcionarios-table td:nth-of-type(3)::before { content: "Vínculo:"; }
-    .funcionarios-table td:nth-of-type(4)::before { content: "Entrada:"; }
-    .funcionarios-table td:nth-of-type(5)::before { content: "Saída:"; }
-    .funcionarios-table td:nth-of-type(6)::before { content: "Contato:"; }
+    .funcionarios-table td:nth-of-type(1)::before {
+        content: none;
+    }
+
+    /* Remove label do Nome */
+
+    .funcionarios-table td:nth-of-type(2)::before {
+        content: "Profissão:";
+    }
+
+    .funcionarios-table td:nth-of-type(3)::before {
+        content: "Vínculo:";
+    }
+
+    .funcionarios-table td:nth-of-type(4)::before {
+        content: "Entrada:";
+    }
+
+    .funcionarios-table td:nth-of-type(5)::before {
+        content: "Saída:";
+    }
+
+    .funcionarios-table td:nth-of-type(6)::before {
+        content: "Contato:";
+    }
 
     /* Ajuste especial para a célula de Ações */
     .funcionarios-table td:nth-of-type(7) {
@@ -653,7 +904,12 @@ header {
         padding-left: 15px;
         padding-top: 15px;
     }
-    .funcionarios-table td:nth-of-type(7)::before { content: none; } /* Remove label de Ações */
+
+    .funcionarios-table td:nth-of-type(7)::before {
+        content: none;
+    }
+
+    /* Remove label de Ações */
     .funcionarios-table td:nth-of-type(7) .acoes-cell {
         justify-content: center;
         gap: 15px;
@@ -674,6 +930,7 @@ header {
     .funcionarios-table td {
         padding-left: 45%;
     }
+
     .funcionarios-table td::before {
         width: 40%;
     }

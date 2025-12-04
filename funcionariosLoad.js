@@ -1,5 +1,10 @@
 // VARIÁVEIS GLOBAIS
 let funcionarios = [];
+const addFuncionarioModal = document.getElementById('addFuncionarioModal');
+const addFuncionarioForm = document.getElementById('addFuncionarioForm');
+const novoFuncionarioBtn = document.querySelector('.btn-novo-funcionario');
+const closeAddModalBtn = document.getElementById('closeAddModalBtn');
+const cancelAddModalBtn = document.getElementById('cancelAddModalBtn');
 
 // Carrega funcionarios do banco
 async function carregarFuncionarios() {
@@ -126,7 +131,7 @@ function getProfissaoClass(profissao) {
         "Administrador": "profissao-administrador",
         "Secretário": "profissao-secretario"
     };
-    return classMap[profissao] || "";
+    return classMap[profissao] || "profissao-default";
 }
 
 function getVinculoClass(vinculo) {
@@ -174,18 +179,69 @@ function filtrarPorStatus(status) {
     renderizarTabela(filtrados);
 }
 
+// Função para abrir Modal
+function openAddModal() {
 
-// Deleta funcionário do Banco de Dados
-async function deletarFuncionario(id) {
-    if (!confirm("Tem certeza que deseja deletar?")) return;
+    if (addFuncionarioModal) {
+        addFuncionarioModal.classList.add('active');
+    }
 
-    await fetch(`http://localhost:3000/api/employees/${id}`, {
-        method: "DELETE"
-    });
-
-    carregarFuncionarios();
 }
 
+// Função para fechar Modal
+function closeAddModal() {
+    if (addFuncionarioModal) {
+        addFuncionarioModal.classList.remove('active');
+    }
+    if (addFuncionarioForm) {
+        addFuncionarioForm.reset();
+    }
+}
+
+// Cria novo funcionário no Banco de Dados
+async function handleAddFuncionarioSubmit(event) {
+    event.preventDefault();
+
+    const formData = new FormData(addFuncionarioForm);
+    const funcionarioData = Object.fromEntries(formData.entries());
+    const token = localStorage.getItem('token');
+
+    // Validação básica do email
+    if (!funcionarioData.email || !funcionarioData.email.includes('@')) {
+        alert("Por favor, insira um email válido.");
+        return;
+    }
+
+    // Se a cor não for definida, usa um valor padrão
+    if (!funcionarioData.cor) {
+        funcionarioData.cor = "#90caf9";
+    }
+
+    try {
+        const response = await fetch("http://localhost:3000/api/employees", {
+            method: 'POST', // Método para CRIAR novo recurso
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify(funcionarioData)
+        });
+
+        if (!response.ok) {
+            // Tenta obter a mensagem de erro do backend
+            const errorData = await response.json();
+            throw new Error(errorData.message || "Erro desconhecido ao adicionar funcionário.");
+        }
+
+        alert("Funcionário adicionado com sucesso!");
+        closeAddModal();
+        await carregarFuncionarios();
+
+    } catch (error) {
+        console.error("Falha ao adicionar funcionário:", error);
+        alert(`Erro: ${error.message}`);
+    }
+}
 
 // Edita funcionário do Banco de Dados
 function editarFuncionario(id) {
@@ -199,6 +255,82 @@ function editarFuncionario(id) {
     }
 }
 
+// Deleta funcionário do Banco de Dados
+async function deletarFuncionario(id) {
+    if (!confirm("Tem certeza que deseja deletar?")) return;
 
-// Execução do código
-carregarFuncionarios();
+    // --- OBTENHA O TOKEN ---
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+        alert("Sua sessão expirou. Faça login novamente.");
+        window.location.href = 'login.html';
+        return;
+    }
+
+    try {
+        const response = await fetch(`http://localhost:3000/api/employees/${id}`, {
+            method: "DELETE",
+            headers: {
+                // --- AÇÃO CRÍTICA: ENVIE O TOKEN JWT ---
+                'Authorization': `Bearer ${token}`
+            }
+        });
+
+        if (response.status === 401) {
+            console.error("Token inválido ou expirado.");
+            localStorage.removeItem('token');
+            alert("Sessão expirada. Faça login novamente.");
+            window.location.href = 'login.html';
+            return;
+        }
+
+        if (!response.ok) {
+            // Tenta obter a mensagem de erro do backend (se houver)
+            const errorText = await response.text();
+            throw new Error(`Falha ao deletar: ${response.status} - ${errorText}`);
+        }
+
+        // 3. Recarrega a lista para atualizar a tabela
+        await carregarFuncionarios();
+        alert("Funcionário deletado com sucesso!");
+
+    } catch (error) {
+        console.error("Erro ao deletar funcionário:", error);
+        alert(`Erro ao deletar: ${error.message}`);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Ligar o botão "Novo Funcionário" para abrir o modal
+    if (novoFuncionarioBtn) {
+        novoFuncionarioBtn.addEventListener('click', openAddModal);
+    }
+
+    // 2. Ligar os botões de fechar (X e Cancelar)
+    if (closeAddModalBtn) {
+        closeAddModalBtn.addEventListener('click', closeAddModal);
+    }
+    if (cancelAddModalBtn) {
+        cancelAddModalBtn.addEventListener('click', closeAddModal);
+    }
+
+    // Fechar modal ao clicar fora
+    if (addFuncionarioModal) {
+        addFuncionarioModal.addEventListener('click', (e) => {
+            if (e.target.id === 'addFuncionarioModal') {
+                closeAddModal();
+            }
+        });
+    }
+
+    // 3. Ligar o formulário para a função de envio POST
+    if (addFuncionarioForm) {
+        addFuncionarioForm.addEventListener('submit', handleAddFuncionarioSubmit);
+    }
+
+    // CHAME A FUNÇÃO PRINCIPAL AQUI, DEPOIS QUE TUDO FOI CONFIGURADO
+    carregarFuncionarios();
+});
+
+
