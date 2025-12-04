@@ -163,7 +163,7 @@ function closeModal() {
 }
 
 
-// Função para abrir o modal de formulário preenchido
+// Função para abrir o modal de formulário para EDIÇÃO
 function abrirModalEdicao(pet) {
     const formModal = document.getElementById('formModal');
 
@@ -175,36 +175,43 @@ function abrirModalEdicao(pet) {
     document.getElementById('editName').value = pet.name || pet.nome || '';
     document.getElementById('editImage').value = pet.image || pet.foto || '';
     document.getElementById('editType').value = pet.type || pet.especie || '';
-    // Remove texto como " anos" quando for uma string (deixa só o número)
-    const rawAge = pet.age || pet.idade || '';
-    let ageForInput = '';
-    if (rawAge !== null && rawAge !== undefined) {
-        if (typeof rawAge === 'number') {
-            ageForInput = String(rawAge);
-        } else if (typeof rawAge === 'string') {
-            const match = rawAge.match(/(\d+)/);
-            ageForInput = match ? match[0] : '';
-        }
-    }
-    document.getElementById('editAge').value = ageForInput;
-
-    const rawPeso = pet.peso || pet.weight || '';
-    let pesoForInput = '';
-    if (rawPeso !== null && rawPeso !== undefined) {
-        if (typeof rawPeso === 'number') {
-            pesoForInput = String(rawPeso);
-        } else if (typeof rawPeso === 'string') {
-            const match = rawPeso.match(/(\d+)/);
-            pesoForInput = match ? match[0] : '';
-        }
-    }
-    document.getElementById('editPeso').value = pesoForInput;
-
-    // Para o Select, precisamos garantir que o valor bata com as options (green, yellow, red)
     document.getElementById('editStatus').value = pet.status;
+    
+    // Novos campos unificados
+    document.getElementById('editCompotamento').value = pet.comportamento || '';
+    document.getElementById('editAge').value = pet.age || pet.idade || '';
+    document.getElementById('editPeso').value = pet.weight || pet.peso || '';
+    document.getElementById('editRaca').value = pet.breed || pet.raca || '';
+    document.getElementById('editUltimaConsulta').value = pet.lastCheckup || pet.ultimaConsulta || '';
+    document.getElementById('editMedicacoes').value = pet.medications || pet.medicacoes || '';
+    document.getElementById('editOwnerName').value = pet.tutor?.name || pet.Owner || '';
+    document.getElementById('editOwnerTelefone').value = pet.tutor?.phone || pet.telefone || '';
 
     // Muda o título
     document.getElementById('modalTitle').innerText = "Editar Pet";
+    
+    // Exibe o botão de exclusão e muda o texto do botão de salvar
+    document.getElementById('deletePetBtn').style.display = 'inline-flex';
+    document.querySelector('#editPetForm button[type="submit"]').innerHTML = '<i class="fa-solid fa-save"></i> Salvar Alterações';
+
+    formModal.classList.add('active');
+}
+
+// Função para abrir o modal de formulário para ADIÇÃO
+function abrirModalAdicao() {
+    const formModal = document.getElementById('formModal');
+    const form = document.getElementById('editPetForm');
+    
+    // Limpa o formulário
+    form.reset();
+    document.getElementById('editPetId').value = ''; // Garante que o ID está vazio para POST
+
+    // Muda o título
+    document.getElementById('modalTitle').innerText = "Adicionar Novo Pet";
+    
+    // Esconde o botão de exclusão e muda o texto do botão de salvar
+    document.getElementById('deletePetBtn').style.display = 'none';
+    document.querySelector('#editPetForm button[type="submit"]').innerHTML = '<i class="fa-solid fa-plus"></i> Adicionar Pet';
 
     formModal.classList.add('active');
 }
@@ -213,67 +220,81 @@ function closeFormModal() {
     document.getElementById('formModal').classList.remove('active');
 }
 
-// --- Listener de Envio do Formulário (PUT) ---
-// CORREÇÃO: O ID do form no HTML é 'editPetForm'
+// --- Listener de Envio do Formulário (POST/PUT) ---
 document.getElementById('editPetForm').addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const id = document.getElementById('editPetId').value;
+    const isEditing = id !== ''; // Se o ID estiver preenchido, é edição (PUT)
+    const method = isEditing ? 'PUT' : 'POST';
+    const url = isEditing ? `http://localhost:3000/api/pets/${id}` : 'http://localhost:3000/api/pets';
     const token = localStorage.getItem('token');
 
-    // Cria o objeto com os dados corrigidos
-    // Build payload and ensure `idade` (age) is sent as a Number or omitted if empty
+    // Coleta todos os dados do formulário (incluindo os novos campos unificados)
     const fotoVal = document.getElementById('editImage').value;
     const nomeVal = document.getElementById('editName').value;
     const especieVal = document.getElementById('editType').value;
     const statusVal = document.getElementById('editStatus').value || "";
+    const comportamentoVal = document.getElementById('editCompotamento').value || "";
     const idadeRaw = document.getElementById('editAge').value.trim();
     const pesoRaw = document.getElementById('editPeso').value.trim();
+    const racaVal = document.getElementById('editRaca').value || "";
+    const ultimaConsultaVal = document.getElementById('editUltimaConsulta').value || "";
+    const medicacoesVal = document.getElementById('editMedicacoes').value || "";
+    const ownerNameVal = document.getElementById('editOwnerName').value || "";
+    const ownerTelefoneVal = document.getElementById('editOwnerTelefone').value || "";
 
 
-    const dadosAtualizados = {
+    const dados = {
         nome: nomeVal,
         foto: fotoVal,
         especie: especieVal,
-        status: statusVal
+        status: statusVal,
+        comportamento: comportamentoVal,
+        raca: racaVal,
+        ultimaConsulta: ultimaConsultaVal,
+        medicacoes: medicacoesVal,
+        Owner: ownerNameVal,
+        telefone: ownerTelefoneVal
     };
 
+    // Converte idade e peso para número se não estiverem vazios
     if (idadeRaw !== '') {
         const idadeNumber = Number(idadeRaw);
         if (!Number.isNaN(idadeNumber)) {
-            dadosAtualizados.idade = idadeNumber;
+            dados.idade = idadeNumber;
         }
     }
 
     if (pesoRaw !== '') {
         const pesoNumber = Number(pesoRaw);
         if (!Number.isNaN(pesoNumber)) {
-            dadosAtualizados.peso = pesoNumber;
+            dados.peso = pesoNumber;
         }
     }
 
     try {
-        const response = await fetch(`http://localhost:3000/api/pets/${id}`, {
-            method: 'PUT',
+        const response = await fetch(url, {
+            method: method,
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
             },
-            body: JSON.stringify(dadosAtualizados)
+            body: JSON.stringify(dados)
         });
 
         if (response.ok) {
-            alert('Pet atualizado com sucesso!');
+            const acao = isEditing ? 'atualizado' : 'adicionado';
+            alert(`Pet ${acao} com sucesso!`);
             closeFormModal();
-            // Verifica se a função carregarPets existe (geralmente está no petsLoad.js)
             if (typeof carregarPets === 'function') {
                 carregarPets();
             } else {
-                location.reload(); // Recarrega a página se não houver função de recarregar
+                location.reload();
             }
         } else {
             const erro = await response.json();
-            alert('Erro ao atualizar: ' + (erro.message || erro.error));
+            alert(`Erro ao ${isEditing ? 'atualizar' : 'adicionar'}: ` + (erro.message || erro.error));
         }
 
     } catch (error) {
@@ -284,6 +305,43 @@ document.getElementById('editPetForm').addEventListener('submit', async (e) => {
 
 // Listener do botão Cancelar do formulário
 document.getElementById('cancelEditModalBtn').addEventListener('click', closeFormModal);
+
+// --- Listener do Botão de Excluir (DELETE) ---
+document.getElementById('deletePetBtn').addEventListener('click', async () => {
+    const id = document.getElementById('editPetId').value;
+    const petName = document.getElementById('editName').value;
+    const token = localStorage.getItem('token');
+
+    if (!confirm(`Tem certeza que deseja excluir o pet ${petName} (ID: #${id})? Esta ação é irreversível.`)) {
+        return;
+    }
+
+    try {
+        const response = await fetch(`http://localhost:3000/api/pets/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+
+        if (response.ok) {
+            alert(`Pet ${petName} excluído com sucesso!`);
+            closeFormModal();
+            if (typeof carregarPets === 'function') {
+                carregarPets();
+            } else {
+                location.reload();
+            }
+        } else {
+            const erro = await response.json();
+            alert('Erro ao excluir: ' + (erro.message || erro.error));
+        }
+
+    } catch (error) {
+        console.error('Erro:', error);
+        alert('Erro de conexão com o servidor');
+    }
+});
 
 document.getElementById('closeModalBtn').addEventListener('click', closeModal);
 document.getElementById('closeModalBtnFooter').addEventListener('click', closeModal);
@@ -363,9 +421,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     const addPetBtn = document.getElementById('addPetBtn');
-    addPetBtn.addEventListener('click', () => {
-        alert('Funcionalidade de adicionar novo pet em desenvolvimento!');
-    });
+    addPetBtn.addEventListener('click', abrirModalAdicao);
 
 
 });
@@ -386,5 +442,4 @@ document.querySelectorAll('#mobile_nav_list a').forEach(link => {
         mobileMenu.classList.remove('active');
     });
 });
-
 

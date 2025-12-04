@@ -12,6 +12,8 @@
     />
     <link rel="stylesheet" href="styles/pets.css" />
     <title>Pets - PETTZY</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
   </head>
   <body>
     <header>
@@ -80,7 +82,7 @@
             />
           </div>
 
-          <button class="btn-novo-pet">
+          <button class="btn-novo-pet" id="addPetBtn">
             <i class="fa-solid fa-plus"></i>
             Novo Pet
           </button>
@@ -244,11 +246,7 @@
 
         <div class="modal-body">
           <form id="addPetForm">
-            <div class="form-group">
-              <label for="petName">Nome:</label>
-              <input type="text" id="petName" name="nome" required />
-            </div>
-
+            <!-- Dados principais -->
             <div class="form-group">
               <label for="petImage">URL da Imagem:</label>
               <input
@@ -260,13 +258,13 @@
             </div>
 
             <div class="form-group">
-              <label for="petSpecies">Espécie:</label>
-              <input type="text" id="petSpecies" name="especie" required />
+              <label for="petName">Nome:</label>
+              <input type="text" id="petName" name="nome" required />
             </div>
 
             <div class="form-group">
-              <label for="petSpecies">Idade:</label>
-              <input type="number" id="petIdade" name="idade" />
+              <label for="petSpecies">Espécie:</label>
+              <input type="text" id="petSpecies" name="especie" required />
             </div>
 
             <div class="form-group">
@@ -276,6 +274,53 @@
                 <option value="yellow">Atenção</option>
                 <option value="red">Urgente</option>
               </select>
+            </div>
+
+            <!-- Comportamento -->
+            <div class="form-group">
+              <label for="petComportamento">Comportamento:</label>
+              <input type="text" id="petComportamento" name="comportamento" />
+            </div>
+
+            <!-- Informações -->
+            <div class="form-group">
+             <label for="petSpecies">Idade:</label>
+              <input type="text" id="petIdade" name="idade" />          </div>
+
+            <div class="form-group">
+              <label for="petPeso">Peso:</label>
+              <input type="text" id="petPeso" name="peso" />
+            </div>
+
+            <div class="form-group">
+              <label for="petRaca">Raça:</label>
+              <input type="text" id="petRaca" name="raca" />
+            </div>
+
+            <!-- Atenção à Saúde -->
+            <div class="form-group">
+              <label for="petUltimaConsulta">Última consulta:</label>
+              <input
+                type="text"
+                id="petUltimaConsulta"
+                name="ultimaConsulta"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="petMedicacoes">Medicações:</label>
+              <input type="text" id="petMedicacoes" name="medicacoes" />
+            </div>
+
+            <!-- Tutor Responsável -->
+            <div class="form-group">
+              <label for="petOwnerName">Tutor:</label>
+              <input type="text" id="petOwnerName" name="Owner" />
+            </div>
+
+            <div class="form-group">
+              <label for="petOwnerTelefone">Telefone:</label>
+              <input type="text" id="petOwnerTelefone" name="telefone" />
             </div>
 
             <div class="modal-actions">
@@ -389,6 +434,9 @@
 
             <!-- Ações da modal -->
             <div class="modal-actions">
+              <button type="button" class="modal-btn modal-btn-danger" id="deletePetBtn">
+                <i class="fa-solid fa-trash"></i> Excluir Pet
+              </button>
               <button type="submit" class="modal-btn modal-btn-primary">
                 <i class="fa-solid fa-save"></i> Salvar Alterações
               </button>
@@ -405,7 +453,38 @@
       </div>
     </div>
 
-    <script src="pets.js"></script>
     <script src="petsLoad.js"></script>
+    <script src="pets.js"></script>
+
+    <script>
+      $(document).ready(function () {
+        // Máscara para Telefone (Celular com 9º dígito e DDD)
+        var SPMaskBehavior = function (val) {
+          return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
+        },
+        spOptions = {
+          onKeyPress: function(val, e, field, options) {
+              field.mask(SPMaskBehavior.apply({}, arguments), options);
+            }
+        };
+
+        // Aplica a máscara de telefone nos campos de adicionar e editar
+        $('#petOwnerTelefone').mask(SPMaskBehavior, spOptions);
+        $('#editOwnerTelefone').mask(SPMaskBehavior, spOptions);
+
+        // Máscara para Data (Última Consulta)
+        $('#petUltimaConsulta').mask('00/00/0000');
+        $('#editUltimaConsulta').mask('00/00/0000');
+
+        // Máscara para Peso (Ex: 123,45)
+        // Usando a máscara de dinheiro com separador de milhar vazio e decimal como vírgula
+        $('#petPeso').mask('000,00', {reverse: true});
+        $('#editPeso').mask('000,00', {reverse: true});
+
+        // Máscara para Idade (Apenas números)
+        $('#petIdade').mask('00');
+        $('#editAge').mask('00');
+      });
+    </script>
   </body>
 </html>
