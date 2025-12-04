@@ -126,7 +126,6 @@ header {
 }
 
 
-
 #funcionarios-section {
     padding: 40px 8%;
     background-color: var(--color-primary-1);
@@ -152,7 +151,6 @@ header {
     color: #666;
     font-size: 0.95rem;
 }
-
 
 
 .funcionarios-controls {
@@ -970,4 +968,173 @@ header {
         list-style: none;
         text-align: center;
     }
+}
+
+/* ============================================
+   ESTILOS DE VALIDAÇÃO DE CAMPOS (ADICIONADOS)
+   ============================================ */
+
+/* Campo com valor válido */
+.input-success {
+  border: 2px solid #4caf50 !important;
+  background-color: #f1f8f4 !important;
+  transition: all 0.3s ease;
+}
+
+.input-success:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+}
+
+/* Campo com valor inválido */
+.input-error {
+  border: 2px solid #f44336 !important;
+  background-color: #fff5f5 !important;
+  transition: all 0.3s ease;
+}
+
+.input-error:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(244, 67, 54, 0.2);
+}
+
+/* Animação de shake para campos inválidos */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+  20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+.input-error {
+  animation: shake 0.5s;
+}
+
+/* Placeholder personalizado */
+input[type="text"]::placeholder,
+input[type="email"]::placeholder {
+  color: #999;
+  font-style: italic;
+  opacity: 0.7;
+}
+
+input[type="text"]:focus::placeholder,
+input[type="email"]:focus::placeholder {
+  opacity: 0.5;
+}
+
+/* Ícones de validação (opcional) */
+.form-group {
+  position: relative;
+}
+
+.input-success::after {
+  content: '✓';
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #4caf50;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+/* Mensagem de erro (opcional) */
+.error-message {
+  color: #f44336;
+  font-size: 12px;
+  margin-top: 5px;
+  display: none;
+}
+
+.input-error ~ .error-message {
+  display: block;
+}
+
+/* Estilos para o modal de edição */
+#editFuncionarioModal .modal-content {
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Melhorias visuais para os campos de data */
+input[type="text"][maxlength="10"] {
+  font-family: 'Courier New', monospace;
+  letter-spacing: 1px;
+}
+
+/* Estilo para o botão de editar na tabela */
+.btn-edit-funcionario {
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 14px;
+}
+
+.btn-edit-funcionario:hover {
+  background-color: #1976d2;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(33, 150, 243, 0.3);
+}
+
+.btn-edit-funcionario:active {
+  transform: translateY(0);
+}
+
+.btn-edit-funcionario i {
+  margin-right: 5px;
+}
+
+/* Estilo para o botão de deletar na tabela */
+.btn-delete-funcionario {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 14px;
+  margin-left: 5px;
+}
+
+.btn-delete-funcionario:hover {
+  background-color: #d32f2f;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(244, 67, 54, 0.3);
+}
+
+.btn-delete-funcionario:active {
+  transform: translateY(0);
+}
+
+.btn-delete-funcionario i {
+  margin-right: 5px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .btn-edit-funcionario,
+  .btn-delete-funcionario {
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+  
+  .btn-edit-funcionario i,
+  .btn-delete-funcionario i {
+    margin-right: 3px;
+  }
 }

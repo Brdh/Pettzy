@@ -11,6 +11,7 @@
       referrerpolicy="no-referrer"
     />
 
+    <!-- O CSS do usuário foi atualizado para incluir os estilos de validação -->
     <link rel="stylesheet" href="styles/funcionarios.css" />
     <title>Funcionários - PETTZY</title>
   </head>
@@ -137,13 +138,35 @@
             </div>
 
             <div class="form-group">
-              <label for="funcionarioTelefone">Telefone:</label>
-              <input type="text" id="funcionarioTelefone" name="telefone" />
+              <label for="funcionarioEntrada">Entrada:</label>
+              <input 
+                type="text" 
+                id="funcionarioEntrada" 
+                name="Entrada" 
+                placeholder="DD/MM/AAAA"
+                maxlength="10"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="funcionarioSaida">Saída:</label>
+              <input 
+                type="text" 
+                id="funcionarioSaida" 
+                name="Saida" 
+                placeholder="DD/MM/AAAA"
+                maxlength="10"
+              />
             </div>
 
             <div class="form-group">
               <label for="funcionarioEmail">Email:</label>
-              <input type="email" id="funcionarioEmail" name="email" />
+              <input 
+                type="email" 
+                id="funcionarioEmail" 
+                name="email" 
+                placeholder="exemplo@email.com"
+              />
             </div>
 
             <div class="form-group">
@@ -182,8 +205,103 @@
       </div>
     </div>
 
+    <!-- Modal para editar funcionário (NOVO) -->
+    <div id="editFuncionarioModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title">Editar Funcionário</h2>
+          <button class="modal-close" id="closeEditModalBtn">
+            <i class="fa-solid fa-times"></i>
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <form id="editFuncionarioForm">
+            <input type="hidden" id="editFuncionarioId" />
+            
+            <div class="form-group">
+              <label for="editFuncionarioName">Nome:</label>
+              <input type="text" id="editFuncionarioName" name="nome" required />
+            </div>
+
+            <div class="form-group">
+              <label for="editFuncionarioCargo">Profissão:</label>
+              <input type="text" id="editFuncionarioCargo" name="cargo" required />
+            </div>
+
+            <div class="form-group">
+              <label for="editFuncionarioEntrada">Entrada:</label>
+              <input 
+                type="text" 
+                id="editFuncionarioEntrada" 
+                name="Entrada" 
+                placeholder="DD/MM/AAAA"
+                maxlength="10"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="editFuncionarioSaida">Saída:</label>
+              <input 
+                type="text" 
+                id="editFuncionarioSaida" 
+                name="Saida" 
+                placeholder="DD/MM/AAAA"
+                maxlength="10"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="editFuncionarioEmail">Email:</label>
+              <input 
+                type="email" 
+                id="editFuncionarioEmail" 
+                name="email" 
+                placeholder="exemplo@email.com"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="editFuncionarioVinculo">Vínculo:</label>
+              <select id="editFuncionarioVinculo" name="vinculo" required>
+                <option value="Ativo">Ativo</option>
+                <option value="Inativo">Inativo</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="editFuncionarioCor">Funcionário cor:</label>
+              <input
+                type="color"
+                id="editFuncionarioCor"
+                name="cor"
+                value="#90caf9"
+              />
+            </div>
+
+            <!-- Ações da modal -->
+            <div class="modal-actions">
+              <button type="submit" class="modal-btn modal-btn-primary">
+                <i class="fa-solid fa-save"></i> Atualizar Funcionário
+              </button>
+              <button
+                type="button"
+                class="modal-btn modal-btn-secondary"
+                id="cancelEditModalBtn"
+              >
+                Cancelar
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="funcionarios.js"></script>
     <script src="funcionariosLoad.js"></script>
+
+
   </body>
 </html>
