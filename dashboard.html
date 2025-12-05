@@ -74,98 +74,18 @@
       </p>
 
       <div class="grid">
+        <!-- Sessão agenda -->
         <div class="dashboard-section">
-          <div class="section-title">
+          <div class="section-title" id="section-title-agenda">
             <span>Agenda</span>
-            <select
-              style="
-                border: 1px solid #ddd;
-                padding: 5px 10px;
-                border-radius: 6px;
-                font-size: 12px;
-              "
-            >
-              <option>Semanal</option>
-            </select>
+            <div class="day-tabs">
+              <button class="day-tab active" id="today-date-tab">
+                Hoje/Dia
+              </button>
+            </div>
           </div>
 
-          <div class="day-tabs">
-            <button class="day-tab">Hoje/Dia</button>
-            <button class="day-tab">Segunda-Feira</button>
-            <button class="day-tab active">Terça-Feira</button>
-            <button class="day-tab">Quarta-Feira</button>
-            <button class="day-tab">Quinta-Feira</button>
-            <button class="day-tab">Sexta-Feira</button>
-          </div>
-
-          <div class="timeline">
-            <div class="time-slot">
-              <div class="time-label">07:00</div>
-              <div></div>
-            </div>
-            <div class="time-slot">
-              <div class="time-label">08:00</div>
-              <div></div>
-            </div>
-            <div class="time-slot">
-              <div class="time-label">09:00</div>
-              <div></div>
-            </div>
-            <div class="time-slot">
-              <div class="time-label">10:00</div>
-              <div class="appointment green">
-                <div class="appointment-label">Veterinário</div>
-                <div class="appointment-time">às 10:00</div>
-                <div class="appointment-text">
-                  Reportar caso suspeito de doença
-                </div>
-              </div>
-            </div>
-            <div class="time-slot">
-              <div class="time-label">11:00</div>
-              <div></div>
-            </div>
-            <div class="time-slot">
-              <div class="time-label">12:00</div>
-              <div></div>
-            </div>
-            <div class="time-slot">
-              <div class="time-label">13:00</div>
-              <div></div>
-            </div>
-            <div class="time-slot">
-              <div class="time-label">14:00</div>
-              <div></div>
-            </div>
-            <div class="time-slot">
-              <div class="time-label">15:00</div>
-              <div class="appointment pink">
-                <div class="appointment-label">Adestrador</div>
-                <div class="appointment-time">às 15:00</div>
-                <div class="appointment-text">Um passeio com Sebastião</div>
-              </div>
-            </div>
-            <div class="time-slot">
-              <div class="time-label">16:00</div>
-              <div></div>
-            </div>
-            <div class="time-slot">
-              <div class="time-label">17:00</div>
-              <div></div>
-            </div>
-            <div class="time-slot">
-              <div class="time-label">18:00</div>
-              <div></div>
-            </div>
-            <div class="time-slot">
-              <div class="time-label">19:00</div>
-              <div></div>
-            </div>
-            <div class="time-slot">
-              <div class="time-label">20:00</div>
-              <div></div>
-            </div>
-          </div>
+          <div class="timeline" id="agendaTimeline"></div>
         </div>
 
         <div class="dashboard-section">
@@ -446,5 +366,25 @@
     </main>
 
     <script src="painel.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", (event) => {
+        function updateTodayDateTab() {
+          const today = new Date();
+
+          const options = { weekday: "short", day: "2-digit", month: "short" };
+
+          // Formata a data para a localidade 'pt-BR' (Português do Brasil)
+          const formattedDate = today.toLocaleDateString("pt-BR", options);
+
+          const dateTab = document.getElementById("today-date-tab");
+
+          if (dateTab) {
+            dateTab.textContent = `Hoje, ${formattedDate}`;
+          }
+        }
+
+        updateTodayDateTab();
+      });
+    </script>
   </body>
 </html>

@@ -8,8 +8,35 @@
     --color-primary-5: #2e5f9e;
     --color-primary-6: #043971;
 
+    /* Cores Neutras */
     --color-neutral-0: #fff;
     --color-neutral-1: #1d1d1d;
+
+    /* Cores de Agendamento */
+    --color-app-blue-bg: #e0eaff;
+    /* Banho */
+    --color-app-blue-label: #a8c7ff;
+    --color-app-blue-text: #0e305e;
+
+    --color-app-orange-bg: #fff5e0;
+    /* Tosa */
+    --color-app-orange-label: #ffdb99;
+    --color-app-orange-text: #96540b;
+
+    --color-app-yellow-bg: #fffbe6;
+    /* Outros/Default */
+    --color-app-yellow-label: #ffe680;
+    --color-app-yellow-text: #836700;
+
+    --color-app-green-bg: #d4f5e0;
+    /* Consulta */
+    --color-app-green-label: #a8f5c8;
+    --color-app-green-text: #1a7a3e;
+
+    --color-app-pink-bg: #ffd4dc;
+    /* Vacinação */
+    --color-app-pink-label: #ffb3c1;
+    --color-app-pink-text: #c41e3a;
 }
 
 * {
@@ -117,7 +144,7 @@ header {
 }
 
 .btn-default:hover {
-    background-color:#2e5f9e;
+    background-color: #2e5f9e;
     color: #fff;
 }
 
@@ -237,8 +264,9 @@ header {
 }
 
 .nav-item.active {
-    background-color: #d4e3ff;
-    color: #ffffff;
+    /* Corrigindo a cor de texto ativa no sidebar para melhor contraste */
+    background-color: var(--color-primary-4);
+    color: var(--color-neutral-1);
 }
 
 .nav-item a {
@@ -442,17 +470,23 @@ header {
 .section-title {
     font-size: 18px;
     font-weight: bold;
-    margin-bottom: 20px;
+    margin-bottom: 6px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-bottom: 2px solid #999;
+}
+
+#section-title-agenda {
+    flex-direction: column;
 }
 
 .day-tabs {
     display: flex;
     gap: 8px;
-    margin-bottom: 20px;
     flex-wrap: wrap;
+    margin-bottom: 6px;
+
 }
 
 .day-tab {
@@ -471,8 +505,12 @@ header {
     color: #fff;
 }
 
+/* ==================================== */
+/* Agenda/Timeline Specific Styles */
+/* ==================================== */
 .timeline {
     position: relative;
+    padding-left: 5px;
 }
 
 .time-slot {
@@ -480,58 +518,119 @@ header {
     gap: 15px;
     margin-bottom: 12px;
     min-height: 30px;
+    align-items: flex-start;
 }
 
 .time-label {
     width: 50px;
     font-size: 12px;
     color: #999;
+    flex-shrink: 0;
+}
+
+.slot-content {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: flex-start;
 }
 
 .appointment {
     padding: 12px 16px;
     border-radius: 8px;
-    flex: 1;
+    border: 1px solid transparent;
+    color: var(--color-neutral-1);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+    flex-grow: 1;
+    min-width: 150px;
+    max-width: calc(50% - 4px);
+
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+}
+
+/* Cores dos Appointments - Mapeamento com o JS */
+.appointment.blue {
+    background-color: var(--color-app-blue-bg);
+    border-color: var(--color-app-blue-label);
+}
+
+.appointment.orange {
+    background-color: var(--color-app-orange-bg);
+    border-color: var(--color-app-orange-label);
+}
+
+.appointment.yellow {
+    background-color: var(--color-app-yellow-bg);
+    border-color: var(--color-app-yellow-label);
 }
 
 .appointment.green {
-    background-color: #d4f5e0;
+    background-color: var(--color-app-green-bg);
+    border-color: var(--color-app-green-label);
 }
 
 .appointment.pink {
-    background-color: #ffd4dc;
+    background-color: var(--color-app-pink-bg);
+    border-color: var(--color-app-pink-label);
 }
 
 .appointment-label {
     display: inline-block;
-    padding: 2px 8px;
+    padding: 3px 10px;
     border-radius: 12px;
-    font-size: 11px;
-    font-weight: 600;
-    margin-bottom: 4px;
+    font-size: 10px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    /* Aumenta o espaço após o label */
+    text-transform: uppercase;
+}
+
+/* Cores dos Labels */
+.appointment.blue .appointment-label {
+    background-color: var(--color-app-blue-label);
+    color: var(--color-app-blue-text);
+}
+
+.appointment.orange .appointment-label {
+    background-color: var(--color-app-orange-label);
+    color: var(--color-app-orange-text);
+}
+
+.appointment.yellow .appointment-label {
+    background-color: var(--color-app-yellow-label);
+    color: var(--color-app-yellow-text);
 }
 
 .appointment.green .appointment-label {
-    background-color: #a8f5c8;
-    color: #1a7a3e;
+    background-color: var(--color-app-green-label);
+    color: var(--color-app-green-text);
 }
 
 .appointment.pink .appointment-label {
-    background-color: #ffb3c1;
-    color: #c41e3a;
+    background-color: var(--color-app-pink-label);
+    color: var(--color-app-pink-text);
 }
 
 .appointment-time {
-    font-weight: bold;
+    font-weight: 600;
     font-size: 13px;
-    margin-bottom: 3px;
+    margin-bottom: 5px;
+    color: var(--color-neutral-1);
 }
 
-.appointment-text {
-    font-size: 12px;
-    color: #666;
+.appointment-pet,
+.appointment-employee {
+    font-size: 11px;
+    color: #444;
+    line-height: 1.4;
 }
 
+/* Outros estilos */
 .pet-list {
     display: flex;
     flex-direction: column;
@@ -965,11 +1064,6 @@ header {
         padding: 15px 10px;
     }
 
-    .page-title {
-        font-size: 20px;
-        margin-bottom: 15px;
-    }
-
     .grid {
         gap: 10px;
     }
@@ -1037,8 +1131,9 @@ header {
         font-size: 12px;
     }
 
-    .appointment-text {
-        font-size: 11px;
+    .appointment-pet,
+    .appointment-employee {
+        font-size: 10px;
     }
 
     .employee-card {

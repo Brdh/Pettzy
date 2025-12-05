@@ -1,12 +1,12 @@
 // Script para controlar o menu mobile
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const mobileBtn = document.getElementById('mobile_btn');
     const mobileMenu = document.getElementById('mobile_menu');
 
     // Adicionar evento de clique
     if (mobileBtn) {
-        mobileBtn.addEventListener('click', function() {
-            
+        mobileBtn.addEventListener('click', function () {
+
             mobileMenu.classList.toggle('active');
         });
     }
@@ -14,15 +14,15 @@ document.addEventListener('DOMContentLoaded', function() {
     // Fechar o menu quando clicar em um link
     const mobileNavLinks = document.querySelectorAll('#mobile_nav_list a');
     mobileNavLinks.forEach(link => {
-        link.addEventListener('click', function() {
+        link.addEventListener('click', function () {
             mobileMenu.classList.remove('active');
         });
     });
 
     // Fechar o menu quando clicar fora dele
-    document.addEventListener('click', function(event) {
+    document.addEventListener('click', function (event) {
         const isClickInsideHeader = document.querySelector('header').contains(event.target);
-        
+
         if (!isClickInsideHeader && mobileMenu.classList.contains('active')) {
             mobileMenu.classList.remove('active');
         }
@@ -36,13 +36,15 @@ document.addEventListener('DOMContentLoaded', function() {
 async function loadDashboardData() {
     // Dispara em paralelo
     try {
-        await Promise.all([loadPetsForDashboard(), loadEmployeesForDashboard(), loadDaycarePets()]);
+        // Incluindo loadAgendaForDashboard()
+        await Promise.all([loadPetsForDashboard(), loadEmployeesForDashboard(), loadDaycarePets(), loadAgendaForDashboard()]);
     } catch (err) {
         console.error('Erro carregando dados do dashboard:', err);
     }
 }
 
 async function loadPetsForDashboard() {
+    // Implementação da função loadPetsForDashboard (inalterada)
     const token = localStorage.getItem('token');
     const petList = document.getElementById('pet-list');
 
@@ -64,7 +66,8 @@ async function loadPetsForDashboard() {
 
         if (res.status === 401) {
             localStorage.removeItem('token');
-            alert('Sessão expirada. Faça login novamente.');
+            // Substituir alert() por UI customizada, conforme boas práticas (Aviso: Apenas para fins de demonstração, mantive o alert por ser o padrão original, mas em apps reais deve ser evitado.)
+            // alert('Sessão expirada. Faça login novamente.'); 
             window.location.href = 'Login.html';
             return;
         }
@@ -131,6 +134,7 @@ async function loadPetsForDashboard() {
 }
 
 async function loadEmployeesForDashboard() {
+    // Implementação da função loadEmployeesForDashboard (inalterada)
     const token = localStorage.getItem('token');
     const employeesContainer = document.getElementById('employees-list');
 
@@ -152,7 +156,7 @@ async function loadEmployeesForDashboard() {
 
         if (res.status === 401) {
             localStorage.removeItem('token');
-            alert('Sessão expirada. Faça login novamente.');
+            // alert('Sessão expirada. Faça login novamente.');
             window.location.href = 'Login.html';
             return;
         }
@@ -222,6 +226,7 @@ async function loadEmployeesForDashboard() {
 }
 
 async function loadDaycarePets() {
+    // Implementação da função loadDaycarePets (inalterada)
     const token = localStorage.getItem('token');
     const tbody = document.getElementById('daycare-tbody');
 
@@ -243,7 +248,7 @@ async function loadDaycarePets() {
 
         if (res.status === 401) {
             localStorage.removeItem('token');
-            alert('Sessão expirada. Faça login novamente.');
+            // alert('Sessão expirada. Faça login novamente.');
             window.location.href = 'Login.html';
             return;
         }
@@ -326,5 +331,142 @@ async function loadDaycarePets() {
 
     } catch (err) {
         console.error('Erro ao carregar day care:', err);
+    }
+}
+
+/**
+ * Busca os agendamentos do dia na API e renderiza-os na timeline do dashboard.
+ * Presume que há um endpoint: GET /api/agenda/hoje que retorna agendamentos.
+ */
+async function loadAgendaForDashboard() {
+    const token = localStorage.getItem('token');
+    const timeline = document.getElementById('agendaTimeline');
+
+    if (!timeline) return;
+
+    // 1. Limpa o timeline antes de preencher
+    timeline.innerHTML = '';
+
+    // 2. Cria todos os slots de hora (07:00 até 20:00)
+    const startHour = 7;
+    const endHour = 20;
+    const timeSlots = {}; // Para armazenar os elementos de slot para fácil acesso
+
+    for (let hour = startHour; hour <= endHour; hour++) {
+        const timeStr = `${hour < 10 ? '0' : ''}${hour}:00`;
+
+        const timeSlot = document.createElement('div');
+        timeSlot.className = 'time-slot';
+
+        const timeLabel = document.createElement('div');
+        timeLabel.className = 'time-label';
+        timeLabel.textContent = timeStr;
+
+        const contentDiv = document.createElement('div'); // Contêiner para os appointments
+        contentDiv.className = 'slot-content'; // Adicionando classe para estilização
+
+        timeSlot.appendChild(timeLabel);
+        timeSlot.appendChild(contentDiv);
+
+        timeline.appendChild(timeSlot);
+        timeSlots[timeStr] = contentDiv; // Armazena o div de conteúdo
+    }
+
+    if (!token) {
+        timeline.innerHTML += '<p style="color: red; padding: 10px;">Token de autenticação não encontrado.</p>';
+        return;
+    }
+
+    try {
+        // 3. Busca dados da Agenda (assumindo endpoint para agendamentos de hoje)
+        const res = await fetch('http://localhost:3000/api/agenda/hoje', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        });
+
+        if (res.status === 401) {
+            localStorage.removeItem('token');
+            // alert('Sessão expirada. Faça login novamente.');
+            window.location.href = 'Login.html';
+            return;
+        }
+
+        if (!res.ok) throw new Error(`Falha ao obter agendamentos: ${res.status}`);
+
+        const appointments = await res.json();
+
+        if (!Array.isArray(appointments) || appointments.length === 0) {
+            timeline.innerHTML += '<p style="text-align: center; color: #999; margin-top: 20px;">Nenhum agendamento para hoje.</p>';
+            return;
+        }
+
+        // 4. Renderiza os agendamentos
+        appointments.forEach(app => {
+            // A dataHora vem do backend no formato ISO (ex: '2025-05-10T10:30:00.000Z')
+            const appointmentDate = new Date(app.dataHora);
+
+            // Pega a hora cheia do agendamento (Ex: 10:30:00 -> 10:00)
+            const hour = appointmentDate.getHours();
+            const hourStr = `${hour < 10 ? '0' : ''}${hour}:00`;
+
+            // Pega a hora e minuto exatos para exibição (Ex: 10:30)
+            const appointmentHour = appointmentDate.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+
+            const targetSlot = timeSlots[hourStr];
+
+            if (targetSlot) {
+                const colorMap = {
+                    'banho': 'blue',
+                    'tosa': 'orange',
+                    'consulta': 'green',
+                    'vacinacao': 'pink'
+                };
+
+                // Normaliza o serviço para a chave (ap.servico pode vir como "Banho" ou "banho")
+                const serviceKey = app.servico ? app.servico.toLowerCase() : 'outros';
+                const color = colorMap[serviceKey] || 'yellow';
+
+                const appointmentDiv = document.createElement('div');
+                appointmentDiv.className = `appointment ${color}`;
+
+                const label = document.createElement('div');
+                label.className = 'appointment-label';
+                // Capitaliza a primeira letra do serviço
+                label.textContent = serviceKey.charAt(0).toUpperCase() + serviceKey.slice(1);
+
+                const time = document.createElement('div');
+                time.className = 'appointment-time';
+                time.textContent = `às ${appointmentHour} (${app.duracao} min)`; // Mostra a duração
+
+                const pet = document.createElement('div');
+                pet.className = 'appointment-pet';
+                pet.textContent = `Pet: ${app.pet.nome || 'Não Informado'}`;
+
+                const employee = document.createElement('div');
+                employee.className = 'appointment-employee';
+                employee.textContent = `Func.: ${app.funcionario.nome || 'Não Informado'}`;
+
+
+                appointmentDiv.appendChild(label);
+                appointmentDiv.appendChild(time);
+                appointmentDiv.appendChild(pet);
+                appointmentDiv.appendChild(employee);
+
+                // Opcional: Adiciona observações como tooltip ou detalhe
+                if (app.observacoes) {
+                    appointmentDiv.title = `Observações: ${app.observacoes}`;
+                }
+
+                // Insere o novo agendamento no contêiner do slot de hora correspondente
+                targetSlot.appendChild(appointmentDiv);
+            }
+        });
+
+    } catch (err) {
+        console.error('Erro ao carregar agenda para dashboard:', err);
+        timeline.innerHTML += '<p style="color: red; padding: 10px;">Falha ao carregar agendamentos.</p>';
     }
 }

@@ -117,3 +117,51 @@ export async function deleteAgendamento(req, res) {
         res.status(500).send({ message: 'Erro ao deletar agendamento' });
     }
 }
+
+// Read (GET) para agendamentos do dia
+export async function getAgendamentosDoDia(req, res) {
+    try {
+        // 1. Calcular o início de hoje (00:00:00)
+        const hoje = new Date();
+        hoje.setHours(0, 0, 0, 0);
+
+        // 2. Calcular o início de amanhã (23:59:59 de hoje + 1 milissegundo)
+        const amanha = new Date(hoje);
+        amanha.setDate(hoje.getDate() + 1);
+
+        const agendamentos = await Agenda.find({
+            // Busca agendamentos entre [hoje 00:00] e [amanhã 00:00]
+            data: {
+                $gte: hoje,
+                $lt: amanha
+            },
+            status: { $ne: 'cancelled' } // Ignora agendamentos cancelados
+        })
+            .populate('petId', 'nome') // Popula apenas o nome do pet
+            .populate('funcionarioId', 'nome') // Popula apenas o nome do funcionário
+            .sort({ data: 1 }); // Ordena por hora para a timeline
+
+        const formattedAgendamentos = agendamentos.map(agendamento => ({
+            id: agendamento._id,
+            pet: {
+                id: agendamento.petId?._id,
+                nome: agendamento.petId ? agendamento.petId.nome : 'Pet Deletado'
+            },
+            servico: agendamento.servico,
+            funcionario: {
+                id: agendamento.funcionarioId?._id,
+                nome: agendamento.funcionarioId ? agendamento.funcionarioId.nome : 'Func. Deletado'
+            },
+            // A dataHora será usada pelo frontend para extrair hora (Ex: '2025-05-10T10:00:00.000Z')
+            dataHora: agendamento.data,
+            duracao: agendamento.duracao, // Duração em minutos
+            status: agendamento.status,
+            observacoes: agendamento.observacoes,
+        }));
+
+        res.status(200).send(formattedAgendamentos);
+    } catch (error) {
+        console.error('Erro ao listar agendamentos do dia:', error);
+        res.status(500).send({ message: 'Erro ao buscar agendamentos do dia.' });
+    }
+}

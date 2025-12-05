@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { createAgendamento, getAgendamentos, updateAgendamento, deleteAgendamento } from '../controllers/AgendaController.js'; // Importa o Controller
+import { createAgendamento, getAgendamentos, updateAgendamento, deleteAgendamento, getAgendamentosDoDia } from '../controllers/AgendaController.js';
 
 const router = Router();
 
@@ -8,6 +8,9 @@ router.post('/', createAgendamento);
 
 // GET /api/agenda
 router.get('/', getAgendamentos);
+
+// GET /api/agenda/hoje - Para o dashboard
+router.get('/hoje', getAgendamentosDoDia);
 
 // PUT /api/agenda/:id
 router.put('/:id', updateAgendamento);
