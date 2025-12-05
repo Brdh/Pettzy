@@ -420,16 +420,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     const searchInput = document.getElementById('searchInput');
-    searchInput.addEventListener('input', buscarPets);
+    searchInput.addEventListener('input', buscarPets);ZZ
 
-    // const clearBtn = document.getElementById('clearSearchBtn');
-    // clearBtn.addEventListener('click', limparBusca);
-
-
-    const addPetBtn = document.getElementById('addPetBtn');
-    if (addPetBtn) {
-        addPetBtn.addEventListener('click', abrirModalAdicao);
-    }
 
     const addPetBtn2 = document.getElementById('addPetBtn2');
     if (addPetBtn2) {

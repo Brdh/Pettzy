@@ -52,3 +52,18 @@ export const deleteCompany = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+
+// Buscar dados da empresa autenticada (via token)
+export const getMyCompany = async (req, res) => {
+  try {
+    const companyId = req.companyId; // Vem do authMiddleware
+    if (!companyId) {
+      return res.status(401).json({ error: "Unauthorized" });
+    }
+    const company = await Company.findById(companyId);
+    if (!company) return res.status(404).json({ error: "Company not found" });
+    res.status(200).json(company);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};

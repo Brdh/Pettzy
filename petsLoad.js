@@ -59,9 +59,9 @@ async function handleAddPetSubmit(event) {
     }
 }
 
-function openEditPetModal(pet) {
+// function openEditPetModal(pet) {
 
-}
+// }
 
 
 async function carregarPets() {
@@ -185,23 +185,6 @@ async function carregarPets() {
             container.appendChild(card);
         });
 
-        // ---------------------------
-        // 🔥 BOTÃO DE ADICIONAR PET
-        // ---------------------------
-        const addBtn = document.createElement("button");
-        addBtn.classList.add("add-pet-btn");
-        addBtn.id = "addPetBtn";
-
-        addBtn.innerHTML = `
-            <div class="add-pet-content">
-                <i class="fa-solid fa-plus"></i>
-                <span>Adicionar Novo Pet</span>
-            </div>
-        `;
-
-        addBtn.addEventListener('click', openAddPetModal);
-
-        container.appendChild(addBtn);
 
         // Otimização: Chama o filtro após o carregamento, se a função existir no pets.js
         if (typeof aplicarFiltros === 'function') {

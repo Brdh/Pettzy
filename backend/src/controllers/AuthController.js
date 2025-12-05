@@ -133,3 +133,79 @@ export const resetPassword = async (req, res) => {
     res.status(500).json({ message: "Erro ao redefinir senha", error });
   }
 };
+
+// Mudar senha do usuário autenticado
+export const changePassword = async (req, res) => {
+  try {
+    const companyId = req.companyId; // Vem do authMiddleware
+    const { currentPassword, newPassword } = req.body;
+
+    if (!companyId) {
+      return res.status(401).json({ message: "Unauthorized" });
+    }
+
+    if (!currentPassword || !newPassword) {
+      return res.status(400).json({ message: "Senha atual e nova senha são obrigatórias" });
+    }
+
+    const company = await Company.findById(companyId);
+    if (!company) {
+      return res.status(404).json({ message: "Empresa não encontrada" });
+    }
+
+    // Valida a senha atual
+    const senhaValida = await bcrypt.compare(currentPassword, company.senha);
+    if (!senhaValida) {
+      return res.status(400).json({ message: "Senha atual incorreta" });
+    }
+
+    // Criptografa a nova senha
+    const salt = await bcrypt.genSalt(10);
+    const hashed = await bcrypt.hash(newPassword, salt);
+
+    company.senha = hashed;
+    await company.save();
+
+    res.status(200).json({ message: "Senha alterada com sucesso!" });
+  } catch (error) {
+    console.error("Erro ao mudar senha:", error);
+    res.status(500).json({ message: "Erro ao alterar senha", error: error.message });
+  }
+};
+
+// Atualizar email do usuário autenticado
+export const updateEmail = async (req, res) => {
+  try {
+    const companyId = req.companyId; // Vem do authMiddleware
+    const { email } = req.body;
+
+    if (!companyId) {
+      return res.status(401).json({ message: "Unauthorized" });
+    }
+
+    if (!email) {
+      return res.status(400).json({ message: "Email é obrigatório" });
+    }
+
+    // Verifica se email já existe
+    const emailExistente = await Company.findOne({ email });
+    if (emailExistente && emailExistente._id.toString() !== companyId) {
+      return res.status(400).json({ message: "Este email já está cadastrado" });
+    }
+
+    const company = await Company.findByIdAndUpdate(
+      companyId,
+      { email },
+      { new: true }
+    );
+
+    if (!company) {
+      return res.status(404).json({ message: "Empresa não encontrada" });
+    }
+
+    res.status(200).json({ message: "Email alterado com sucesso!", company });
+  } catch (error) {
+    console.error("Erro ao atualizar email:", error);
+    res.status(500).json({ message: "Erro ao atualizar email", error: error.message });
+  }
+};

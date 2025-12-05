@@ -25,7 +25,7 @@ app.use(express.json());
 app.use("/api/pets", petRoutes);
 app.use("/api/owners", ownerRoutes);
 app.use("/api/employees", employeeRoutes);
-app.use("/api/companys", companyRoutes);
+app.use("/api/company", companyRoutes);
 app.use("/api/auth", authRoutes);
 
 
