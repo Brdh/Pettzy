@@ -253,8 +253,10 @@ function getProfissaoClass(profissao) {
     const map = {
         "Gerente": "profissao-gerente",
         "Veterinário": "profissao-veterinario",
+        "Veterinária": "profissao-veterinaria",
         "Administrador": "profissao-administrador",
-        "Secretário": "profissao-secretario"
+        "Secretário": "profissao-secretario",
+        "Adestrador": "profissao-adestrador"
     };
     return map[profissao] || "profissao-default";
 }

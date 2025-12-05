@@ -72,7 +72,7 @@
                 <i class="fa-solid fa-chevron-left"></i>
               </button>
               <span class="current-date" id="currentDate"
-                >01, Mai - 10, Mai, 2025</span
+                >05, Dez - 05, Dez, 2025</span
               >
               <button class="nav-btn next-btn" id="nextBtn">
                 <i class="fa-solid fa-chevron-right"></i>
@@ -103,14 +103,9 @@
           </div>
 
           <div class="calendar-view">
-            <!-- Day Headers -->
-            <div class="day-headers" id="dayHeaders">
-              <!-- Populated by JavaScript -->
-            </div>
+            <div class="day-headers" id="dayHeaders"></div>
 
-            <!-- Time Grid -->
             <div class="time-grid">
-              <!-- Time Column -->
               <div class="time-column">
                 <div class="time-slot-header"></div>
                 <div class="time-slot" id="time-07:00">07:00</div>
@@ -129,25 +124,18 @@
                 <div class="time-slot" id="time-20:00">20:00</div>
               </div>
 
-              <!-- Days Grid -->
-              <div class="days-grid" id="daysGrid">
-                <!-- Populated by JavaScript -->
-              </div>
+              <div class="days-grid" id="daysGrid"></div>
             </div>
           </div>
 
-          <!-- Events List -->
           <div class="events-sidebar" id="eventsSidebar">
             <h3>Próximos Eventos</h3>
-            <div class="events-list" id="eventsList">
-              <!-- Populated by JavaScript -->
-            </div>
+            <div class="events-list" id="eventsList"></div>
           </div>
         </div>
       </section>
     </main>
 
-    <!-- Modal for New Event -->
     <div class="modal" id="eventModal">
       <div class="modal-content">
         <div class="modal-header">
@@ -159,13 +147,11 @@
         <form class="event-form" id="eventForm">
           <div class="form-group">
             <label for="petName">Pet</label>
-            <input
-              type="text"
-              id="petName"
-              placeholder="Nome do pet"
-              required
-            />
+            <select id="petName" required>
+              <option value="">Carregando Pets...</option>
+            </select>
           </div>
+
           <div class="form-group">
             <label for="serviceType">Serviço</label>
             <select id="serviceType" required>
@@ -176,6 +162,14 @@
               <option value="vacinacao">Vacinação</option>
             </select>
           </div>
+
+          <div class="form-group">
+            <label for="funcionarioId">Funcionário</label>
+            <select id="funcionarioId" required>
+              <option value="">Selecione um funcionário</option>
+            </select>
+          </div>
+
           <div class="form-group">
             <label for="eventDate">Data</label>
             <input type="date" id="eventDate" required />

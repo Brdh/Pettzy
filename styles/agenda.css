@@ -326,6 +326,85 @@ header {
     display: inline-block;
 }
 
+/* New calendar event styles (for the simple week view) */
+.day-column-date {
+    padding: 8px 10px;
+    font-size: 0.85rem;
+    color: #444;
+    border-bottom: 1px solid #f0f0f0;
+    background: linear-gradient(180deg, #ffffff, #fbfbfb);
+}
+
+.no-events {
+    padding: 8px 10px;
+    color: #999;
+    font-size: 0.85rem;
+}
+
+.calendar-event {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    background-color: #e8f5ff;
+    border-left: 4px solid #2e5f9e;
+    margin: 8px;
+    padding: 8px 10px;
+    border-radius: 6px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+    cursor: pointer;
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.calendar-event:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.calendar-event-time {
+    font-size: 0.75rem;
+    color: #03406a;
+    font-weight: 700;
+    min-width: 56px;
+}
+
+.calendar-event-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.calendar-event-pet {
+    font-weight: 700;
+    color: var(--color-neutral-1);
+    font-size: 0.9rem;
+}
+
+.calendar-event-service {
+    font-size: 0.8rem;
+    color: #666;
+}
+
+/* Make the day columns slightly padded and visually separated */
+.day-column {
+    padding: 8px 6px;
+}
+
+/* Responsive tweaks for the new calendar events */
+@media screen and (max-width: 768px) {
+    .calendar-event {
+        margin: 6px;
+        padding: 6px;
+    }
+
+    .calendar-event-time {
+        min-width: 44px;
+        font-size: 0.7rem;
+    }
+
+    .calendar-event-pet {
+        font-size: 0.85rem;
+    }
+}
+
 /* Time Grid */
 .time-grid {
     display: grid;
@@ -387,14 +466,14 @@ header {
 }
 
 .event-item {
-    background-color: #c8e6c9;
-    border-left: 4px solid #5b814b;
+    background-color: #e8f5ff;
+    border-left: 4px solid #2e5f9e;
     border-radius: 4px;
     padding: 6px 8px;
     margin: 2px 0;
     font-size: 0.75rem;
     font-weight: 600;
-    color: #2d5016;
+    color: #0e0f3a;
     cursor: pointer;
     transition: all 0.3s ease;
     overflow: hidden;
@@ -403,7 +482,7 @@ header {
 }
 
 .event-item:hover {
-    background-color: #b3ddb3;
+    background-color: #b5d8f3;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 

@@ -8,6 +8,7 @@ import ownerRoutes from "./src/routes/ownerRoutes.js";
 import employeeRoutes from "./src/routes/employeeRoutes.js";
 import companyRoutes from "./src/routes/companyRoutes.js";
 import authRoutes from "./src/routes/authRoutes.js";
+import agendaRoutes from './src/routes/agendaRoutes.js';
 
 
 dotenv.config();
@@ -27,6 +28,7 @@ app.use("/api/owners", ownerRoutes);
 app.use("/api/employees", employeeRoutes);
 app.use("/api/company", companyRoutes);
 app.use("/api/auth", authRoutes);
+app.use("/api/agenda", agendaRoutes);
 
 
 // Conectando ao BD
