@@ -1,10 +1,10 @@
 // Agenda Application
 class AgendaApp {
     // URL base da sua API
-    API_URL = 'http://localhost:3000/api/agenda';
+    API_URL = 'https://pettzy-backend.onrender.com/api/agenda';
     // URLs para buscar as referências
-    PETS_URL = 'http://localhost:3000/api/pets';
-    FUNCIONARIOS_URL = 'http://localhost:3000/api/employees';
+    PETS_URL = 'https://pettzy-backend.onrender.com/api/pets';
+    FUNCIONARIOS_URL = 'https://pettzy-backend.onrender.com/api/employees';
 
     constructor() {
         this.currentDate = new Date(); // Inicia com a data atual

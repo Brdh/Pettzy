@@ -1,5 +1,5 @@
 // VARIÁVEL GLOBAL PARA A API_URL
-const API_URL = "http://localhost:3000/api";
+const API_URL = "https://pettzy-backend.onrender.com/api";
 
 // Função utilitária para exibir mensagens de notificação
 function mostrarNotificacao(mensagem, sucesso = true) {

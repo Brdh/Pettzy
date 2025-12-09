@@ -27,7 +27,7 @@ async function carregarFuncionarios() {
     }
 
     try {
-        const response = await fetch("http://localhost:3000/api/employees", {
+        const response = await fetch("https://pettzy-backend.onrender.com/api/employees", {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -169,7 +169,7 @@ editFuncionarioForm.addEventListener('submit', async function(e) {
     };
 
     try {
-        const response = await fetch(`http://localhost:3000/api/employees/${id}`, {
+        const response = await fetch(`https://pettzy-backend.onrender.com/api/employees/${id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -223,7 +223,7 @@ addFuncionarioForm.addEventListener('submit', async (e) => {
     const token = localStorage.getItem('token');
 
     try {
-        const response = await fetch("http://localhost:3000/api/employees", {
+        const response = await fetch("https://pettzy-backend.onrender.com/api/employees", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -276,7 +276,7 @@ window.deletarFuncionario = async function(id) {
     
     const token = localStorage.getItem('token');
     try {
-        const response = await fetch(`http://localhost:3000/api/employees/${id}`, {
+        const response = await fetch(`https://pettzy-backend.onrender.com/api/employees/${id}`, {
             method: 'DELETE',
             headers: { 'Authorization': `Bearer ${token}` }
         });

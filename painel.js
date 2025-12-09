@@ -56,7 +56,7 @@ async function loadPetsForDashboard() {
     }
 
     try {
-        const res = await fetch('http://localhost:3000/api/pets', {
+        const res = await fetch('https://pettzy-backend.onrender.com/api/pets', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -146,7 +146,7 @@ async function loadEmployeesForDashboard() {
     }
 
     try {
-        const res = await fetch('http://localhost:3000/api/employees', {
+        const res = await fetch('https://pettzy-backend.onrender.com/api/employees', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -238,7 +238,7 @@ async function loadDaycarePets() {
     }
 
     try {
-        const res = await fetch('http://localhost:3000/api/pets', {
+        const res = await fetch('https://pettzy-backend.onrender.com/api/pets', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -379,7 +379,7 @@ async function loadAgendaForDashboard() {
 
     try {
         // 3. Busca dados da Agenda (assumindo endpoint para agendamentos de hoje)
-        const res = await fetch('http://localhost:3000/api/agenda/hoje', {
+        const res = await fetch('https://pettzy-backend.onrender.com/api/agenda/hoje', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

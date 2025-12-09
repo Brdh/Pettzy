@@ -92,7 +92,7 @@ export const sendResetLink = async (req, res) => {
     await company.save();
 
     // Aqui você enviaria email — por enquanto retornamos o link
-    const resetLink = `http://localhost:3000/reset-password/${resetToken}`;
+    const resetLink = `https://pettzy-backend.onrender.com/reset-password/${resetToken}`;
 
     res.status(200).json({
       message: "Link para redefinição enviado com sucesso!",

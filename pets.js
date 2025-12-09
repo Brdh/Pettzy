@@ -231,7 +231,7 @@ document.getElementById('editPetForm').addEventListener('submit', async (e) => {
     const id = document.getElementById('editPetId').value;
     const isEditing = id !== ''; // Se o ID estiver preenchido, é edição (PUT)
     const method = isEditing ? 'PUT' : 'POST';
-    const url = isEditing ? `http://localhost:3000/api/pets/${id}` : 'http://localhost:3000/api/pets';
+    const url = isEditing ? `https://pettzy-backend.onrender.com/api/pets/${id}` : 'https://pettzy-backend.onrender.com/api/pets';
     const token = localStorage.getItem('token');
 
     // Coleta todos os dados do formulário (incluindo os novos campos unificados)
@@ -323,7 +323,7 @@ document.getElementById('deletePetBtn').addEventListener('click', async () => {
     }
 
     try {
-        const response = await fetch(`http://localhost:3000/api/pets/${id}`, {
+        const response = await fetch(`https://pettzy-backend.onrender.com/api/pets/${id}`, {
             method: 'DELETE',
             headers: {
                 'Authorization': `Bearer ${token}`

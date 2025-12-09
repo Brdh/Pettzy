@@ -22,7 +22,7 @@ document.getElementById("resetForm").addEventListener("submit", async (e) => {
     }
 
     try {
-        const response = await fetch(`http://localhost:3000/api/auth/reset-password/${token}`, {
+        const response = await fetch(`https://pettzy-backend.onrender.com/api/auth/reset-password/${token}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

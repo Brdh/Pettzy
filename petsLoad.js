@@ -35,7 +35,7 @@ async function handleAddPetSubmit(event) {
     const token = localStorage.getItem('token');
 
     try {
-        const response = await fetch("http://localhost:3000/api/pets", {
+        const response = await fetch("https://pettzy-backend.onrender.com/api/pets", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -76,7 +76,7 @@ async function carregarPets() {
 
 
     try {
-        const response = await fetch("http://localhost:3000/api/pets", {
+        const response = await fetch("https://pettzy-backend.onrender.com/api/pets", {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
