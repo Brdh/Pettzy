@@ -420,7 +420,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     const searchInput = document.getElementById('searchInput');
-    searchInput.addEventListener('input', buscarPets);ZZ
+    searchInput.addEventListener('input', buscarPets);
 
 
     const addPetBtn2 = document.getElementById('addPetBtn2');
