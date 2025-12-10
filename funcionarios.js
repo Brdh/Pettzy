@@ -53,6 +53,37 @@ function removerFeedbackVisual(input) {
   input.classList.remove('input-error', 'input-success');
 }
 
+// ============================================
+// LÓGICA DO MENU MOBILE
+// ============================================
+const mobileBtn = document.getElementById('mobile_btn');
+const mobileMenu = document.getElementById('mobile_menu');
+
+if (mobileBtn && mobileMenu) {
+  mobileBtn.addEventListener('click', () => {
+    // Alterna a classe 'active' no menu mobile
+    mobileMenu.classList.toggle('active');
+    // Opcional: Adiciona/remove a classe 'active' no body ou navbar 
+    // se você usar isso para esconder o conteúdo principal ou mudar ícone
+    const navbar = document.getElementById('navbar');
+    if (navbar) {
+      navbar.classList.toggle('active');
+    }
+
+    // Opcional: Trocar o ícone do botão (de barras para 'x')
+    const icon = mobileBtn.querySelector('i');
+    if (icon) {
+      if (mobileMenu.classList.contains('active')) {
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-times'); // Use o ícone 'x' para fechar
+      } else {
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+      }
+    }
+  });
+}
+
 // Inicializa os eventos de máscara assim que o DOM carregar
 $(document).ready(function () {
   const camposData = ['#funcionarioEntrada', '#funcionarioSaida', '#editFuncionarioEntrada', '#editFuncionarioSaida'];

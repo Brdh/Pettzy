@@ -3,7 +3,8 @@
     --color-primary-2: #5b814b;
     --color-primary-3: #4d7fc1b0;
     --color-primary-4: #88b0ca;
-    --color-primary-5: #2e5f9e; /* Azul Principal: Usado para foco e botões primários */
+    --color-primary-5: #2e5f9e;
+    /* Azul Principal: Usado para foco e botões primários */
     --color-primary-6: #043971;
 
     --color-neutral-0: #fff;
@@ -180,7 +181,7 @@ main {
 }
 
 .status-tab.active {
-    color:var(--color-neutral-1);
+    color: var(--color-neutral-1);
 }
 
 .status-tab.active::after {
@@ -252,9 +253,6 @@ main {
     transform: translateY(-2px);
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
 }
-
-
-
 
 
 #pets-container {
@@ -467,7 +465,8 @@ main {
     overflow-y: auto;
     box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.2);
     animation: slideUp 0.3s ease;
-    border-top: 6px solid #999; /* Cor padrão, será sobrescrita se tiver status */
+    border-top: 6px solid #999;
+    /* Cor padrão, será sobrescrita se tiver status */
 }
 
 /* ------------------------------------------- */
@@ -677,13 +676,15 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px; /* Adicionado para ícones */
+    gap: 8px;
+    /* Adicionado para ícones */
 }
 
 .modal-btn-primary {
     background-color: var(--color-primary-5);
     color: var(--color-neutral-0);
-    border: 2px solid var(--color-primary-5); /* Adicionado para consistência */
+    border: 2px solid var(--color-primary-5);
+    /* Adicionado para consistência */
 }
 
 .modal-btn-primary:hover {
@@ -693,7 +694,8 @@ main {
 .modal-btn-secondary {
     background-color: #e0e0e0;
     color: var(--color-neutral-1);
-    border: 2px solid #e0e0e0; /* Adicionado para consistência */
+    border: 2px solid #e0e0e0;
+    /* Adicionado para consistência */
 }
 
 .modal-btn-secondary:hover {
@@ -701,7 +703,8 @@ main {
 }
 
 .modal-btn-danger {
-    background-color: #dc3545; /* Vermelho padrão para perigo */
+    background-color: #dc3545;
+    /* Vermelho padrão para perigo */
     color: var(--color-neutral-0);
     border: 2px solid #dc3545;
 }
@@ -721,32 +724,6 @@ main {
     border-top-color: var(--color-primary-5);
     border-top-style: solid;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 /* 2. Estilização dos campos do formulário (Inputs e Selects modernos) */
@@ -772,8 +749,10 @@ main {
 #formModal select {
     width: 100%;
     padding: 12px 15px;
-    border: 1px solid #ccc; /* Borda padrão mais clara */
-    border-radius: 8px; /* Arredondamento suave */
+    border: 1px solid #ccc;
+    /* Borda padrão mais clara */
+    border-radius: 8px;
+    /* Arredondamento suave */
     font-size: 1rem;
     color: var(--color-neutral-1);
     box-sizing: border-box;
@@ -788,17 +767,17 @@ main {
 #formModal select:focus {
     border-color: var(--color-primary-5);
     outline: none;
-    box-shadow: 0 0 0 3px rgba(46, 95, 158, 0.15); 
+    box-shadow: 0 0 0 3px rgba(46, 95, 158, 0.15);
 }
 
 /* 3. Estilização dos Botões de Ação do Modal de Adição */
 #addPetModal .modal-actions,
 #formModal .modal-actions {
     /* Alinha os botões à direita por padrão em telas grandes */
-    justify-content: flex-end; 
+    justify-content: flex-end;
     gap: 15px;
-    flex-direction: row; 
-    
+    flex-direction: row;
+
     padding: 24px;
     border-top: 1px solid #eee;
     background-color: var(--color-neutral-0);
@@ -807,7 +786,8 @@ main {
 
 /* Ajuste para o modal de edição que tem 3 botões */
 #formModal .modal-actions {
-    justify-content: space-between; /* Distribui os botões */
+    justify-content: space-between;
+    /* Distribui os botões */
 }
 
 /* Botão Salvar Pet (Primário) - Mantém o estilo sólido */
@@ -816,7 +796,8 @@ main {
     background-color: var(--color-primary-5);
     color: var(--color-neutral-0);
     border: 2px solid var(--color-primary-5);
-    flex: 0 1 auto; /* Desfaz o 'flex: 1' herdado do .modal-btn genérico */
+    flex: 0 1 auto;
+    /* Desfaz o 'flex: 1' herdado do .modal-btn genérico */
 }
 
 #addPetModal .modal-btn-primary:hover,
@@ -828,10 +809,14 @@ main {
 /* Botão Cancelar (Secundário - Estilo Outline) */
 #addPetModal .modal-btn-secondary,
 #formModal .modal-btn-secondary {
-    background-color: var(--color-neutral-0); /* Fundo branco */
-    color: var(--color-primary-5); /* Texto na cor primária */
-    border: 2px solid var(--color-primary-5); /* Borda na cor primária */
-    flex: 0 1 auto; /* Desfaz o 'flex: 1' herdado */
+    background-color: var(--color-neutral-0);
+    /* Fundo branco */
+    color: var(--color-primary-5);
+    /* Texto na cor primária */
+    border: 2px solid var(--color-primary-5);
+    /* Borda na cor primária */
+    flex: 0 1 auto;
+    /* Desfaz o 'flex: 1' herdado */
 }
 
 #addPetModal .modal-btn-secondary:hover,
@@ -880,6 +865,12 @@ main {
         list-style: none;
         text-align: center;
     }
+
+    .btn-novo-pet {
+        width: 100%;
+        justify-content: center;
+    }
+
 }
 
 @media screen and (max-width: 768px) {
@@ -928,10 +919,10 @@ main {
 
     .modal-btn {
         width: 100%;
-        flex: 1; 
+        flex: 1;
     }
-    
-/* Garantir que os modais de formulário usem o layout em coluna */
+
+    /* Garantir que os modais de formulário usem o layout em coluna */
     #addPetModal .modal-actions,
     #formModal .modal-actions {
         flex-direction: column;
@@ -942,7 +933,14 @@ main {
     #formModal .modal-btn-primary,
     #formModal .modal-btn-secondary,
     #formModal .modal-btn-danger {
-        width: 100%; /* Ocupa a largura total */
+        width: 100%;
+        /* Ocupa a largura total */
         flex: 1;
     }
+
+    .btn-novo-pet {
+        width: 100%;
+        justify-content: center;
+    }
+
 }
