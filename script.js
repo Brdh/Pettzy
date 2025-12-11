@@ -10,22 +10,44 @@ $(document).ready(function () {
     });
 
     function updateActiveNav() {
-        const scrollPosition = $(window).scrollTop() + header.outerHeight();
-        let activeSectionIndex = 0;
+        const scrollPosition = $(window).scrollTop();
+        const viewportCenter = scrollPosition + $(window).height() / 2;
 
-        sections.each(function (i) {
+        // Remove a classe 'active' de todos os itens primeiro
+        navItems.removeClass('active');
+
+        let activeAnchorId = '';
+
+        // 1. Encontra a seção que está mais próxima do centro da viewport
+        sections.each(function () {
             const section = $(this);
             const sectionTop = section.offset().top;
             const sectionBottom = sectionTop + section.outerHeight();
+            const sectionCenter = sectionTop + section.outerHeight() / 2;
 
-            if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
-                activeSectionIndex = i;
-                return false;
+            const viewportTop = scrollPosition;
+            const viewportBottom = scrollPosition + $(window).height();
+
+            // Verifica se a seção está visível na viewport
+            if (viewportBottom > sectionTop && viewportTop < sectionBottom) {
+
+                // Usa a distância do centro como critério de "active"
+                const distance = Math.abs(viewportCenter - sectionCenter);
+
+                // Mantemos a seção mais próxima do centro
+                if (activeAnchorId === '' || distance < closestDistance) {
+                    closestDistance = distance;
+                    activeAnchorId = section.attr('id'); // Pega o ID da seção (ex: 'reviews')
+                }
             }
         });
 
-        navItems.removeClass('active');
-        $(navItems[activeSectionIndex]).addClass('active');
+        // 2. Se uma seção ativa foi encontrada, encontra o item de menu correspondente
+        if (activeAnchorId) {
+            // Encontra o item de menu cujo link (href) termina com o ID da seção
+            $(`#nav_list a[href$="#${activeAnchorId}"]`).parent().addClass('active');
+            $(`#mobile_nav_list a[href$="#${activeAnchorId}"]`).parent().addClass('active');
+        }
     }
 
 

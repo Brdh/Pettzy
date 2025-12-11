@@ -1,4 +1,3 @@
-
 :root {
     --color-primary-1: #ffffff;
     --color-primary-2: #5b814b;
@@ -13,28 +12,32 @@
 
 
 
-#freatures {
+#funcionalidades {
     text-align: center;
     color: #043971;
-    
+
 }
 
 
-#freatures-sub {
-   margin: 0 auto;
-   color: #000000;
+#funcionalidades-sub {
+    margin: 0 auto;
+    color: #000000;
 }
 
 #benefits {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    gap: 40px; 
-    text-align: center;
-    padding: 70px 180px;
-    flex-wrap: wrap; 
-   
+    gap: 40px;
+    text-align: left;
+    padding: 70px 60px;
+    /* 180px era muito */
+    flex-wrap: wrap;
+    width: 100%;
+    margin-left: 0;
 }
+
+
 
 .section-subtitle {
     margin: 0 auto 1rem;
@@ -42,28 +45,28 @@
 }
 
 .benefit {
-    width: 200px; 
+    width: 200px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    
+
 }
 
 .benefit img {
-    width: 70px; 
+    width: 70px;
     height: auto;
     margin-bottom: 15px;
-    
+
 }
 
 .benefit h3 {
-    font-size: 1.1rem; 
+    font-size: 1.1rem;
     margin-bottom: 10px;
     color: #2e5f9e;
 }
 
 .benefit p {
-    font-size: 0.9rem; 
+    font-size: 0.9rem;
     color: #555;
     line-height: 1.5;
 }
@@ -73,7 +76,7 @@
     #benefits {
         gap: 20px;
     }
-    
+
     .benefit {
         width: 300px;
     }
@@ -87,20 +90,20 @@
         gap: 40px;
         padding: 30px 15px;
     }
-    
+
     .benefit {
         width: 100%;
         max-width: 300px;
     }
-    
+
     .benefit img {
         width: 70px;
     }
-    
+
     .benefit h3 {
         font-size: 1.1rem;
     }
-    
+
     .benefit p {
         font-size: 0.9rem;
     }
