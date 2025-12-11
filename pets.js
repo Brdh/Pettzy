@@ -365,12 +365,21 @@ let termoBusca = '';
 function aplicarFiltros() {
     const petCards = document.querySelectorAll('.pet-card');
 
-    petCards.forEach((card, index) => {
+    const termo = (termoBusca || '').trim().toLowerCase();
+
+    petCards.forEach((card) => {
         const cardStatus = card.getAttribute('data-status');
-        const petName = petsData[index]?.name.toLowerCase() || '';
+
+        // Busca o nome e a espécie diretamente do card (mais resiliente para dados dinâmicos)
+        const nameEl = card.querySelector('.pet-info h3');
+        const typeEl = card.querySelector('.pet-info p');
+
+        const petName = (nameEl?.textContent || '').toLowerCase();
+        const petType = (typeEl?.textContent || '').toLowerCase();
 
         const passaStatus = statusAtual === 'all' || cardStatus === statusAtual;
-        const passaBusca = petName.includes(termoBusca.toLowerCase());
+        // Passa se o termo estiver vazio ou estiver contido no nome OU na espécie
+        const passaBusca = termo === '' || petName.includes(termo) || petType.includes(termo);
 
         card.style.display = (passaStatus && passaBusca) ? '' : 'none';
     });
@@ -386,15 +395,39 @@ function buscarPets() {
     termoBusca = searchInput.value;
     const clearBtn = document.getElementById('clearSearchBtn');
 
-    clearBtn.style.display = termoBusca ? 'block' : 'none';
+    if (clearBtn) {
+        clearBtn.style.display = termoBusca ? 'block' : 'none';
+    }
     aplicarFiltros();
 }
 
 function limparBusca() {
-    document.getElementById('searchInput').value = '';
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) searchInput.value = '';
     termoBusca = '';
-    document.getElementById('clearSearchBtn').style.display = 'none';
+    const clearBtn = document.getElementById('clearSearchBtn');
+    if (clearBtn) clearBtn.style.display = 'none';
     aplicarFiltros();
+}
+
+// Anexa evento ao campo de busca e às abas de status (se existirem)
+const searchInputEl = document.getElementById('searchInput');
+if (searchInputEl) {
+    searchInputEl.addEventListener('input', () => {
+        termoBusca = searchInputEl.value || '';
+        buscarPets();
+    });
+}
+
+const statusTabs = document.querySelectorAll('.status-tab');
+if (statusTabs.length) {
+    statusTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            statusTabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            filtrarPorStatus(tab.dataset.status);
+        });
+    });
 }
 
 

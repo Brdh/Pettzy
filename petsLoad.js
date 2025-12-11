@@ -4,6 +4,9 @@ const addPetForm = document.getElementById('addPetForm');
 let currentEditingPetId = null;
 let currentPet = null; // objeto completo do pet (vindo do backend)
 
+let allPets = []; // Variável global para armazenar todos os pets
+let currentStatusFilter = 'all'; // Variável para o filtro de status
+
 
 // Função de Abertura do Modal
 function openAddPetModal() {
@@ -100,6 +103,8 @@ async function carregarPets() {
         }
 
         const pets = await response.json();
+        allPets = pets; // <<< ARMAZENA TODOS OS PETS AQUI
+
 
         const container = document.getElementById("pets-container");
         container.innerHTML = "";
