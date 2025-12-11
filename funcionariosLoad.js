@@ -1,7 +1,6 @@
-// ============================================
 // VARIÁVEIS GLOBAIS E SELETORES
-// ============================================
 let funcionarios = []; // Armazena os dados vindos da API
+let currentFilterStatus = 'all'; // 'all', 'ativo', 'inativo'
 
 // Elementos do Modal de Adicionar
 const addFuncionarioModal = document.getElementById('addFuncionarioModal');
@@ -49,11 +48,12 @@ async function carregarFuncionarios() {
         funcionarios.forEach(f => {
             f.profissao = f.profissao || f.cargo || 'Não informado';
             f.contato = f.contato || f.email || '';
-            // Garante que o ID venha correto (MongoDB usa _id)
-            f.id = f._id || f.id; 
+            f.id = f._id || f.id;
+            f.vinculo = f.vinculo || 'Ativo';
+
         });
 
-        renderizarTabela(funcionarios);
+        aplicarFiltroEStatus(currentFilterStatus);
     } catch (err) {
         console.error("Erro ao carregar funcionarios:", err);
         alert("Erro ao carregar a lista de funcionários.");
@@ -110,11 +110,71 @@ function renderizarTabela(lista) {
 }
 
 // ============================================
-// LÓGICA DE EDIÇÃO (PUT)
+// LÓGICA DE FILTRO
+// ============================================
+function filtrarFuncionariosPorStatus(status) {
+    // 1. Se for 'all' ou vazio, retorna a lista completa
+    if (!status || status === 'all') {
+        return funcionarios;
+    }
+
+    // 2. Transforma o status do botão (ex: 'ativo') para minúsculas e remove espaços.
+    const statusBusca = status.trim().toLowerCase(); // -> 'ativo' ou 'inativo'
+
+    return funcionarios.filter(f => {
+        // 3. Transforma o valor do BD (ex: 'Ativo') para minúsculas e remove espaços.
+        // O || '' garante que não haverá erro se f.vinculo for nulo.
+        const vinculoFuncionario = (f.vinculo || '').trim().toLowerCase();
+
+        // 4. Compara: ('ativo' === 'ativo')
+        return vinculoFuncionario === statusBusca;
+    });
+}
+
+// ============================================
+// FUNÇÃO CENTRAL DE ATUALIZAÇÃO DA TABELA
+// ============================================
+function aplicarFiltroEStatus(status) {
+    currentFilterStatus = status; // Atualiza o estado
+
+    // 1. Filtra os dados
+    const listaFiltrada = filtrarFuncionariosPorStatus(status);
+
+    // 2. Renderiza a tabela
+    renderizarTabela(listaFiltrada);
+
+    // 3. Atualiza o estado visual dos botões
+    const tabs = document.querySelectorAll('.status-tab');
+    tabs.forEach(tab => {
+        if (tab.getAttribute('data-status') === status) {
+            tab.classList.add('active');
+        } else {
+            tab.classList.remove('active');
+        }
+    });
+}
+
+// ============================================
+// EVENT LISTENERS DE FILTRO
 // ============================================
 
+document.addEventListener('DOMContentLoaded', () => {
+    // ... (Seu código de inicialização) ...
+
+    const statusTabs = document.querySelectorAll('.status-tab');
+    statusTabs.forEach(tab => {
+        tab.addEventListener('click', function () {
+            const status = this.getAttribute('data-status'); // Pega 'all', 'ativo' ou 'inativo'
+            aplicarFiltroEStatus(status);
+        });
+    });
+});
+
+// ============================================
+// LÓGICA DE EDIÇÃO (PUT)
+// ============================================
 // 1. Função chamada pelo botão da tabela para preencher e abrir o modal
-window.abrirModalEdicao = function(id) {
+window.abrirModalEdicao = function (id) {
     // Busca o funcionário na lista carregada na memória
     const funcionario = funcionarios.find(f => f.id === id || f._id === id);
 
@@ -135,7 +195,7 @@ window.abrirModalEdicao = function(id) {
 
     // Abre o modal (usando jQuery se disponível, ou classe CSS)
     if (editFuncionarioModal) {
-        editFuncionarioModal.style.display = 'block'; 
+        editFuncionarioModal.style.display = 'block';
         // Se usar a classe .active do CSS igual ao modal de adicionar:
         editFuncionarioModal.classList.add('active');
     }
@@ -151,9 +211,9 @@ function fecharModalEdicao() {
 }
 
 // 3. Evento de Submit do Formulário de Edição (Envia para API)
-editFuncionarioForm.addEventListener('submit', async function(e) {
+editFuncionarioForm.addEventListener('submit', async function (e) {
     e.preventDefault();
-    
+
     const id = document.getElementById('editFuncionarioId').value;
     const token = localStorage.getItem('token');
 
@@ -185,7 +245,7 @@ editFuncionarioForm.addEventListener('submit', async function(e) {
         alert('Funcionário atualizado com sucesso!');
         fecharModalEdicao();
         carregarFuncionarios(); // Recarrega a tabela para mostrar dados novos
-        
+
     } catch (error) {
         console.error(error);
         alert('Erro ao atualizar: ' + error.message);
@@ -193,8 +253,8 @@ editFuncionarioForm.addEventListener('submit', async function(e) {
 });
 
 // Eventos de fechar modal de edição
-if(closeEditModalBtn) closeEditModalBtn.addEventListener('click', fecharModalEdicao);
-if(cancelEditModalBtn) cancelEditModalBtn.addEventListener('click', fecharModalEdicao);
+if (closeEditModalBtn) closeEditModalBtn.addEventListener('click', fecharModalEdicao);
+if (cancelEditModalBtn) cancelEditModalBtn.addEventListener('click', fecharModalEdicao);
 
 
 // ============================================
@@ -202,7 +262,7 @@ if(cancelEditModalBtn) cancelEditModalBtn.addEventListener('click', fecharModalE
 // ============================================
 // (Mantendo a lógica existente de abrir modal)
 const btnNovoFuncionario = document.querySelector('.btn-novo-funcionario');
-if(btnNovoFuncionario) {
+if (btnNovoFuncionario) {
     btnNovoFuncionario.addEventListener('click', () => {
         addFuncionarioModal.classList.add('active');
     });
@@ -213,8 +273,8 @@ function fecharModalAdd() {
     addFuncionarioForm.reset();
 }
 
-if(closeAddModalBtn) closeAddModalBtn.addEventListener('click', fecharModalAdd);
-if(cancelAddModalBtn) cancelAddModalBtn.addEventListener('click', fecharModalAdd);
+if (closeAddModalBtn) closeAddModalBtn.addEventListener('click', fecharModalAdd);
+if (cancelAddModalBtn) cancelAddModalBtn.addEventListener('click', fecharModalAdd);
 
 addFuncionarioForm.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -271,23 +331,23 @@ function getIniciais(nome) {
 }
 
 // Função de Deletar (Exemplo básico)
-window.deletarFuncionario = async function(id) {
-    if(!confirm("Tem certeza que deseja excluir?")) return;
-    
+window.deletarFuncionario = async function (id) {
+    if (!confirm("Tem certeza que deseja excluir?")) return;
+
     const token = localStorage.getItem('token');
     try {
         const response = await fetch(`https://pettzy-backend.onrender.com/api/employees/${id}`, {
             method: 'DELETE',
             headers: { 'Authorization': `Bearer ${token}` }
         });
-        
-        if(response.ok) {
+
+        if (response.ok) {
             alert("Funcionário removido.");
             carregarFuncionarios();
         } else {
             alert("Erro ao remover.");
         }
-    } catch(err) {
+    } catch (err) {
         console.error(err);
     }
 }
