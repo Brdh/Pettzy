@@ -328,6 +328,7 @@ header {
 
 /* New calendar event styles (for the simple week view) */
 .day-column-date {
+    text-align: center;
     padding: 8px 10px;
     font-size: 0.85rem;
     color: #444;

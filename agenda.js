@@ -2,7 +2,6 @@
 class AgendaApp {
     // URL base da sua API
     API_URL = 'https://pettzy-backend.onrender.com/api/agenda';
-    // URLs para buscar as referências
     PETS_URL = 'https://pettzy-backend.onrender.com/api/pets';
     FUNCIONARIOS_URL = 'https://pettzy-backend.onrender.com/api/employees';
 
@@ -12,6 +11,7 @@ class AgendaApp {
         this.events = []; // Agora carregado da API
         this.pets = []; // Lista de pets para o modal
         this.funcionarios = []; // Lista de funcionários para o modal
+        this.searchTerm = ''; // Auxilio de busca
         this.init();
     }
 
@@ -23,7 +23,6 @@ class AgendaApp {
     }
 
     setupEventListeners() {
-        // ... (Seus event listeners existentes)
         $('#prevBtn').on('click', () => { this.previousPeriod(); this.render(); });
         $('#nextBtn').on('click', () => { this.nextPeriod(); this.render(); });
         $('#dayBtn').on('click', () => this.setViewMode('day'));
@@ -44,6 +43,68 @@ class AgendaApp {
 
     toggleMobileMenu() {
         $('#mobile_menu').toggleClass('active');
+    }
+
+    filterEvents() {
+        // 1. Pega o valor do input e converte para minúsculo
+        const term = $('#searchInput').val().toLowerCase();
+
+        // 2. Salva no estado da classe
+        this.searchTerm = term;
+
+        // 3. Redesenha tudo (Calendário e Sidebar) com o novo filtro
+        this.render();
+    }
+
+    // Verifica se o evento bate com a pesquisa
+    eventMatchesSearch(event) {
+        // Se não tiver nada digitado, mostra tudo
+        if (!this.searchTerm) return true;
+
+        // Proteção contra campos vazios
+        const petName = (event.pet || '').toLowerCase();
+        const serviceName = (event.service || '').toLowerCase();
+
+        // Verifica se o termo está no nome do pet OU no serviço
+        return petName.includes(this.searchTerm) || serviceName.includes(this.searchTerm);
+    }
+
+    // Método para atualizar o texto do cabeçalho (Data Atual)
+    updateHeaderDate() {
+        const container = $('#currentDate');
+
+        // Opções de formatação
+        const optionsDay = { day: '2-digit', month: 'short', year: 'numeric' };
+        const optionsMonth = { month: 'long', year: 'numeric' };
+        const optionsShort = { day: '2-digit', month: 'short' };
+
+        if (this.viewMode === 'day') {
+            const text = this.currentDate.toLocaleDateString('pt-BR', optionsDay);
+            container.text(text);
+
+        } else if (this.viewMode === 'week') {
+            const start = new Date(this.currentDate);
+            const day = start.getDay(); // 0 (Dom) - 6 (Sab)
+            const diffToMonday = (day + 6) % 7;
+
+            start.setDate(start.getDate() - diffToMonday); // Segunda-feira
+
+            const end = new Date(start);
+            end.setDate(start.getDate() + 6); // Domingo
+
+            // Formata: 08 Dez - 14 Dez, 2025
+            const startStr = start.toLocaleDateString('pt-BR', optionsShort);
+            const endStr = end.toLocaleDateString('pt-BR', optionsDay); // Inclui o ano no final
+
+            container.text(`${startStr} - ${endStr}`);
+
+        } else if (this.viewMode === 'month') {
+            // Ex: Dezembro 2025
+            const text = this.currentDate.toLocaleDateString('pt-BR', optionsMonth);
+            // Capitaliza o mês (ex: dezembro -> Dezembro)
+            const textCapitalized = text.charAt(0).toUpperCase() + text.slice(1);
+            container.text(textCapitalized);
+        }
     }
 
     // 🔄 NOVO: Carrega Pets, Funcionários e Eventos da API
@@ -190,13 +251,11 @@ class AgendaApp {
         this.updatePeriod();
     }
 
-    // ... (Seus métodos de formatação, getEventsForDate, getEventsForTimeSlot continuam os mesmos) ...
-    // ... (Seus métodos renderWeekView, renderDayView, renderMonthView, renderDayHeaders, renderDaysGrid, renderMonthGrid continuam os mesmos) ...
-    // ... (Seus métodos renderEventsList, filterEvents, getStatusColor, getStatusLabel, isToday continuam os mesmos) ...
-
     // Render dispatcher (defensivo caso as funções específicas não estejam implementadas)
     render() {
         try {
+            this.updateHeaderDate();
+
             if (this.viewMode === 'day' && typeof this.renderDayView === 'function') {
                 return this.renderDayView();
             }
@@ -206,11 +265,9 @@ class AgendaApp {
             if (this.viewMode === 'month' && typeof this.renderMonthView === 'function') {
                 return this.renderMonthView();
             }
-            // fallback: if none of the specific renderers exist, try generic renderEventsList
             if (typeof this.renderEventsList === 'function') {
                 return this.renderEventsList();
             }
-            // no-op if nothing implemented yet
             return;
         } catch (err) {
             console.error('Erro em render():', err);
@@ -246,13 +303,19 @@ class AgendaApp {
     getEventsForDate(date) {
         if (!date) return [];
         const iso = date.toISOString().split('T')[0];
-        return this.events.filter(ev => ev.isoDate === iso);
+
+        return this.events.filter(ev => {
+            // Verifica a Data E a Busca
+            return ev.isoDate === iso && this.eventMatchesSearch(ev);
+        });
     }
 
     renderDayHeaders() {
         const container = $('#dayHeaders');
         if (!container.length) return;
         container.empty();
+
+        container.append('<div class="day-header header-spacer"></div>');
 
         const days = this.getWeekDays();
         days.forEach(d => {
@@ -269,8 +332,7 @@ class AgendaApp {
         const days = this.getWeekDays();
         days.forEach(d => {
             const col = $(`<div class="day-column"></div>`);
-            const dateLabel = $(`<div class="day-column-date">${d.toLocaleDateString('pt-BR')}</div>`);
-            col.append(dateLabel);
+
 
             const events = this.getEventsForDate(d);
             if (events.length === 0) {
@@ -397,16 +459,19 @@ class AgendaApp {
             container.empty();
 
             const upcoming = this.events
-                .filter(ev => ev.start)
+                .filter(ev => ev.start && this.eventMatchesSearch(ev))
                 .sort((a, b) => a.start - b.start)
                 .slice(0, 10);
 
             if (upcoming.length === 0) {
-                container.append('<p>Nenhum agendamento encontrado.</p>');
+                // Mensagem diferente se for por causa da busca
+                const msg = this.searchTerm ? 'Nenhum resultado para a busca.' : 'Nenhum agendamento futuro.';
+                container.append(`<p>${msg}</p>`);
                 return;
             }
 
             upcoming.forEach(ev => {
+                // (Seu código de renderização do item continua igual aqui...)
                 const time = ev.time || (ev.start ? ev.start.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }) : '-');
                 const date = ev.isoDate || (ev.start ? ev.start.toLocaleDateString('pt-BR') : '-');
                 const pet = ev.pet || 'Pet indisponível';
@@ -418,7 +483,6 @@ class AgendaApp {
                         <div class="event-meta">${date} • ${time} • ${service}</div>
                     </div>`
                 );
-
                 container.append(item);
             });
         } catch (err) {
