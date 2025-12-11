@@ -714,6 +714,24 @@ header {
     color: #fff;
 }
 
+#aquela-section {
+    max-height: 750px;
+    overflow-y: auto;
+}
+
+#aquela-section::-webkit-scrollbar {
+    width: 8px;
+}
+
+#aquela-section::-webkit-scrollbar-thumb {
+    background: #ffffff;
+    border-radius: 8px;
+}
+
+#aquela-section::-webkit-scrollbar-track {
+    background: transparent;
+}
+
 
 .employee-card {
     padding: 15px;

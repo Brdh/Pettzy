@@ -66,7 +66,6 @@ async function loadPetsForDashboard() {
 
         if (res.status === 401) {
             localStorage.removeItem('token');
-            // Substituir alert() por UI customizada, conforme boas práticas (Aviso: Apenas para fins de demonstração, mantive o alert por ser o padrão original, mas em apps reais deve ser evitado.)
             // alert('Sessão expirada. Faça login novamente.'); 
             window.location.href = 'Login.html';
             return;
@@ -76,8 +75,7 @@ async function loadPetsForDashboard() {
 
         const pets = await res.json();
 
-        // Limita a exibição (p.ex. 6 primeiros)
-        const toShow = Array.isArray(pets) ? pets.slice(0, 6) : [];
+        const toShow = Array.isArray(pets) ? pets.slice(0, 8) : [];
 
         petList.innerHTML = '';
 
