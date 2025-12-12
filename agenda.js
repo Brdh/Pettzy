@@ -182,7 +182,8 @@ class AgendaApp {
                 const durationMin = Number(event.duration) || 0;
                 const end = start ? new Date(start.getTime() + durationMin * 60000) : null;
                 const isoDate = start ? start.toISOString().split('T')[0] : null;
-                const time = event.time || (start ? start.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }) : '');
+                // Usa o 'time' que já vem formatado do servidor (evita dupla conversão de timezone)
+                const time = event.time || '';
 
                 return {
                     id: event.id,
@@ -339,7 +340,8 @@ class AgendaApp {
                 col.append('<div class="no-events">—</div>');
             } else {
                 events.forEach(ev => {
-                    const evTime = ev.time || (ev.start ? ev.start.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }) : '');
+                    // Usa o 'time' que já vem do servidor
+                    const evTime = ev.time || '-';
                     const evHtml = $(`<div class="calendar-event">
                         <div class="calendar-event-time">${evTime}</div>
                         <div class="calendar-event-info">
@@ -471,8 +473,8 @@ class AgendaApp {
             }
 
             upcoming.forEach(ev => {
-                // (Seu código de renderização do item continua igual aqui...)
-                const time = ev.time || (ev.start ? ev.start.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }) : '-');
+                // Usa o 'time' que já vem do servidor (já formatado corretamente)
+                const time = ev.time || '-';
                 const date = ev.isoDate || (ev.start ? ev.start.toLocaleDateString('pt-BR') : '-');
                 const pet = ev.pet || 'Pet indisponível';
                 const service = ev.service || '-';
